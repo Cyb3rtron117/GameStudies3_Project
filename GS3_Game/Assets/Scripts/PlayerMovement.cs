@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public void MoveInput(InputAction.CallbackContext context)
     {
         movement = context.ReadValue<Vector2>();
+        Debug.Log(movement);
     }
     public void JumpInput(InputAction.CallbackContext context)
     {
