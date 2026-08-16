@@ -9,6 +9,7 @@ public class Tank_Move : MonoBehaviour
     public Animator anim;
     public float moveSpeed = 10f;
     public float turnSpeed = 10f;
+    public float globalSpeedModifier = 1f;
     [SerializeField] private float leftTrack;
     [SerializeField] private float rightTrack;
     [Header("Shooting")]
@@ -54,8 +55,8 @@ public class Tank_Move : MonoBehaviour
             rightTrack /= max;
         }
 
-        anim.SetFloat("L_Speed", leftTrack);
-        anim.SetFloat("R_Speed", rightTrack);
+        anim.SetFloat("L_Speed", leftTrack * globalSpeedModifier);
+        anim.SetFloat("R_Speed", rightTrack * globalSpeedModifier);
     }
     private void Shoot()
     {

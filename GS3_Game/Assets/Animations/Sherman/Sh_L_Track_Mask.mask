@@ -1,0 +1,487 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sh_L_Track_Mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: M4 Sherman
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Body
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Body/supports
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Body/supports/supports_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/back_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/back_L/back_L_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/forward_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/forward_L/forward_L_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/tiny_wheel_1_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/tiny_wheel_1_L/tiny_wheel_1_L_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/tiny_wheel_2_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/tiny_wheel_2_L/tiny_wheel_2_L_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/tiny_wheel_3_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/tiny_wheel_3_L/tiny_wheel_3_L_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_1_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_1_L/wheel_1_L_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_2_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_2_L/wheel_2_L_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_3_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_3_L/wheel_3_L_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_4_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_4_L/wheel_4_L_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_5_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_5_L/wheel_5_L_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_6_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_L/wheel_6_L/wheel_6_L_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/back_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/back_R/back_R_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/forward_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/forward_R/forward_R_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/tiny_wheel_1_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/tiny_wheel_1_R/tiny_wheel_1_R_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/tiny_wheel_2_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/tiny_wheel_2_R/tiny_wheel_2_R_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/tiny_wheel_3_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/tiny_wheel_3_R/tiny_wheel_3_R_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_1_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_1_R/wheel_1_R_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_2_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_2_R/wheel_2_R_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_3_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_3_R/wheel_3_R_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_4_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_4_R/wheel_4_R_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_5_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_5_R/wheel_5_R_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_6_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Roadwheels_R/wheel_6_R/wheel_6_R_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.001
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.001/tread.001_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.001/tread_bone_L.001_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.002
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.002/tread.002_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.002/tread_bone_L.002_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.003
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.003/tread.003_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.003/tread_bone_L.003_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.004
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.004/tread.004_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.004/tread_bone_L.004_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.005
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.005/tread.005_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.005/tread_bone_L.005_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.006
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.006/tread.006_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.006/tread_bone_L.006_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.007
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.007/tread.007_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.007/tread_bone_L.007_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.008
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.008/tread.008_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.008/tread_bone_L.008_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.009
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.009/tread.009_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.009/tread_bone_L.009_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.010
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.010/tread.010_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.010/tread_bone_L.010_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.011
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.011/tread.011_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.011/tread_bone_L.011_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.012
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.012/tread.012_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.012/tread_bone_L.012_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.013
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.013/tread.013_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.013/tread_bone_L.013_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.014
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.014/tread.014_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.014/tread_bone_L.014_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.015
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.015/tread.015_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.015/tread_bone_L.015_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.016
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.016/tread.016_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.016/tread_bone_L.016_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.017
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.017/tread.017_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.017/tread_bone_L.017_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.018
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.018/tread.018_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.018/tread_bone_L.018_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.019
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.019/tread.019_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.019/tread_bone_L.019_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.020
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.020/tread.020_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.020/tread_bone_L.020_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.021
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.021/tread.021_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.021/tread_bone_L.021_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.022
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.022/tread.022_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.022/tread_bone_L.022_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.023
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.023/tread.023_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.023/tread_bone_L.023_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.024
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.024/tread.024_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.024/tread_bone_L.024_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.025
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.025/tread.025_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.025/tread_bone_L.025_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.026
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.026/tread.026_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.026/tread_bone_L.026_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.027
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.027/tread.027_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.027/tread_bone_L.027_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.028
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.028/tread.028_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.028/tread_bone_L.028_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.029
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.029/tread.029_L
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_L.029/tread_bone_L.029_end
+    m_Weight: 1
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.001
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.001/tread.001_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.001/tread_bone_R.001_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.002
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.002/tread.002_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.002/tread_bone_R.002_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.003
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.003/tread.003_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.003/tread_bone_R.003_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.004
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.004/tread.004_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.004/tread_bone_R.004_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.005
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.005/tread.005_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.005/tread_bone_R.005_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.006
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.006/tread.006_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.006/tread_bone_R.006_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.007
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.007/tread.007_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.007/tread_bone_R.007_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.008
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.008/tread.008_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.008/tread_bone_R.008_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.009
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.009/tread.009_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.009/tread_bone_R.009_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.010
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.010/tread.010_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.010/tread_bone_R.010_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.011
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.011/tread.011_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.011/tread_bone_R.011_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.012
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.012/tread.012_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.012/tread_bone_R.012_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.013
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.013/tread.013_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.013/tread_bone_R.013_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.014
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.014/tread.014_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.014/tread_bone_R.014_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.015
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.015/tread.015_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.015/tread_bone_R.015_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.016
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.016/tread.016_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.016/tread_bone_R.016_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.017
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.017/tread.017_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.017/tread_bone_R.017_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.018
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.018/tread.018_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.018/tread_bone_R.018_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.019
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.019/tread.019_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.019/tread_bone_R.019_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.020
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.020/tread.020_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.020/tread_bone_R.020_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.021
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.021/tread.021_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.021/tread_bone_R.021_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.022
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.022/tread.022_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.022/tread_bone_R.022_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.023
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.023/tread.023_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.023/tread_bone_R.023_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.024
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.024/tread.024_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.024/tread_bone_R.024_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.025
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.025/tread.025_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.025/tread_bone_R.025_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.026
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.026/tread.026_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.026/tread_bone_R.026_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.027
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.027/tread.027_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.027/tread_bone_R.027_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.028
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.028/tread.028_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.028/tread_bone_R.028_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.029
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.029/tread.029_R
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/Tracks/tread_bone_R.029/tread_bone_R.029_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/turret
+    m_Weight: 0
+  - m_Path: "M4 Sherman/M4/M4/turret/B\xE9zierCurve_L"
+    m_Weight: 0
+  - m_Path: "M4 Sherman/M4/M4/turret/B\xE9zierCurve_R"
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/turret/Cannon
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/turret/Cannon/Barrel
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/turret/Cannon/Barrel/Barrel_end
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/turret/MG
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/turret/MG/gun
+    m_Weight: 0
+  - m_Path: M4 Sherman/M4/M4/turret/MG/gun/gun_end
+    m_Weight: 0
+  - m_Path: Mesh_0
+    m_Weight: 0
