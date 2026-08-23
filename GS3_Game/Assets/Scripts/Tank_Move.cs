@@ -9,6 +9,7 @@ public class Tank_Move : MonoBehaviour
     public Animator anim;
     public float moveSpeed = 10f;
     public float turnSpeed = 10f;
+    private bool isMoving = false;
     [Header("Shooting")]
     public float shootCooldown = 1f;
     private float cooldownTime;
@@ -24,6 +25,16 @@ public class Tank_Move : MonoBehaviour
     public void MoveInput(InputAction.CallbackContext context)
     {
         movement = context.ReadValue<Vector2>();
+        if(movement.sqrMagnitude>0)
+        {
+            isMoving = true;
+            anim.SetBool("isMoving", isMoving);
+        }
+        else
+        {
+            isMoving = false;
+            anim.SetBool("isMoving", isMoving);
+        }
         //Debug.Log(movement);
     }
     public void ShootInput(InputAction.CallbackContext context)
@@ -37,7 +48,19 @@ public class Tank_Move : MonoBehaviour
     private void Move()
     {
         rb.linearVelocity = transform.forward * movement.y * moveSpeed;
+        //REGULAR   
         transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
+
+        //REVERSE INVERSE
+        /*if (movement.y < 0)
+        {
+            transform.Rotate(Vector3.up * movement.x * -turnSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
+        }*/
+        
     }
     private void Shoot()
     {
