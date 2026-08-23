@@ -31,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122150570693427764}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: -0, z: -0, w: 0.9238795}
-  m_LocalPosition: {x: 0, y: 10.606603, z: -10.606601}
+  m_LocalRotation: {x: 0.312091, y: 0.5346589, z: -0.22146298, w: 0.75345427}
+  m_LocalPosition: {x: -9.5553055, y: 10.123055, z: -3.3425124}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,7 +115,7 @@ MonoBehaviour:
     SplineCurvature: 0.5
   RecenteringTarget: 2
   HorizontalAxis:
-    Value: 0
+    Value: 70.7198
     Center: 0
     Range: {x: -180, y: 180}
     Wrap: 1
@@ -135,7 +135,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   RadialAxis:
-    Value: 1
+    Value: 0.9544108
     Center: 1
     Range: {x: 0.6, y: 2}
     Wrap: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
       Enabled: 1
       Input:
         InputAction: {fileID: 1924317715523682709, guid: 61f9d2cc873ccf945ae4abd67cbd006c, type: 3}
-        Gain: 15
+        Gain: 100
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -381,7 +381,19 @@ MonoBehaviour:
     m_ActionId: a0beaffa-0f94-409b-b16c-0e48a0b88ba6
     m_ActionName: 'Player/Shoot[/Keyboard/space]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: InputDebug, Assembly-CSharp
+        m_MethodName: Look
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9ff3f713-dde1-4051-828d-19a03fa7819f
     m_ActionName: 'Player/Look[/Mouse/rightButton,/Mouse/delta]'
   - m_PersistentCalls:
@@ -485,8 +497,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6938309921592093967}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  m_LocalPosition: {x: 0, y: 10.606603, z: -10.606601}
+  m_LocalRotation: {x: 0.312091, y: 0.5346589, z: -0.22146298, w: 0.75345427}
+  m_LocalPosition: {x: -9.5553055, y: 10.123055, z: -3.3425124}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

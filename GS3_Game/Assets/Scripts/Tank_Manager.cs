@@ -111,7 +111,7 @@ public class Tank_Manager : MonoBehaviour
     public void changeMaterial(Material newMat)
     {
         tankprefab.changeMaterial(newMat);
-        print("fdvsjnfv");
+        
     }
     public void ChangeTank(GameObject tank)
     {

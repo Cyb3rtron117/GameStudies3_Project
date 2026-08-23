@@ -2478,7 +2478,6 @@ MonoBehaviour:
   - {fileID: 1905664853}
   - {fileID: 575397915}
   colours: []
-  playerCount: 0
 --- !u!114 &1531262402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2684,7 +2683,7 @@ MonoBehaviour:
     Enabled: 0
     DefaultMode: 2
   DefaultBlend:
-    Style: 1
+    Style: 0
     Time: 2
     CustomCurve:
       serializedVersion: 2

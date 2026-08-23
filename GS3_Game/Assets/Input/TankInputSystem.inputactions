@@ -37,7 +37,7 @@
                     "name": "Zoom",
                     "type": "Value",
                     "id": "1dc652c9-500e-48d9-b540-1f6f4c7a8168",
-                    "expectedControlType": "",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -179,7 +179,7 @@
                     "id": "70c1a217-1f39-4e71-a830-317ee4f7fefb",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Scale(factor=0.1)",
                     "groups": ";Mouse & Keyboard",
                     "action": "Look",
                     "isComposite": false,
@@ -188,10 +188,21 @@
                 {
                     "name": "",
                     "id": "9586c30b-d51c-46be-9f35-6843c31bd85b",
-                    "path": "<Mouse>/scroll",
+                    "path": "<Mouse>/scroll/y",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse & Keyboard",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac9cb40c-70b8-493e-9df9-7b2008e2e68a",
+                    "path": "<Gamepad>/rightStick/y",
+                    "interactions": "",
+                    "processors": "Scale(factor=0.1)",
+                    "groups": ";Gamepad",
                     "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -213,7 +224,7 @@
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Mouse & Keyboard",
                     "action": "SwapColour",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -224,7 +235,40 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
+                    "groups": ";Mouse & Keyboard",
+                    "action": "SwapColour",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "d2574a40-eef7-4d8d-82e0-494fe85ded2d",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
                     "groups": "",
+                    "action": "SwapColour",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "de274a71-306e-46c7-b821-f08f3fec743e",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "SwapColour",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "32072cb5-77ab-4b59-9f2e-e8e860722ecd",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
                     "action": "SwapColour",
                     "isComposite": false,
                     "isPartOfComposite": true
