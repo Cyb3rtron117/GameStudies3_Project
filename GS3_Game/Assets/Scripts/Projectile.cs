@@ -10,11 +10,13 @@ public class Projectile : MonoBehaviour
     [SerializeField] private GameObject _shooter;
 
     [SerializeField] private Transform FreezePos;
+    private MeshRenderer renderer;
 
     private void Awake()
     {
         Instance = this;
         rb = GetComponent<Rigidbody>();
+        renderer = GetComponent<MeshRenderer>();
     }
     private void Update()
     {
@@ -63,7 +65,8 @@ public class Projectile : MonoBehaviour
                     mode = BulletMode.Frozen;
                     Freeze();
                     _shooter = null;
-                    other.gameObject.GetComponent<Tank_Move>().canShoot = true;
+                    other.gameObject.GetComponent<Tank_Manager>().canShoot = true;
+                    SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
                 }
             }
             else
@@ -71,10 +74,17 @@ public class Projectile : MonoBehaviour
                 mode = BulletMode.Frozen;
                 Freeze();
                 _shooter = null;
-                other.gameObject.GetComponent<Tank_Move>().canShoot = true;
+                other.gameObject.GetComponent<Tank_Manager>().canShoot = true;
+                SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
             }
            
         }
+    }
+    private void SwapColour(Material newMat)
+    {
+        Material[] materials = renderer.materials;
+        materials[0] = newMat;
+        renderer.materials = materials;
     }
 }
 
