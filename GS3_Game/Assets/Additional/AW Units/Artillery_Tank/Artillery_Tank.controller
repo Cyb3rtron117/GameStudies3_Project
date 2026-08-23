@@ -46,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -8959345449000567435, guid: 034427e583819de47a0f43a4bf3e862b, type: 3}
+  m_Motion: {fileID: 7670080570414974093, guid: e21b38f43df1efe4fb8412dc0cfe9069, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -135,7 +135,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AA_Tank
+  m_Name: Artillery_Tank
   serializedVersion: 6
   m_AnimatorParameters:
   - m_Name: Shoot
@@ -247,7 +247,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -1023304631661342853, guid: 034427e583819de47a0f43a4bf3e862b, type: 3}
+  m_Motion: {fileID: 887609342799074488, guid: e21b38f43df1efe4fb8412dc0cfe9069, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -296,7 +296,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -9094657328149616034, guid: 034427e583819de47a0f43a4bf3e862b, type: 3}
+  m_Motion: {fileID: 5022061888346859113, guid: e21b38f43df1efe4fb8412dc0cfe9069, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -46,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -8959345449000567435, guid: 034427e583819de47a0f43a4bf3e862b, type: 3}
+  m_Motion: {fileID: 150183684673873661, guid: 6155145bbb3386041ad78c202189d010, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -135,7 +135,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AA_Tank
+  m_Name: Mega_Tank
   serializedVersion: 6
   m_AnimatorParameters:
   - m_Name: Shoot
@@ -247,7 +247,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -1023304631661342853, guid: 034427e583819de47a0f43a4bf3e862b, type: 3}
+  m_Motion: {fileID: 8264881397490477465, guid: 6155145bbb3386041ad78c202189d010, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -296,7 +296,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -9094657328149616034, guid: 034427e583819de47a0f43a4bf3e862b, type: 3}
+  m_Motion: {fileID: -924805110102894239, guid: 6155145bbb3386041ad78c202189d010, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

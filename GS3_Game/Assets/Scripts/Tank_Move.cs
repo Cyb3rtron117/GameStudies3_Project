@@ -13,13 +13,15 @@ public class Tank_Move : MonoBehaviour
     [Header("Shooting")]
     public float shootCooldown = 1f;
     private float cooldownTime;
-    [SerializeField] private bool canShoot = true;
+    [SerializeField] private Transform turret;
+    [SerializeField] private Transform barrel;
+    public bool canShoot = false;
     public float ShakeIntensity = 1f;
     public float ShakeTime = 0.5f;
 
     private void Start()
     {
-        cooldownTime = shootCooldown;
+        //cooldownTime = shootCooldown;
     }
 
     public void MoveInput(InputAction.CallbackContext context)
@@ -70,12 +72,17 @@ public class Tank_Move : MonoBehaviour
             canShoot = false;
             cooldownTime = shootCooldown;
             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+            Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
+            Projectile.Instance.Shoot(barrel, shootDir, gameObject);
         }
     }
 
     private void Update()
     {
         Move();
+
+        //SHOOT COOLDOWN
+        /*
         if(cooldownTime > 0)
         {
             cooldownTime -= Time.deltaTime;
@@ -83,6 +90,6 @@ public class Tank_Move : MonoBehaviour
             {
                 canShoot = true;
             }
-        }
+        }*/
     }
 }
