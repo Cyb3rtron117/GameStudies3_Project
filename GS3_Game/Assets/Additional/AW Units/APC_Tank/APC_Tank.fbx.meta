@@ -3,12 +3,7 @@ guid: 3dbba1f4e648a484fb8fa86c1a271b8f
 ModelImporter:
   serializedVersion: 24501
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Tank_Texture
-    second: {fileID: 2100000, guid: 24a7dd24ef9826048bc2e102525e8b13, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
