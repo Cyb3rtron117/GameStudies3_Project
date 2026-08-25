@@ -32,6 +32,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SpawnCube",
+                    "type": "Button",
+                    "id": "12180bdf-d8ca-45e3-99fc-09a7cf7ec608",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -188,6 +197,17 @@
                     "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "351de0dd-684e-4783-be73-e32d5cce2020",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse & Keyboard",
+                    "action": "SpawnCube",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
