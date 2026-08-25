@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         renderer = GetComponent<MeshRenderer>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         switch (mode)
         {

@@ -307,8 +307,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tank_Move
   rb: {fileID: 6759753703300375904}
   anim: {fileID: 0}
-  moveSpeed: 5
-  turnSpeed: 30
+  moveSpeed: 10
+  turnSpeed: 100
   shootCooldown: 1
   canShoot: 0
   ShakeIntensity: 1

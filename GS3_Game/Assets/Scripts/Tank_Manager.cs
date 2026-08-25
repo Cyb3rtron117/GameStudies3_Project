@@ -66,17 +66,17 @@ public class Tank_Manager : MonoBehaviour
     {
         rb.linearVelocity = transform.forward * movement.y * moveSpeed;
         //REGULAR   
-        transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
+        //transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
 
         //REVERSE INVERSE
-        /*if (movement.y < 0)
+        if (movement.y < 0)
         {
             transform.Rotate(Vector3.up * movement.x * -turnSpeed * Time.fixedDeltaTime);
         }
         else
         {
             transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
-        }*/
+        }
         
     }
     private void Shoot()
@@ -92,7 +92,7 @@ public class Tank_Manager : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
 
