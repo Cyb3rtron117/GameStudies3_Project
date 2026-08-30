@@ -4,6 +4,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
+using static PlayerJoining;
 
 public class Menu_Tank : MonoBehaviour
 {
@@ -15,11 +16,22 @@ public class Menu_Tank : MonoBehaviour
     private GameObject currentTank;
     [SerializeField] private TankPrefab tankprefab;
     private List<Material> colours = new List<Material>();
-    private int colourIndex = 0;
-   
+    private int colourIndex = 0;   
     public Material activeMaterial;
+
+    [SerializeField] private PlayerSetup playerSetup;
+
     [Header("Game Manager")]
     public GameObject gameManager;
+
+    public void Setup(PlayerSetup setup)
+    {
+        playerSetup = setup;
+
+        tankIndex = setup.tankIndex;
+        colourIndex = setup.colourIndex;
+    }
+
 
     private void Start()
     {
@@ -57,6 +69,7 @@ public class Menu_Tank : MonoBehaviour
         {
             tankIndex = 0;
         }
+        playerSetup.tankIndex = tankIndex;
         ChangeTank(TankPrefabs[tankIndex]);
     }
     private void PreviousTank()
@@ -66,6 +79,7 @@ public class Menu_Tank : MonoBehaviour
         {
             tankIndex = TankPrefabs.Count - 1;
         }
+        playerSetup.tankIndex = tankIndex;
         ChangeTank(TankPrefabs[tankIndex]);
     }
     public void ChangeTankInput(InputAction.CallbackContext context)
@@ -110,7 +124,7 @@ public class Menu_Tank : MonoBehaviour
         {
             colourIndex = 0;
         }
-
+        playerSetup.colourIndex = colourIndex;
         ApplyColour();
     }
     private void PreviousColour()
@@ -121,7 +135,7 @@ public class Menu_Tank : MonoBehaviour
         {
             colourIndex = colours.Count - 1;
         }
-
+        playerSetup.colourIndex = colourIndex;
         ApplyColour();
     }
     private void ApplyColour()

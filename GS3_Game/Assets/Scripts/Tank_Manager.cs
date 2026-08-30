@@ -28,7 +28,8 @@ public class Tank_Manager : MonoBehaviour
     [SerializeField] private Transform turret;
     [SerializeField] private Transform barrel;
     private List<Material> colours = new List<Material>();
-    private int colourIndex = 0;
+    public int tankIndex = 0;
+    public int colourIndex = 0;
     public Material activeMaterial;
     [Header("Game Manager")]
     public GameObject gameManager;
@@ -37,7 +38,8 @@ public class Tank_Manager : MonoBehaviour
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         colours = gameManager.GetComponent<Colours>().colours;
-        ChangeTank(TankPrefabs[0]);
+        ApplyColour();
+        ChangeTank(TankPrefabs[tankIndex]);
     }
 
     public void MoveInput(InputAction.CallbackContext context)

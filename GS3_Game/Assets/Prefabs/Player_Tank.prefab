@@ -31,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122150570693427764}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.312091, y: 0.5346589, z: -0.22146298, w: 0.75345427}
-  m_LocalPosition: {x: -9.5553055, y: 10.123055, z: -3.3425124}
+  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+  m_LocalPosition: {x: 0, y: 10.123056, z: -10.1230545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,7 +115,7 @@ MonoBehaviour:
     SplineCurvature: 0.5
   RecenteringTarget: 2
   HorizontalAxis:
-    Value: 70.7198
+    Value: 0
     Center: 0
     Range: {x: -180, y: 180}
     Wrap: 1
@@ -314,13 +314,15 @@ MonoBehaviour:
   ShakeIntensity: 1
   ShakeTime: 0.5
   TankPrefabs:
-  - {fileID: 4376978474609976355}
   - {fileID: 3970782593307740903}
   - {fileID: 8745673937719278891}
+  - {fileID: 4376978474609976355}
   - {fileID: 6753191491990757713}
   tankprefab: {fileID: 0}
   turret: {fileID: 0}
   barrel: {fileID: 0}
+  tankIndex: 0
+  colourIndex: 0
   activeMaterial: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!114 &1046732697416124327
@@ -416,6 +418,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9e78facd-2596-43df-9572-1f8492e2be97
     m_ActionName: 'Player/SwapColour[/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2b3a5003-86bf-4ba9-bae3-6f2a5a67a1f1
+    m_ActionName: 'Player/SwapTank[/Keyboard/a,/Keyboard/d]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -497,8 +503,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6938309921592093967}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.312091, y: 0.5346589, z: -0.22146298, w: 0.75345427}
-  m_LocalPosition: {x: -9.5553055, y: 10.123055, z: -3.3425124}
+  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+  m_LocalPosition: {x: 0, y: 10.123056, z: -10.1230545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
