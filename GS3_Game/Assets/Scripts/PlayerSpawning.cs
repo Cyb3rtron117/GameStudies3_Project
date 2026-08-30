@@ -18,12 +18,13 @@ public class PlayerSpawning : MonoBehaviour
     {
         int index = playerInput.playerIndex;
         playerInput.transform.position = SpawnPoints[index].transform.position;
-        playerInput.GetComponent<Tank_Manager>().activeMaterial = colours[index];
-        CinemachineInputAxisController inputController = playerInput.GetComponentInChildren<CinemachineInputAxisController>();
+        playerInput.transform.rotation = SpawnPoints[index].transform.rotation;
+        playerInput.GetComponent<Menu_Tank>().activeMaterial = colours[index];
+        /*CinemachineInputAxisController inputController = playerInput.GetComponentInChildren<CinemachineInputAxisController>();
 
         if (inputController != null)
         {
             inputController.PlayerIndex = index;
-        }
+        }*/
     }
 }
