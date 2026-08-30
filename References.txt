@@ -3,3 +3,5 @@ Kenney (2020). Prototype Textures. Kenney. https://kenney.nl/assets/prototype-te
 Mongy. (2025, May 14). Unity Shader Graph: Easy outline shader in 1 minute! [Video]. YouTube. https://www.youtube.com/watch?v=ODab7a-tOlY
 
 Unity. (2025, April 17). Unity Input System in Unity 6 (7/7):  Player Input Manager & local multiplayer [Video]. YouTube. https://www.youtube.com/watch?v=lGxXQzE5Vu8
+
+Faktory Studios. (2025, June 13). Local Multiplayer in Unity 6 - using the NEW Input system [Video]. YouTube. https://www.youtube.com/watch?v=u3KoWI92blE
