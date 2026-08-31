@@ -147,4 +147,15 @@ public class Menu_Tank : MonoBehaviour
             tankprefab.changeMaterial(activeMaterial);
         }
     }
+    public void PressReady(InputAction.CallbackContext context)
+    {
+        if(!context.performed)
+        {
+            return;
+        }
+        else
+        {
+            gameManager.GetComponent<ReadyUp>().playerReady(playerSetup.playerIndex);
+        }
+    }
 }

@@ -325,6 +325,7 @@ MonoBehaviour:
   colourIndex: 0
   activeMaterial: {fileID: 0}
   gameManager: {fileID: 0}
+  cineOrbit: {fileID: 0}
 --- !u!114 &1046732697416124327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +423,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2b3a5003-86bf-4ba9-bae3-6f2a5a67a1f1
     m_ActionName: 'Player/SwapTank[/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1298bb4f-1dbb-4c4f-a11e-ea369c28ea47
+    m_ActionName: 'Player/ReadyUp[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

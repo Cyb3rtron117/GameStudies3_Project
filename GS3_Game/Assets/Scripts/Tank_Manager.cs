@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEditor.Build.Content;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -10,8 +11,8 @@ public class Tank_Manager : MonoBehaviour
     private Vector2 movement;
     public Rigidbody rb;
     public Animator anim;
-    public float moveSpeed = 10f;
-    public float turnSpeed = 10f;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float turnSpeed = 10f;
     private bool isMoving = false;
     
     [Header("Shooting")]
@@ -33,10 +34,13 @@ public class Tank_Manager : MonoBehaviour
     public Material activeMaterial;
     [Header("Game Manager")]
     public GameObject gameManager;
+    [Header("Cinemachine")]
+    [SerializeField] private CinemachineOrbitalFollow cineOrbit;
 
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController");
+        cineOrbit = GetComponentInChildren<CinemachineOrbitalFollow>();
         colours = gameManager.GetComponent<Colours>().colours;
         ApplyColour();
         ChangeTank(TankPrefabs[tankIndex]);
@@ -93,11 +97,15 @@ public class Tank_Manager : MonoBehaviour
             Projectile.Instance.Shoot(barrel, shootDir, gameObject);
         }
     }
+    private void RotateTurret()
+    {
+        turret.transform.eulerAngles = new Vector3(0, cineOrbit.HorizontalAxis.Value, 0);
+    }
 
     private void FixedUpdate()
     {
         Move();
-
+        RotateTurret();
         //SHOOT COOLDOWN
         /*
         if(cooldownTime > 0)
@@ -130,6 +138,11 @@ public class Tank_Manager : MonoBehaviour
         turret = tankprefab.turret;
         barrel = tankprefab.barrel;
         anim = tankprefab.animator;
+        moveSpeed = tankprefab.moveSpeed;
+        turnSpeed = tankprefab.turnSpeed;
+        GetComponent<BoxCollider>().size = tankprefab.collider.size;
+        GetComponent<BoxCollider>().center = tankprefab.collider.center;
+        rb.mass = tankprefab.tankweight;
 
         changeMaterial(activeMaterial);
     }

@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 1506850974280390495}
   - component: {fileID: 5717523473145308939}
   - component: {fileID: 340507965506162711}
+  - component: {fileID: 3214272064173521322}
   m_Layer: 0
   m_Name: Mega_Tank
   m_TagString: Untagged
@@ -492,6 +493,31 @@ MonoBehaviour:
   barrel: {fileID: 4934685496054274195}
   renderer: {fileID: 5923159321589206281}
   animator: {fileID: 5717523473145308939}
+  collider: {fileID: 3214272064173521322}
+  turnSpeed: 70
+  moveSpeed: 7
+  tankweight: 20
+--- !u!65 &3214272064173521322
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7643692782201695149}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.9978247, y: 1.7747898, z: 2.237276}
+  m_Center: {x: 0, y: 0.88738286, z: -0.0014526844}
 --- !u!1 &7904748838980648579
 GameObject:
   m_ObjectHideFlags: 0

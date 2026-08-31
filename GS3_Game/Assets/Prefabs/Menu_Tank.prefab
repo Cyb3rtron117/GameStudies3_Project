@@ -110,6 +110,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2b3a5003-86bf-4ba9-bae3-6f2a5a67a1f1
     m_ActionName: 'Player/SwapTank[/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4970665517879601029}
+        m_TargetAssemblyTypeName: Menu_Tank, Assembly-CSharp
+        m_MethodName: PressReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1298bb4f-1dbb-4c4f-a11e-ea369c28ea47
+    m_ActionName: 'Player/ReadyUp[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -135,6 +151,10 @@ MonoBehaviour:
   - {fileID: 6494532152813604233}
   tankprefab: {fileID: 0}
   activeMaterial: {fileID: 0}
+  playerSetup:
+    playerIndex: 0
+    tankIndex: 0
+    colourIndex: 0
   gameManager: {fileID: 0}
 --- !u!1001 &922011441315997798
 PrefabInstance:

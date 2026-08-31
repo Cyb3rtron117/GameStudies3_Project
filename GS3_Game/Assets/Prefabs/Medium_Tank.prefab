@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 2204040299475860727}
   - component: {fileID: 40536191657203255}
   - component: {fileID: 3777357199731330274}
+  - component: {fileID: 7384995578232837663}
   m_Layer: 0
   m_Name: Medium_Tank
   m_TagString: tank_prefab
@@ -136,6 +137,31 @@ MonoBehaviour:
   barrel: {fileID: 1972587162871560873}
   renderer: {fileID: 517411987174660676}
   animator: {fileID: 40536191657203255}
+  collider: {fileID: 7384995578232837663}
+  turnSpeed: 90
+  moveSpeed: 8
+  tankweight: 10
+--- !u!65 &7384995578232837663
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915245103756370909}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.72, y: 1.655722, z: 2.057351}
+  m_Center: {x: 0, y: 0.827849, z: -0.0040984154}
 --- !u!1 &2254931165709731266
 GameObject:
   m_ObjectHideFlags: 0

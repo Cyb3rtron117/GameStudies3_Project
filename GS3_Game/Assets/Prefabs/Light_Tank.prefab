@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 1515331432510887839}
   - component: {fileID: 4098002315730674172}
   - component: {fileID: 8411452408929418497}
+  - component: {fileID: 2728507733254649569}
   m_Layer: 0
   m_Name: Light_Tank
   m_TagString: Untagged
@@ -459,6 +460,31 @@ MonoBehaviour:
   barrel: {fileID: 3653626490743990937}
   renderer: {fileID: 7841893405925510794}
   animator: {fileID: 4098002315730674172}
+  collider: {fileID: 2728507733254649569}
+  turnSpeed: 130
+  moveSpeed: 10
+  tankweight: 2
+--- !u!65 &2728507733254649569
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355964326354354450}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.2789936, y: 1.7156118, z: 1.6599013}
+  m_Center: {x: 0, y: 0.85779387, z: -0.004098594}
 --- !u!1 &7664350709538343973
 GameObject:
   m_ObjectHideFlags: 0

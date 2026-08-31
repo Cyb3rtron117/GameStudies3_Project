@@ -33,9 +33,11 @@ public class PlayerJoining : MonoBehaviour
         {
             menuTank.Setup(setup);
         }
+        GetComponent<ReadyUp>().playersReady.Add(false);
     }
     public void OnPlayerLeft(PlayerInput playerInput)
     {
+        int index = playerInput.playerIndex;
         Destroy(playerInput.gameObject);
     }
 }

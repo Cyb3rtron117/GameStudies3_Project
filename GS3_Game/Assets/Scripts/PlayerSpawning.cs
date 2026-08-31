@@ -10,6 +10,7 @@ public class PlayerSpawning : MonoBehaviour
 {
     public Transform[] SpawnPoints;
     public GameObject PlayerPrefab;
+
     private void Start()
     {
         SpawnPlayers();
