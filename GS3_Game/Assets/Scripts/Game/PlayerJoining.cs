@@ -8,10 +8,9 @@ public class PlayerJoining : MonoBehaviour
     [SerializeField] public static List<PlayerSetup> playerSetups = new List<PlayerSetup>();
 
     public Transform[] SpawnPoints;
-    [SerializeField] private List<Material> colours = new List<Material>();
     private void Start()
     {
-        colours = GetComponent<Colours>().colours;
+        
     }
 
     public void OnPlayerJoined(PlayerInput playerInput)
@@ -19,11 +18,13 @@ public class PlayerJoining : MonoBehaviour
         int index = playerInput.playerIndex;
         playerInput.transform.position = SpawnPoints[index].transform.position;
         playerInput.transform.rotation = SpawnPoints[index].transform.rotation;
-        playerInput.GetComponent<Menu_Tank>().activeMaterial = colours[index];
+        playerInput.GetComponent<Menu_Tank>().activeMaterial = GetComponent<Colours>().colours[index];
         PlayerSetup setup = new PlayerSetup
         {
             playerIndex = playerInput.playerIndex,
-            devices = playerInput.devices.ToArray()
+            devices = playerInput.devices.ToArray(),
+            tankIndex = 0,
+            colourIndex = playerInput.playerIndex
         };
         playerSetups.Add(setup);
 

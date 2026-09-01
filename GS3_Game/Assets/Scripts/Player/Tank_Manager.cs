@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEditor.Build.Content;
@@ -8,6 +9,7 @@ using UnityEngine.Windows;
 
 public class Tank_Manager : MonoBehaviour
 {
+    [Header("Moving")]
     private Vector2 movement;
     public Rigidbody rb;
     public Animator anim;
@@ -32,8 +34,9 @@ public class Tank_Manager : MonoBehaviour
     public int tankIndex = 0;
     public int colourIndex = 0;
     public Material activeMaterial;
-    [Header("Game Manager")]
+    [Header("Game Systems")]
     public GameObject gameManager;
+    public Team _team; //set by PlayerSpawning
     [Header("Cinemachine")]
     [SerializeField] private CinemachineOrbitalFollow cineOrbit;
 
@@ -94,7 +97,7 @@ public class Tank_Manager : MonoBehaviour
             cooldownTime = shootCooldown;
             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
             Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
-            Projectile.Instance.Shoot(barrel, shootDir, gameObject);
+            Projectile.Instance.Shoot(barrel, shootDir, gameObject, _team);
         }
     }
     private void RotateTurret()

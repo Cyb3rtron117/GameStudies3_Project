@@ -8,6 +8,9 @@ TagManager:
   - Arena
   - FreezePos
   - tank_prefab
+  - Missle
+  - Goal1
+  - Goal2
   layers:
   - Default
   - TransparentFX

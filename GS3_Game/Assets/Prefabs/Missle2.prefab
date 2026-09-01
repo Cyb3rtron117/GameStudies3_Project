@@ -69,12 +69,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 57056ee4133ef5a42afedc400c85e50f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6fc741f998b84124c93404a1e51cf57d, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 57056ee4133ef5a42afedc400c85e50f, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 588ea547f993b064ea35d683b4db4223, type: 2}
     - target: {fileID: 919132149155446097, guid: 57056ee4133ef5a42afedc400c85e50f, type: 3}
       propertyPath: m_Name
       value: Missle2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 57056ee4133ef5a42afedc400c85e50f, type: 3}
+      propertyPath: m_TagString
+      value: Missle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -108,10 +116,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   bulletSpeed: 15
-  spinSpeed: 20
+  spinSpeed: 30
   mode: 1
   _shooter: {fileID: 0}
   FreezePos: {fileID: 0}
+  defaultMat: {fileID: 2100000, guid: 6fc741f998b84124c93404a1e51cf57d, type: 2}
+  _team: 2
+  scoreScript: {fileID: 0}
+  spawnScript: {fileID: 0}
 --- !u!54 &5138829020388882081
 Rigidbody:
   m_ObjectHideFlags: 0
