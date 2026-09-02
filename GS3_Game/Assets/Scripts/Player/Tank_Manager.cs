@@ -24,6 +24,8 @@ public class Tank_Manager : MonoBehaviour
     public bool canShoot = false;
     public float ShakeIntensity = 1f;
     public float ShakeTime = 0.5f;
+    public GameObject canvasObjects;
+
     [Header("Tank Prefabs")]
     public List<GameObject> TankPrefabs = new List<GameObject>();
     private GameObject currentTank;
@@ -47,6 +49,7 @@ public class Tank_Manager : MonoBehaviour
         colours = gameManager.GetComponent<Colours>().colours;
         ApplyColour();
         ChangeTank(TankPrefabs[tankIndex]);
+        canvasObjects.SetActive(false);
     }
 
     public void MoveInput(InputAction.CallbackContext context)
@@ -88,6 +91,11 @@ public class Tank_Manager : MonoBehaviour
         }
         
     }
+    public void HasProjectile()
+    {
+        canShoot = true;
+        canvasObjects.SetActive(true);
+    }
     private void Shoot()
     {
         if (canShoot)
@@ -98,6 +106,7 @@ public class Tank_Manager : MonoBehaviour
             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
             Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
             Projectile.Instance.Shoot(barrel, shootDir, gameObject, _team);
+            canvasObjects.SetActive(false);
         }
     }
     private void RotateTurret()

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GoalBarrier : MonoBehaviour
 {
-    private Animator anim;
+    public Animator anim;
     public Team whichGoal;
     private float waitTime = 1f;
 

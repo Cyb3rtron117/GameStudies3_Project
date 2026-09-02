@@ -73,14 +73,14 @@ public class Projectile : MonoBehaviour
                 if (other.gameObject != _shooter)
                 {
                     GoHide();
-                    other.gameObject.GetComponent<Tank_Manager>().canShoot = true;
+                    other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
                     SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
                 }
             }
             else
             {
                 GoHide();
-                other.gameObject.GetComponent<Tank_Manager>().canShoot = true;
+                other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
                 SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
             }
         }

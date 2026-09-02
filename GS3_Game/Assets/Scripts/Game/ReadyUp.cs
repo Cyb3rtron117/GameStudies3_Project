@@ -7,6 +7,7 @@ public class ReadyUp : MonoBehaviour
     public List<bool> playersReady = new List<bool>();
     public GameObject[] CanvasReadyButtons;
     public SceneLoading _sceneLoading;
+    [SerializeField] private int playersNeeded = 2;
     private void Start()
     {
         foreach(bool _bool in playersReady)
@@ -34,7 +35,7 @@ public class ReadyUp : MonoBehaviour
     }
     private void checkReady()
     {
-        if (playersReady.Count < 2)//change to 2 for actualy ppl
+        if (playersReady.Count < playersNeeded)//will be 2 for actual game
         {
             print("Not enough players");
         }
