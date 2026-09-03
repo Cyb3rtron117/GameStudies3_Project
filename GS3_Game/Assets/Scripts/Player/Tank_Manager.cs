@@ -1,11 +1,9 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Cinemachine;
-using UnityEditor.Build.Content;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class Tank_Manager : MonoBehaviour
 {
@@ -13,9 +11,18 @@ public class Tank_Manager : MonoBehaviour
     private Vector2 movement;
     public Rigidbody rb;
     public Animator anim;
-    [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float turnSpeed = 10f;
     private bool isMoving = false;
+    [SerializeField] private float boostTime = 0.5f;
+    [SerializeField] private float boostCooldown = 1f;
+    [SerializeField] private bool isBoosting = false;
+
+    [Header("Speeds")]
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float boostSpeed = 10f;
+    [SerializeField] private float currentSpeed = 10f;
+    [SerializeField] private float turnSpeed = 10f;
+    
+    
     
     [Header("Shooting")]
     public float shootCooldown = 1f;
@@ -39,6 +46,7 @@ public class Tank_Manager : MonoBehaviour
     [Header("Game Systems")]
     public GameObject gameManager;
     public Team _team; //set by PlayerSpawning
+    public TextMeshProUGUI teamNumber;
     [Header("Cinemachine")]
     [SerializeField] private CinemachineOrbitalFollow cineOrbit;
 
@@ -50,6 +58,8 @@ public class Tank_Manager : MonoBehaviour
         ApplyColour();
         ChangeTank(TankPrefabs[tankIndex]);
         canvasObjects.SetActive(false);
+        isBoosting = false;
+        teamNumber.SetText($"You are {_team}");
     }
 
     public void MoveInput(InputAction.CallbackContext context)
@@ -74,9 +84,17 @@ public class Tank_Manager : MonoBehaviour
             Shoot();
         }
     }
+    public void BoostInput(InputAction.CallbackContext context)
+    {
+        if (context.performed && !isBoosting)
+        {
+            isBoosting = true;
+            StartCoroutine(Boost(boostTime));
+        }
+    }
     private void Move()
     {
-        rb.linearVelocity = transform.forward * movement.y * moveSpeed;
+        rb.linearVelocity = transform.forward * movement.y * currentSpeed;
         //REGULAR   
         //transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
 
@@ -108,6 +126,18 @@ public class Tank_Manager : MonoBehaviour
             Projectile.Instance.Shoot(barrel, shootDir, gameObject, _team);
             canvasObjects.SetActive(false);
         }
+    }
+    IEnumerator Boost(float waitTime)
+    {
+        currentSpeed = boostSpeed;
+        yield return new WaitForSeconds(waitTime);
+        currentSpeed = moveSpeed;
+        StartCoroutine(BoostCooldown(boostCooldown));
+    }
+    IEnumerator BoostCooldown(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        isBoosting = false;
     }
     private void RotateTurret()
     {
@@ -151,6 +181,8 @@ public class Tank_Manager : MonoBehaviour
         barrel = tankprefab.barrel;
         anim = tankprefab.animator;
         moveSpeed = tankprefab.moveSpeed;
+        boostSpeed = moveSpeed + 5;
+        currentSpeed = moveSpeed;
         turnSpeed = tankprefab.turnSpeed;
         GetComponent<BoxCollider>().size = tankprefab.collider.size;
         GetComponent<BoxCollider>().center = tankprefab.collider.center;
@@ -204,6 +236,24 @@ public class Tank_Manager : MonoBehaviour
         if (tankprefab != null)
         {
             tankprefab.changeMaterial(activeMaterial);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Tank"))
+        {
+            Tank_Manager tankScript = collision.gameObject.GetComponent<Tank_Manager>();
+            if(tankScript._team != _team) //if not on my team
+            {
+                if(isBoosting && tankScript.canShoot == true) //if they have the bullet
+                {
+                    CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+                    tankScript.canShoot = false;
+                    tankScript.canvasObjects.SetActive(false);
+                    Projectile.Instance.Bounce(collision.transform);
+                }
+            }
         }
     }
 

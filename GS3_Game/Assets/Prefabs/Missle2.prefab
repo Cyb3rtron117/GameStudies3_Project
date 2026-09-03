@@ -97,6 +97,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 57056ee4133ef5a42afedc400c85e50f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4288508375691118368}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 57056ee4133ef5a42afedc400c85e50f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7150662499630295403}
   m_SourcePrefab: {fileID: 100100000, guid: 57056ee4133ef5a42afedc400c85e50f, type: 3}
 --- !u!1 &2361527188308226472 stripped
 GameObject:
@@ -116,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   bulletSpeed: 15
+  bounceForce: 13
   spinSpeed: 30
   mode: 1
   _shooter: {fileID: 0}
@@ -124,6 +128,7 @@ MonoBehaviour:
   _team: 2
   scoreScript: {fileID: 0}
   spawnScript: {fileID: 0}
+  ignoreCollisions: 0
 --- !u!54 &5138829020388882081
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,7 +154,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &4288508375691118368
 BoxCollider:
@@ -167,6 +172,27 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6, y: 0.6000001, z: 1.5000001}
+  m_Center: {x: 0.00000008940697, y: 0.00000008940697, z: 0.07582086}
+--- !u!65 &7150662499630295403
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2361527188308226472}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 247
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

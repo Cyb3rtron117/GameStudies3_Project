@@ -1,10 +1,13 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Projectile : MonoBehaviour
 {
     public static Projectile Instance { get; private set; }
     private Rigidbody rb;
     public float bulletSpeed = 1f;
+    public float bounceForce = 10f;
     [SerializeField] private float spinSpeed = 1f;
     [SerializeField] private BulletMode mode;
     [SerializeField] private GameObject _shooter;
@@ -15,6 +18,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Team _team;
     [SerializeField] private Scoring scoreScript;
     [SerializeField] private PlayerSpawning spawnScript;
+    [SerializeField] private bool ignoreCollisions = false;
+    private Vector3 bulletForward;
 
     private void Awake()
     {
@@ -33,10 +38,13 @@ public class Projectile : MonoBehaviour
     {
         switch (mode)
         {
-            case BulletMode.Frozen:                
+            case BulletMode.Frozen:
+                transform.localEulerAngles = Vector3.zero;
+                rb.linearVelocity = Vector3.zero;
                 break;
 
             case BulletMode.Move:
+                transform.localEulerAngles = bulletForward;
                 rb.linearVelocity = transform.forward * bulletSpeed;
                 break;
 
@@ -49,25 +57,28 @@ public class Projectile : MonoBehaviour
     {
         _shooter = Shooter;
         transform.localEulerAngles = shootRot;
+        bulletForward = shootRot;
         transform.position = shootPos.position;
         mode = BulletMode.Move;
         _team = team;
     }
     private void Freeze()
     {
+        bulletForward = Vector3.zero;
         rb.linearVelocity = Vector3.zero;
         transform.position = FreezePos.position;
-        transform.rotation = FreezePos.rotation;
+        transform.localEulerAngles = Vector3.zero;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Arena"))
+        if (other.gameObject.CompareTag("Arena") && !ignoreCollisions)
         {
             goDisplay();
         }
-        if (other.gameObject.CompareTag("Tank"))
+        if (other.gameObject.CompareTag("Tank") && !ignoreCollisions)
         {
+            rb.useGravity = false;
             if(_shooter != null)
             {
                 if (other.gameObject != _shooter)
@@ -101,6 +112,13 @@ public class Projectile : MonoBehaviour
             Reset();
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            goDisplay();
+        }
+    }
     private void SwapColour(Material newMat)
     {
         Material[] materials = renderer.materials;
@@ -110,25 +128,52 @@ public class Projectile : MonoBehaviour
 
     public void GoHide()
     {
+        transform.eulerAngles = Vector3.zero;
+        rb.useGravity = false;
         mode = BulletMode.Frozen;
         Freeze();
         _shooter = null;
         _team = Team.none;
+        bulletForward = Vector3.zero;
     }
     private void goDisplay()
     {
+        rb.useGravity = false;
         rb.linearVelocity = Vector3.zero;
         mode = BulletMode.Display;
         _shooter = null;
         _team = Team.none;
+        transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+        bulletForward = Vector3.zero;
+    }
+    public void Bounce(Transform bouncePos)
+    {
+        print("bounce");
+        ignoreCollisions = true;
+        transform.position = bouncePos.position;
+        rb.useGravity = true;
+        rb.AddForce(transform.up * bounceForce, ForceMode.Impulse);
+        mode = BulletMode.Display;
+        StartCoroutine(enableTankCollision());
+        bulletForward = Vector3.zero;
+    }
+    private IEnumerator enableTankCollision()
+    {
+        print("collisions enabled");
+        yield return new WaitForSeconds(0.5f);
+        ignoreCollisions = false;
     }
     private void Reset()
     {
+        rb.useGravity = false;
         SwapColour(defaultMat);
         transform.position = new Vector3(0, 1, 0);
         transform.rotation = Quaternion.Euler(Vector3.zero);
         goDisplay();
+        ignoreCollisions = false;
+        bulletForward = Vector3.zero;
     }
+    
 }
 
 public enum BulletMode
