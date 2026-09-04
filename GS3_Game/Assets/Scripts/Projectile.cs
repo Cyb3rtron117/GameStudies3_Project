@@ -114,7 +114,7 @@ public class Projectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Floor"))
+        if (collision.gameObject.CompareTag("Floor") && !ignoreCollisions)
         {
             goDisplay();
         }
@@ -160,7 +160,7 @@ public class Projectile : MonoBehaviour
     private IEnumerator enableTankCollision()
     {
         print("collisions enabled");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         ignoreCollisions = false;
     }
     private void Reset()
