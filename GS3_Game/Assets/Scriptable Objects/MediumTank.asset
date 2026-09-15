@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TankObject
   turret: {fileID: 0}
   barrel: {fileID: 0}
-  renderer: {fileID: 0}
-  animator: {fileID: 0}
-  Center: {x: 0, y: 0, z: 0}
-  Size: {x: 0, y: 0, z: 0}
-  turnSpeed: 0
-  moveSpeed: 0
-  tankweight: 0
+  renderer: {fileID: 4023610612505359179, guid: a8dad8c057a74944686339fa1b5bef27, type: 3}
+  animator: {fileID: 9100000, guid: 0ba35722684ea2c4a94b57f781317e3a, type: 2}
+  BoxCenter: {x: 0, y: 0.6916204, z: -0.07221282}
+  BoxSize: {x: 1.475408, y: 1.327535, z: 1.60532}
+  turnSpeed: 100
+  moveSpeed: 9
+  tankweight: 5
