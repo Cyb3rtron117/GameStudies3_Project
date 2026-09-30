@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class TankPrefab : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class TankPrefab : MonoBehaviour
     public float turnSpeed = 10f;
     public float moveSpeed = 10f;
     public float tankweight = 10f;
+    public VisualEffect shootVFX;
 
     public void changeMaterial(Material newMat)
     {

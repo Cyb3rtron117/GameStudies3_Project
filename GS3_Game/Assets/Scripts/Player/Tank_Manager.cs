@@ -4,6 +4,7 @@ using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class Tank_Manager : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class Tank_Manager : MonoBehaviour
     public int tankIndex = 0;
     public int colourIndex = 0;
     public Material activeMaterial;
+    public VisualEffect shootVFX;
     [Header("Game Systems")]
     public GameObject gameManager;
     public Team _team; //set by PlayerSpawning
@@ -125,6 +127,7 @@ public class Tank_Manager : MonoBehaviour
             Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
             Projectile.Instance.Shoot(barrel, shootDir, gameObject, _team);
             canvasObjects.SetActive(false);
+            shootVFX.Play();
         }
     }
     IEnumerator Boost(float waitTime)
@@ -187,7 +190,7 @@ public class Tank_Manager : MonoBehaviour
         GetComponent<BoxCollider>().size = tankprefab.collider.size;
         GetComponent<BoxCollider>().center = tankprefab.collider.center;
         rb.mass = tankprefab.tankweight;
-
+        shootVFX = tankprefab.shootVFX;
         changeMaterial(activeMaterial);
     }
 
