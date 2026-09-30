@@ -11,7 +11,8 @@ public class PlayerSpawning : MonoBehaviour
     public Transform[] SpawnPoints;
     public GameObject PlayerPrefab;
     private List <PlayerInput> _playerInputs = new List<PlayerInput>();
-
+    public Material Team2Tank;
+    public Material Team1Tank;
     private void Start()
     {
         _playerInputs.Clear();
@@ -41,9 +42,16 @@ public class PlayerSpawning : MonoBehaviour
         int index = player.playerIndex;
         player.transform.position = SpawnPoints[index].transform.position;
         player.transform.rotation = SpawnPoints[index].transform.rotation;
-        player.GetComponent<Tank_Manager>().colourIndex = setup.colourIndex;
         player.GetComponent<Tank_Manager>().tankIndex = setup.tankIndex;
-
+        //On players 1 and 3, change tank material to team 1
+        if (index % 2 == 0)
+        {
+            player.GetComponent<Tank_Manager>().activeMaterial = Team1Tank;
+        }
+        else
+        {
+            player.GetComponent<Tank_Manager>().activeMaterial = Team2Tank;
+        }
         //Cinemachine
         CinemachineInputAxisController inputController = player.GetComponentInChildren<CinemachineInputAxisController>();
 

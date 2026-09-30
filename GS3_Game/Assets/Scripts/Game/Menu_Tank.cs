@@ -20,13 +20,13 @@ public class Menu_Tank : MonoBehaviour
 
     [Header("Game Manager")]
     public GameObject gameManager;
-
+    private TeamColours _teamColours;
     public void Setup(PlayerSetup setup)
     {
         playerSetup = setup;
 
         tankIndex = setup.tankIndex;
-        colourIndex = setup.colourIndex;
+        //colourIndex = setup.colourIndex;
     }
 
 
@@ -35,6 +35,7 @@ public class Menu_Tank : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         colours = gameManager.GetComponent<Colours>().colours;
         ChangeTank(TankPrefabs[0]);
+        _teamColours = gameManager.GetComponent<TeamColours>();
     }
 
     public void changeMaterial(Material newMat)
@@ -115,6 +116,7 @@ public class Menu_Tank : MonoBehaviour
     }
     private void NextColour()
     {
+        /*
         colourIndex++;
 
         if (colourIndex >= colours.Count)
@@ -122,10 +124,13 @@ public class Menu_Tank : MonoBehaviour
             colourIndex = 0;
         }
         playerSetup.colourIndex = colourIndex;
-        ApplyColour();
+        ApplyColour();*/
+
+        _teamColours.NextColour(playerSetup.playerIndex);
     }
     private void PreviousColour()
     {
+        /*
         colourIndex--;
 
         if (colourIndex < 0)
@@ -133,11 +138,13 @@ public class Menu_Tank : MonoBehaviour
             colourIndex = colours.Count - 1;
         }
         playerSetup.colourIndex = colourIndex;
-        ApplyColour();
+        ApplyColour();*/
+
+        _teamColours.PreviousColour(playerSetup.playerIndex);
     }
     private void ApplyColour()
     {
-        activeMaterial = colours[colourIndex];
+        //activeMaterial = colours[colourIndex];
 
         if (tankprefab != null)
         {

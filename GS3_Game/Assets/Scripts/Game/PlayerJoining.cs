@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ public class PlayerJoining : MonoBehaviour
     [SerializeField] public static List<PlayerSetup> playerSetups = new List<PlayerSetup>();
 
     public Transform[] SpawnPoints;
+    public TeamColours teamColoursScript;
     private void Start()
     {
         
@@ -18,13 +20,20 @@ public class PlayerJoining : MonoBehaviour
         int index = playerInput.playerIndex;
         playerInput.transform.position = SpawnPoints[index].transform.position;
         playerInput.transform.rotation = SpawnPoints[index].transform.rotation;
-        playerInput.GetComponent<Menu_Tank>().activeMaterial = GetComponent<Colours>().colours[index];
+        //On players 1 and 3
+        if (index % 2 == 0)
+        {
+            playerInput.GetComponent<Menu_Tank>().activeMaterial = GetComponent<TeamColours>().Team1Tank;
+        }
+        else
+        {
+            playerInput.GetComponent<Menu_Tank>().activeMaterial = GetComponent<TeamColours>().Team2Tank;
+        }
         PlayerSetup setup = new PlayerSetup
         {
             playerIndex = playerInput.playerIndex,
             devices = playerInput.devices.ToArray(),
-            tankIndex = 0,
-            colourIndex = playerInput.playerIndex
+            tankIndex = 0
         };
         playerSetups.Add(setup);
 
@@ -48,7 +57,6 @@ public class PlayerSetup
 {
     public int playerIndex;
     public int tankIndex;
-    public int colourIndex;
     public InputDevice[] devices;
 
 }

@@ -42,7 +42,7 @@ public class Tank_Manager : MonoBehaviour
     [SerializeField] private Transform barrel;
     private List<Material> colours = new List<Material>();
     public int tankIndex = 0;
-    public int colourIndex = 0;
+    //public int colourIndex = 0;
     public Material activeMaterial;
     public VisualEffect shootVFX;
     [Header("Game Systems")]
@@ -193,49 +193,8 @@ public class Tank_Manager : MonoBehaviour
         shootVFX = tankprefab.shootVFX;
         changeMaterial(activeMaterial);
     }
-
-    public void ChangeColour(InputAction.CallbackContext context)
-    {
-        if (!context.performed)
-            return;
-
-        float direction = context.ReadValue<float>();
-
-        if (direction > 0.5f)
-        {
-            NextColour();
-        }
-        else if (direction < -0.5f)
-        {
-            PreviousColour();
-        }
-    }
-    private void NextColour()
-    {
-        colourIndex++;
-
-        if (colourIndex >= colours.Count)
-        {
-            colourIndex = 0;
-        }
-
-        ApplyColour();
-    }
-    private void PreviousColour()
-    {
-        colourIndex--;
-
-        if (colourIndex < 0)
-        {
-            colourIndex = colours.Count - 1;
-        }
-
-        ApplyColour();
-    }
     private void ApplyColour()
     {
-        activeMaterial = colours[colourIndex];
-
         if (tankprefab != null)
         {
             tankprefab.changeMaterial(activeMaterial);
