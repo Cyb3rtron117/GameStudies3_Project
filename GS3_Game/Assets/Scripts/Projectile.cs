@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.VFX;
 
 public class Projectile : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Scoring scoreScript;
     [SerializeField] private PlayerSpawning spawnScript;
     [SerializeField] private bool ignoreCollisions = false;
+    [SerializeField] private VisualEffect impactVFX;
     private Vector3 bulletForward;
 
     private void Awake()
@@ -29,8 +32,11 @@ public class Projectile : MonoBehaviour
     }
     private void Start()
     {
-        scoreScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<Scoring>();
-        spawnScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerSpawning>();
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            scoreScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<Scoring>();
+            spawnScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerSpawning>();
+        }
         Reset();
 
     }
@@ -75,6 +81,7 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.CompareTag("Arena") && !ignoreCollisions)
         {
             goDisplay();
+            impactVFX.Play();
         }
         if (other.gameObject.CompareTag("Tank") && !ignoreCollisions)
         {
@@ -94,6 +101,7 @@ public class Projectile : MonoBehaviour
                 other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
                 SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
             }
+            impactVFX.Play();
         }
 
         if (other.gameObject.CompareTag("Goal1"))

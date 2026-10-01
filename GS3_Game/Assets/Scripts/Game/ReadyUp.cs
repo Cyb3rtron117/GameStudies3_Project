@@ -13,7 +13,7 @@ public class ReadyUp : MonoBehaviour
         foreach(bool _bool in playersReady)
         {
             _bool.Equals(false);
-        }
+        }/*
         if (CanvasReadyButtons.Length == 0)
         {
             Debug.LogWarning("No Buttons assigned to playerjoin script!");
@@ -24,12 +24,12 @@ public class ReadyUp : MonoBehaviour
             {
                 obj.SetActive(false);
             }
-        }
+        }*/
     }
     public void playerReady(int which)
     {
         playersReady[which] = !playersReady[which];
-        CanvasReadyButtons[which].SetActive(playersReady[which]);
+        //CanvasReadyButtons[which].SetActive(playersReady[which]);
         //print(playersReady[which]);
         checkReady();
     }

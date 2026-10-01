@@ -1,11 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 using static PlayerJoining;
 
 public class Menu_Tank : MonoBehaviour
 {
+    [Header("tank anim")]
     public Animator anim;
+    [Header("ready up")]
+    public Animator readyAnim;
+    private bool isReady = false;
     
     [Header("Tank Prefabs")]
     public List<GameObject> TankPrefabs = new List<GameObject>();
@@ -15,7 +20,7 @@ public class Menu_Tank : MonoBehaviour
     private List<Material> colours = new List<Material>();
     private int colourIndex = 0;   
     public Material activeMaterial;
-
+    public VisualEffect shootVFX;
     [SerializeField] private PlayerSetup playerSetup;
 
     [Header("Game Manager")]
@@ -36,6 +41,7 @@ public class Menu_Tank : MonoBehaviour
         colours = gameManager.GetComponent<Colours>().colours;
         ChangeTank(TankPrefabs[0]);
         _teamColours = gameManager.GetComponent<TeamColours>();
+        readyAnim = GetComponent<Animator>();
     }
 
     public void changeMaterial(Material newMat)
@@ -57,7 +63,7 @@ public class Menu_Tank : MonoBehaviour
         tankprefab = currentTank.GetComponent<TankPrefab>();
 
         anim = tankprefab.animator;
-
+        shootVFX = tankprefab.shootVFX;
         changeMaterial(activeMaterial);
     }
     private void NextTank()
@@ -84,7 +90,8 @@ public class Menu_Tank : MonoBehaviour
     {
         if (!context.performed)
             return;
-
+        if (isReady)
+            return;
         float direction = context.ReadValue<float>();
 
         if (direction > 0.5f)
@@ -102,7 +109,8 @@ public class Menu_Tank : MonoBehaviour
     {
         if (!context.performed)
             return;
-
+        if (isReady)
+            return;
         float direction = context.ReadValue<float>();
 
         if (direction > 0.5f)
@@ -159,6 +167,12 @@ public class Menu_Tank : MonoBehaviour
         }
         else
         {
+            isReady = !isReady;
+            readyAnim.SetBool("isReady", isReady);
+            if(isReady)
+            {
+                shootVFX.Play();
+            }
             gameManager.GetComponent<ReadyUp>().playerReady(playerSetup.playerIndex);
         }
     }
