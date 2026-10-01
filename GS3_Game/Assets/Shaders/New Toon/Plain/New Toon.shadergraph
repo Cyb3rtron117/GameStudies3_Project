@@ -560,8 +560,8 @@
     "m_ObjectId": "05475b6554fa442c8fecf96d6522f1e4",
     "m_Title": "Calc Shadows",
     "m_Position": {
-        "x": -982.6666870117188,
-        "y": -231.3333740234375
+        "x": -982.6666259765625,
+        "y": -231.33340454101563
     }
 }
 
@@ -2409,7 +2409,7 @@
     "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
     "m_CustomEditorGUI": "",
-    "m_SupportVFX": false
+    "m_SupportVFX": true
 }
 
 {
