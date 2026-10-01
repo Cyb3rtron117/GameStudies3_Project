@@ -12,7 +12,7 @@ public class PlayerJoining : MonoBehaviour
     public TeamColours teamColoursScript;
     private void Start()
     {
-        
+        playerSetups.Clear();
     }
 
     public void OnPlayerJoined(PlayerInput playerInput)
