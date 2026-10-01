@@ -25,6 +25,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private VisualEffect impactVFX;
     private Vector3 bulletForward;
 
+    public float Damage;
     private void Awake()
     {
         Instance = this;
@@ -33,6 +34,7 @@ public class Projectile : MonoBehaviour
     }
     private void Start()
     {
+        Damage = 0;
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             scoreScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<Scoring>();
@@ -65,7 +67,7 @@ public class Projectile : MonoBehaviour
                 break;
         }
     }
-    public void Shoot(Transform shootPos, Vector3 shootRot, GameObject Shooter, Team team)
+    public void Shoot(Transform shootPos, Vector3 shootRot, GameObject Shooter, Team team, float damage, float speed)
     {
         _shooter = Shooter;
         transform.localEulerAngles = shootRot;
@@ -73,6 +75,8 @@ public class Projectile : MonoBehaviour
         transform.position = shootPos.position;
         mode = BulletMode.Move;
         _team = team;
+        Damage = damage;
+        bulletSpeed = speed;
     }
     private void Freeze()
     {
@@ -87,7 +91,7 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.CompareTag("Arena") && !ignoreCollisions && (mode != BulletMode.Display))
         {
             placeVFX();
-            goDisplay();            
+            goDisplay();
         }
         if (other.gameObject.CompareTag("Tank") && !ignoreCollisions)
         {
@@ -99,14 +103,18 @@ public class Projectile : MonoBehaviour
                 {
                     GoHide();
                     other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
+                    other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
                     SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
+                    Damage = 0f;
                 }
             }
             else
             {
                 GoHide();
                 other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
+                other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
                 SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
+                Damage = 0f;
             }
         }
 
@@ -152,6 +160,7 @@ public class Projectile : MonoBehaviour
     }
     private void goDisplay()
     {
+        Damage = 0f;
         rb.useGravity = false;
         rb.linearVelocity = Vector3.zero;
         mode = BulletMode.Display;
@@ -179,6 +188,7 @@ public class Projectile : MonoBehaviour
     }
     private void Reset()
     {
+        Damage = 0f;
         rb.useGravity = false;
         SwapColour(defaultMat);
         transform.position = new Vector3(0, 1, 0);

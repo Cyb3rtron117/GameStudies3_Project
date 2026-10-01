@@ -8,6 +8,10 @@ using UnityEngine.VFX;
 
 public class Tank_Manager : MonoBehaviour
 {
+    [SerializeField] private float Health = 100f;
+    public float maxHealth = 100f;
+    public bool freeze = false;
+    public int playerIndex;
     [Header("Moving")]
     private Vector2 movement;
     public Rigidbody rb;
@@ -22,7 +26,6 @@ public class Tank_Manager : MonoBehaviour
     [SerializeField] private float boostSpeed = 10f;
     [SerializeField] private float currentSpeed = 10f;
     [SerializeField] private float turnSpeed = 10f;
-    
     
     
     [Header("Shooting")]
@@ -46,10 +49,15 @@ public class Tank_Manager : MonoBehaviour
     public Material activeMaterial;
     public VisualEffect shootVFX;
     public VisualEffect impactVFX;
+    public VisualEffect healthVFX;
+    public float ShootDamage = 0f;
+    private float projectileSpeed;
+
     [Header("Game Systems")]
     public GameObject gameManager;
     public Team _team; //set by PlayerSpawning
     public TextMeshProUGUI teamNumber;
+
     [Header("Cinemachine")]
     [SerializeField] private CinemachineOrbitalFollow cineOrbit;
 
@@ -89,7 +97,7 @@ public class Tank_Manager : MonoBehaviour
     }
     public void BoostInput(InputAction.CallbackContext context)
     {
-        if (context.performed && !isBoosting)
+        if (context.performed && !isBoosting && !freeze)
         {
             isBoosting = true;
             StartCoroutine(Boost(boostTime));
@@ -97,20 +105,26 @@ public class Tank_Manager : MonoBehaviour
     }
     private void Move()
     {
-        rb.linearVelocity = transform.forward * movement.y * currentSpeed;
-        //REGULAR   
-        //transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
-
-        //REVERSE INVERSE
-        if (movement.y < 0)
+        if(!freeze)
         {
-            transform.Rotate(Vector3.up * movement.x * -turnSpeed * Time.fixedDeltaTime);
+            rb.linearVelocity = transform.forward * movement.y * currentSpeed;
+            //REGULAR   
+            //transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
+
+            //REVERSE INVERSE
+            if (movement.y < 0)
+            {
+                transform.Rotate(Vector3.up * movement.x * -turnSpeed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
+            }
         }
         else
         {
-            transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
+            rb.linearVelocity = Vector3.zero;
         }
-        
     }
     public void HasProjectile()
     {
@@ -119,14 +133,14 @@ public class Tank_Manager : MonoBehaviour
     }
     private void Shoot()
     {
-        if (canShoot)
+        if (canShoot && !freeze)
         {
             anim.SetTrigger("Shoot");
             canShoot = false;
             cooldownTime = shootCooldown;
             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
             Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
-            Projectile.Instance.Shoot(barrel, shootDir, gameObject, _team);
+            Projectile.Instance.Shoot(barrel, shootDir, gameObject, _team, ShootDamage, projectileSpeed);
             canvasObjects.SetActive(false);
             shootVFX.Play();
         }
@@ -162,6 +176,8 @@ public class Tank_Manager : MonoBehaviour
                 canShoot = true;
             }
         }*/
+        float _health = Health / maxHealth;
+        healthVFX.SetFloat("FillAmt", _health);
     }
 
     public void changeMaterial(Material newMat)
@@ -193,7 +209,14 @@ public class Tank_Manager : MonoBehaviour
         rb.mass = tankprefab.tankweight;
         shootVFX = tankprefab.shootVFX;
         impactVFX = tankprefab.impactVFX;
+        healthVFX = tankprefab.healthbar;
         changeMaterial(activeMaterial);
+        ShootDamage = tankprefab.DamageAmt;
+
+        maxHealth = tankprefab.maxHealth;
+        Health = maxHealth;
+
+        projectileSpeed = tankprefab.shootSpeed;
     }
     private void ApplyColour()
     {
@@ -219,10 +242,48 @@ public class Tank_Manager : MonoBehaviour
                         tankScript.canvasObjects.SetActive(false);
                         Projectile.Instance.Bounce(collision.transform);
                     }
+                    tankScript.TakeDamage(5);
                 }
                 impactVFX.Play();
             }
         }
     }
+    public void TakeDamage(float amount)
+    {
+        print("damaged");
+        Health -= amount;
+        if(Health <= 0)
+        {
+            Die();
+        }
+    }
 
+    private void Die()
+    {
+        if (canShoot) //if tank has the bullet
+        {
+            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+            canShoot = false;
+            canvasObjects.SetActive(false);
+            Projectile.Instance.Bounce(transform);
+        }
+        freeze = true;
+        if (currentTank != null)
+        {
+            currentTank.SetActive(false);
+        }
+        transform.position = gameManager.GetComponent<PlayerSpawning>().SpawnPoints[playerIndex].position;
+        transform.eulerAngles = gameManager.GetComponent<PlayerSpawning>().SpawnPoints[playerIndex].eulerAngles;
+        StartCoroutine(Respawn(2));
+    }
+    IEnumerator Respawn(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        freeze = false;
+        Health = maxHealth;
+        if (currentTank != null)
+        {
+            currentTank.SetActive(true);
+        }
+    }
 }

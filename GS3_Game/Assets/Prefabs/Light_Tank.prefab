@@ -407,7 +407,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 1
+        m_Name: FillAmt
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -707,6 +710,9 @@ MonoBehaviour:
   tankweight: 2
   shootVFX: {fileID: 4882155243555633956}
   impactVFX: {fileID: 4913982741813484189}
+  healthbar: {fileID: 1298958943058137971}
+  DamageAmt: 10
+  maxHealth: 100
 --- !u!65 &2728507733254649569
 BoxCollider:
   m_ObjectHideFlags: 0

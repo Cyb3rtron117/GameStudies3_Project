@@ -13,6 +13,10 @@ public class TankPrefab : MonoBehaviour
     public float tankweight = 10f;
     public VisualEffect shootVFX;
     public VisualEffect impactVFX;
+    public VisualEffect healthbar;
+    public float DamageAmt = 0f;
+    public float maxHealth = 100f;
+    public float shootSpeed = 15f;
 
     public void changeMaterial(Material newMat)
     {

@@ -43,6 +43,7 @@ public class PlayerSpawning : MonoBehaviour
         player.transform.position = SpawnPoints[index].transform.position;
         player.transform.rotation = SpawnPoints[index].transform.rotation;
         player.GetComponent<Tank_Manager>().tankIndex = setup.tankIndex;
+        player.GetComponent<Tank_Manager>().playerIndex = setup.playerIndex;
         //On players 1 and 3, change tank material to team 1
         if (index % 2 == 0)
         {
