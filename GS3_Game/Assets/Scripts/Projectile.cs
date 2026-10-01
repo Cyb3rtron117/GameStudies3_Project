@@ -23,6 +23,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private PlayerSpawning spawnScript;
     [SerializeField] private bool ignoreCollisions = false;
     [SerializeField] private VisualEffect impactVFX;
+    [SerializeField] private VisualEffect smokeVFX;
     private Vector3 bulletForward;
 
     public float Damage;
@@ -34,6 +35,7 @@ public class Projectile : MonoBehaviour
     }
     private void Start()
     {
+        smokeVFX = GetComponentInChildren<VisualEffect>();
         Damage = 0;
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
@@ -77,6 +79,7 @@ public class Projectile : MonoBehaviour
         _team = team;
         Damage = damage;
         bulletSpeed = speed;
+        smokeVFX.Play();
     }
     private void Freeze()
     {
@@ -92,6 +95,7 @@ public class Projectile : MonoBehaviour
         {
             placeVFX();
             goDisplay();
+            smokeVFX.Stop();
         }
         if (other.gameObject.CompareTag("Tank") && !ignoreCollisions)
         {
@@ -106,6 +110,7 @@ public class Projectile : MonoBehaviour
                     other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
                     SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
                     Damage = 0f;
+                    smokeVFX.Stop();
                 }
             }
             else
@@ -115,6 +120,7 @@ public class Projectile : MonoBehaviour
                 other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
                 SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
                 Damage = 0f;
+                smokeVFX.Stop();
             }
         }
 
@@ -188,6 +194,7 @@ public class Projectile : MonoBehaviour
     }
     private void Reset()
     {
+        smokeVFX.Stop();
         Damage = 0f;
         rb.useGravity = false;
         SwapColour(defaultMat);
