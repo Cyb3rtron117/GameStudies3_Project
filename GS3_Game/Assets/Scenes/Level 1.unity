@@ -6709,7 +6709,7 @@ GameObject:
   - component: {fileID: 340673352}
   m_Layer: 0
   m_Name: Goal
-  m_TagString: Goal1
+  m_TagString: Goal2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
