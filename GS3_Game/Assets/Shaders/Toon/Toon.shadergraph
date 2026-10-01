@@ -81,7 +81,11 @@
             "m_Id": "05475b6554fa442c8fecf96d6522f1e4"
         }
     ],
-    "m_StickyNoteDatas": [],
+    "m_StickyNoteDatas": [
+        {
+            "m_Id": "88e4cc11cd69489891b01fa31355be19"
+        }
+    ],
     "m_Edges": [
         {
             "m_OutputSlot": {
@@ -386,8 +390,8 @@
     "m_ObjectId": "05475b6554fa442c8fecf96d6522f1e4",
     "m_Title": "Calc Shadows",
     "m_Position": {
-        "x": -982.39990234375,
-        "y": -232.800048828125
+        "x": -982.6666259765625,
+        "y": -231.333251953125
     }
 }
 
@@ -1109,6 +1113,26 @@
     "m_DefaultValue": 0.0,
     "m_Labels": [],
     "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "88e4cc11cd69489891b01fa31355be19",
+    "m_Title": "Video",
+    "m_Content": "https://www.youtube.com/watch?v=lYGWP0UpiO0&pp=0gcJCS4MAYcqIYzv",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": -557.1915893554688,
+        "y": -1072.829833984375,
+        "width": 200.0,
+        "height": 160.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
 }
 
 {
