@@ -258,7 +258,7 @@ public class Tank_Manager : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         if (canShoot) //if tank has the bullet
         {

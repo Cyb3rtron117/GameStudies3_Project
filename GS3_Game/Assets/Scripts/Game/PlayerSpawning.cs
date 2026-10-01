@@ -73,24 +73,33 @@ public class PlayerSpawning : MonoBehaviour
     }
     private void FlipCamera(int index, PlayerInput player)
     {
-        //On players 1 and 3, flip the camera 180 degrees. Player 1 has index of 0, player 2 has 1, etc.
-        if (index % 2 == 0)
+        CinemachineOrbitalFollow CineOrbit = player.GetComponentInChildren<CinemachineOrbitalFollow>();
+        if (CineOrbit != null)
         {
-            CinemachineOrbitalFollow CineOrbit = player.GetComponentInChildren<CinemachineOrbitalFollow>();
-            if (CineOrbit != null)
+            //On players 1 and 3, flip the camera 180 degrees. Player 1 has index of 0, player 2 has 1, etc.
+            if (index % 2 == 0)
             {
                 CineOrbit.HorizontalAxis.Value = 180;
             }
+            else
+            {
+                CineOrbit.HorizontalAxis.Value = 0;
+            }
         }
+        
     }
     public void RespawnPlayers()
     {
         foreach(PlayerInput player in _playerInputs)
         {
+            /*
             int index = player.playerIndex;
             player.transform.position = SpawnPoints[index].transform.position;
             player.transform.rotation = SpawnPoints[index].transform.rotation;
             FlipCamera(index, player);
+            */
+            player.GetComponent<Tank_Manager>().Die();
+            FlipCamera(player.playerIndex, player);
         }
     }
 }

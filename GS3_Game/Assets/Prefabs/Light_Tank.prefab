@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 6383531537911797007}
   - component: {fileID: 1298958943058137971}
   - component: {fileID: 2653816494401744306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,6 +713,7 @@ MonoBehaviour:
   healthbar: {fileID: 1298958943058137971}
   DamageAmt: 10
   maxHealth: 100
+  shootSpeed: 15
 --- !u!65 &2728507733254649569
 BoxCollider:
   m_ObjectHideFlags: 0
