@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -36,6 +37,11 @@ public class Projectile : MonoBehaviour
         {
             scoreScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<Scoring>();
             spawnScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerSpawning>();
+            if(impactVFX == null)
+            {
+                impactVFX = GameObject.FindGameObjectWithTag("ImpactVFX").GetComponent<VisualEffect>();
+            }
+            
         }
         Reset();
 
@@ -78,13 +84,14 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Arena") && !ignoreCollisions)
+        if (other.gameObject.CompareTag("Arena") && !ignoreCollisions && (mode != BulletMode.Display))
         {
-            goDisplay();
-            impactVFX.Play();
+            placeVFX();
+            goDisplay();            
         }
         if (other.gameObject.CompareTag("Tank") && !ignoreCollisions)
         {
+            placeVFX();
             rb.useGravity = false;
             if(_shooter != null)
             {
@@ -101,7 +108,6 @@ public class Projectile : MonoBehaviour
                 other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
                 SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
             }
-            impactVFX.Play();
         }
 
         if (other.gameObject.CompareTag("Goal1"))
@@ -180,8 +186,24 @@ public class Projectile : MonoBehaviour
         goDisplay();
         ignoreCollisions = false;
         bulletForward = Vector3.zero;
+        StartCoroutine(recallVFX());
     }
-    
+    private void placeVFX()
+    {
+        impactVFX.Stop();
+        impactVFX.gameObject.transform.position = transform.position;
+        impactVFX.gameObject.transform.eulerAngles = transform.eulerAngles;
+        impactVFX.Play();
+        StartCoroutine(recallVFX());
+    }
+    private IEnumerator recallVFX()
+    {
+        print("vfx recalled");
+        yield return new WaitForSeconds(1.8f); //the decal dies at 1.72 seconds
+        impactVFX.gameObject.transform.position = transform.position;
+        impactVFX.gameObject.transform.eulerAngles = transform.eulerAngles;
+    }
+
 }
 
 public enum BulletMode

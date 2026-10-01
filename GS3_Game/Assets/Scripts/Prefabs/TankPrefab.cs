@@ -12,6 +12,7 @@ public class TankPrefab : MonoBehaviour
     public float moveSpeed = 10f;
     public float tankweight = 10f;
     public VisualEffect shootVFX;
+    public VisualEffect impactVFX;
 
     public void changeMaterial(Material newMat)
     {

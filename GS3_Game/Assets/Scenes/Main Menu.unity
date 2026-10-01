@@ -12003,6 +12003,125 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ba67d12987044744a8a805e74a60d8c3, type: 3}
   m_PrefabInstance: {fileID: 598898313}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &599811211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 599811214}
+  - component: {fileID: 599811213}
+  - component: {fileID: 599811212}
+  m_Layer: 0
+  m_Name: Impact vfx
+  m_TagString: ImpactVFX
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!73398921 &599811212
+VFXRenderer:
+  serializedVersion: 1
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599811211}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+--- !u!2083052967 &599811213
+VisualEffect:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599811211}
+  m_Enabled: 1
+  m_Asset: {fileID: 8926484042661614526, guid: ad5be1d71a447e34eac1a89bd7a68d11, type: 3}
+  m_InitialEventName: OnPlay
+  m_InitialEventNameOverriden: 0
+  m_StartSeed: 0
+  m_ResetSeedOnPlay: 1
+  m_AllowInstancing: 1
+  m_ReleaseInstanceOnDisable: 0
+  m_ResourceVersion: 1
+  m_PropertySheet:
+    m_Float:
+      m_Array: []
+    m_Vector2f:
+      m_Array: []
+    m_Vector3f:
+      m_Array: []
+    m_Vector4f:
+      m_Array: []
+    m_Uint:
+      m_Array: []
+    m_Int:
+      m_Array: []
+    m_Matrix4x4f:
+      m_Array: []
+    m_AnimationCurve:
+      m_Array: []
+    m_Gradient:
+      m_Array: []
+    m_NamedObject:
+      m_Array: []
+    m_Bool:
+      m_Array: []
+--- !u!4 &599811214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599811211}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &602662415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12919,6 +13038,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 448541277579999724, guid: 8e13f2ef9ae100547b88d2a28ebdc81c, type: 3}
+      propertyPath: impactVFX
+      value: 
+      objectReference: {fileID: 599811213}
     - target: {fileID: 2361527188308226472, guid: 8e13f2ef9ae100547b88d2a28ebdc81c, type: 3}
       propertyPath: m_Name
       value: Missle2
@@ -30995,7 +31118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeamColours
   targetRenderer: {fileID: 0}
   team1Index: 0
-  team2Index: 1
+  team2Index: 6
   textures:
   - {fileID: 2800000, guid: 2db4b8a2322aa47498ce17c91961682f, type: 3}
   - {fileID: 2800000, guid: 13a504ba64fce92428a818c30d2bae80, type: 3}
@@ -44593,6 +44716,8 @@ SceneRoots:
   - {fileID: 1787832822}
   - {fileID: 912454577}
   - {fileID: 694809049}
+  - {fileID: 651703698}
+  - {fileID: 599811214}
   - {fileID: 1989473465}
   - {fileID: 1531262403}
   - {fileID: 1992166409}
@@ -44603,4 +44728,3 @@ SceneRoots:
   - {fileID: 940956933}
   - {fileID: 2019364233}
   - {fileID: 1197934145}
-  - {fileID: 651703698}

@@ -1449,7 +1449,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 4
+      m_SerializableObject: 6
     m_Space: -1
   m_Property:
     name: _Size
@@ -2686,8 +2686,8 @@ MonoBehaviour:
   - link: []
   blendMode: 0
   cullMode: 0
-  zWriteMode: 1
-  zTestMode: 7
+  zWriteMode: 0
+  zTestMode: 0
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTUAndAA: 0
@@ -2809,7 +2809,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 4
+      m_SerializableObject: 6
     m_Space: -1
   m_Property:
     name: _Size
@@ -5004,8 +5004,8 @@ MonoBehaviour:
   - link: []
   blendMode: 0
   cullMode: 0
-  zWriteMode: 1
-  zTestMode: 7
+  zWriteMode: 0
+  zTestMode: 0
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTUAndAA: 0
@@ -6864,7 +6864,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.2
+      m_SerializableObject: 1
     m_Space: -1
   m_Property:
     name: A
@@ -6898,7 +6898,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1
+      m_SerializableObject: 4
     m_Space: -1
   m_Property:
     name: B
@@ -8395,7 +8395,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1.06
+      m_SerializableObject: 2
     m_Space: -1
   m_Property:
     name: _Size
@@ -10231,8 +10231,8 @@ MonoBehaviour:
   - link: []
   blendMode: 1
   cullMode: 0
-  zWriteMode: 1
-  zTestMode: 7
+  zWriteMode: 0
+  zTestMode: 0
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTUAndAA: 0
@@ -10431,7 +10431,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 3
+      m_SerializableObject: 4
     m_Space: -1
   m_Property:
     name: _Size

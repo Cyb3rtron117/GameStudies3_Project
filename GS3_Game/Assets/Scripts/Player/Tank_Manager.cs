@@ -45,6 +45,7 @@ public class Tank_Manager : MonoBehaviour
     //public int colourIndex = 0;
     public Material activeMaterial;
     public VisualEffect shootVFX;
+    public VisualEffect impactVFX;
     [Header("Game Systems")]
     public GameObject gameManager;
     public Team _team; //set by PlayerSpawning
@@ -191,6 +192,7 @@ public class Tank_Manager : MonoBehaviour
         GetComponent<BoxCollider>().center = tankprefab.collider.center;
         rb.mass = tankprefab.tankweight;
         shootVFX = tankprefab.shootVFX;
+        impactVFX = tankprefab.impactVFX;
         changeMaterial(activeMaterial);
     }
     private void ApplyColour()
@@ -205,16 +207,20 @@ public class Tank_Manager : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Tank"))
         {
-            Tank_Manager tankScript = collision.gameObject.GetComponent<Tank_Manager>();
-            if(tankScript._team != _team) //if not on my team
+            if (isBoosting)
             {
-                if(isBoosting && tankScript.canShoot == true) //if they have the bullet
+                Tank_Manager tankScript = collision.gameObject.GetComponent<Tank_Manager>();
+                if (tankScript._team != _team) //if not on my team
                 {
-                    CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
-                    tankScript.canShoot = false;
-                    tankScript.canvasObjects.SetActive(false);
-                    Projectile.Instance.Bounce(collision.transform);
+                    if (tankScript.canShoot == true) //if they have the bullet
+                    {
+                        CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+                        tankScript.canShoot = false;
+                        tankScript.canvasObjects.SetActive(false);
+                        Projectile.Instance.Bounce(collision.transform);
+                    }
                 }
+                impactVFX.Play();
             }
         }
     }

@@ -12,6 +12,7 @@ TagManager:
   - Goal1
   - Goal2
   - Floor
+  - ImpactVFX
   layers:
   - Default
   - TransparentFX
