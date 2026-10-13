@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GoalBarrier : MonoBehaviour
@@ -6,6 +7,7 @@ public class GoalBarrier : MonoBehaviour
     public Animator anim;
     public Team whichGoal;
     private float waitTime = 1f;
+    private List<GameObject> enemTeam = new List<GameObject>(2);
 
     private void Start()
     {
@@ -17,7 +19,14 @@ public class GoalBarrier : MonoBehaviour
     IEnumerator Opengoal(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        anim.SetBool("Open", true);
+        if (enemTeam.Count > 0)
+        {
+            anim.SetBool("Open", true);
+        }
+        else if (enemTeam.Count == 0)
+        {
+            anim.SetBool("Open", false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +36,11 @@ public class GoalBarrier : MonoBehaviour
             Team _team = other.gameObject.GetComponent<Tank_Manager>()._team;
             if(_team != whichGoal)
             {
-                StartCoroutine(Opengoal(waitTime));
+                if(!enemTeam.Contains(other.gameObject))
+                {
+                    enemTeam.Add(other.gameObject);
+                }
+                updateBarrier();
             }
         }
     }
@@ -38,9 +51,25 @@ public class GoalBarrier : MonoBehaviour
             Team _team = other.gameObject.GetComponent<Tank_Manager>()._team;
             if (_team != whichGoal)
             {
-                StopCoroutine(Opengoal(waitTime));
-                anim.SetBool("Open", false);
+                if (enemTeam.Contains(other.gameObject))
+                {
+                    enemTeam.Remove(other.gameObject);
+                }
+                updateBarrier();
             }
+        }
+    }
+
+    private void updateBarrier()
+    {
+        if(enemTeam.Count > 0)
+        {
+            StartCoroutine(Opengoal(waitTime));
+        }
+        else if (enemTeam.Count == 0)
+        {
+            StopCoroutine(Opengoal(waitTime));
+            anim.SetBool("Open", false);
         }
     }
 }
