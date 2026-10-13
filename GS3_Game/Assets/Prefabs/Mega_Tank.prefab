@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &111236280251889416
+--- !u!1 &481443709147418666
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7323389856378861598}
-  m_Layer: 0
-  m_Name: MegaTank.Thread.L_end
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7323389856378861598
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111236280251889416}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 173226666357181465}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &630921041694902218
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1684106992841522537}
+  - component: {fileID: 1815007531111459465}
   m_Layer: 0
   m_Name: MegaTank.Head
   m_TagString: Untagged
@@ -47,25 +16,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1684106992841522537
+--- !u!4 &1815007531111459465
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 630921041694902218}
+  m_GameObject: {fileID: 481443709147418666}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0.00000005338509, z: -0.000000053385097, w: 0.7071067}
   m_LocalPosition: {x: 0.00000010990955, y: -0.31385076, z: -0.72789806}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5565413865237442930}
-  - {fileID: 1895937587089867428}
-  - {fileID: 2437554516025641036}
-  m_Father: {fileID: 4220152287246915942}
+  - {fileID: 4851300065871767186}
+  - {fileID: 1450349193222870340}
+  - {fileID: 3439900409664429996}
+  m_Father: {fileID: 3819030484381912710}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2739761768686052388
+--- !u!1 &1145080982451511528
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,30 +42,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1811266150264430786}
+  - component: {fileID: 7768425259785940990}
   m_Layer: 0
-  m_Name: MegaTank.Cannon.R_end
+  m_Name: MegaTank.Thread.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1811266150264430786
+--- !u!4 &7768425259785940990
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2739761768686052388}
+  m_GameObject: {fileID: 1145080982451511528}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.50000024, z: 0}
+  m_LocalPosition: {x: -0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2437554516025641036}
+  m_Father: {fileID: 867076401579629561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3041118536962336183
+--- !u!1 &2619736995938808407
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,7 +73,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4220152287246915942}
+  - component: {fileID: 3819030484381912710}
   m_Layer: 0
   m_Name: MegaTank.Root
   m_TagString: Untagged
@@ -112,25 +81,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4220152287246915942
+--- !u!4 &3819030484381912710
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3041118536962336183}
+  m_GameObject: {fileID: 2619736995938808407}
   serializedVersion: 2
   m_LocalRotation: {x: 1, y: -3.522163e-15, z: 0.0000000754979, w: 0.00000004371139}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1684106992841522537}
-  - {fileID: 173226666357181465}
-  - {fileID: 2267520333292537619}
-  m_Father: {fileID: 6365259110272830401}
+  - {fileID: 1815007531111459465}
+  - {fileID: 867076401579629561}
+  - {fileID: 1231959220010602739}
+  m_Father: {fileID: 6213530111610641441}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4623352296552137687
+--- !u!1 &2912284182034330564
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,31 +107,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5274128793281840743}
+  - component: {fileID: 1679276614596966178}
   m_Layer: 0
-  m_Name: MegaTank.Cannon.M_end
+  m_Name: MegaTank.Cannon.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5274128793281840743
+--- !u!4 &1679276614596966178
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4623352296552137687}
+  m_GameObject: {fileID: 2912284182034330564}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.50000024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4376444093669475990}
-  m_Father: {fileID: 1895937587089867428}
+  m_Children: []
+  m_Father: {fileID: 3439900409664429996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5650517481718083173
+--- !u!1 &4613302775826069893
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,8 +138,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4489397578724897297}
-  - component: {fileID: 2870349671354414316}
+  - component: {fileID: 3468509035680638449}
+  - component: {fileID: 3006876272512099084}
   m_Layer: 0
   m_Name: mega_tank_mesh
   m_TagString: Untagged
@@ -179,13 +147,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4489397578724897297
+--- !u!4 &3468509035680638449
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5650517481718083173}
+  m_GameObject: {fileID: 4613302775826069893}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -194,13 +162,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1506850974280390495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &2870349671354414316
+--- !u!137 &3006876272512099084
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5650517481718083173}
+  m_GameObject: {fileID: 4613302775826069893}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -246,22 +214,22 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -3727445602123421962, guid: 6155145bbb3386041ad78c202189d010, type: 3}
+  m_Mesh: {fileID: -3727445602123421962, guid: 0925bcc7ee804df44b9e5ea78a8423d1, type: 3}
   m_Bones:
-  - {fileID: 4220152287246915942}
-  - {fileID: 1684106992841522537}
-  - {fileID: 1895937587089867428}
-  - {fileID: 2437554516025641036}
-  - {fileID: 5565413865237442930}
-  - {fileID: 173226666357181465}
-  - {fileID: 2267520333292537619}
+  - {fileID: 3819030484381912710}
+  - {fileID: 1815007531111459465}
+  - {fileID: 1450349193222870340}
+  - {fileID: 3439900409664429996}
+  - {fileID: 4851300065871767186}
+  - {fileID: 867076401579629561}
+  - {fileID: 1231959220010602739}
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 4220152287246915942}
+  m_RootBone: {fileID: 3819030484381912710}
   m_AABB:
     m_Center: {x: 0.000000029802322, y: 0.004314482, z: -0.9189489}
     m_Extent: {x: 1, y: 1.1256852, z: 0.928949}
   m_DirtyAABB: 0
---- !u!1 &6258473735602196525
+--- !u!1 &5640309604507538487
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,7 +237,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5565413865237442930}
+  - component: {fileID: 5142668672865014151}
+  m_Layer: 0
+  m_Name: MegaTank.Cannon.M_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5142668672865014151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5640309604507538487}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.50000024, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4376444093669475990}
+  m_Father: {fileID: 1450349193222870340}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6392161948014806989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4851300065871767186}
   m_Layer: 0
   m_Name: MegaTank.Cannon.L
   m_TagString: Untagged
@@ -277,53 +277,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5565413865237442930
+--- !u!4 &4851300065871767186
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6258473735602196525}
+  m_GameObject: {fileID: 6392161948014806989}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0.00000045237724, z: 0.00000045237715, w: 0.7071067}
   m_LocalPosition: {x: -0.6, y: 0.55833346, z: 0.5938508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4148264985001349228}
-  m_Father: {fileID: 1684106992841522537}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7279106478649174543
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6365259110272830401}
-  m_Layer: 0
-  m_Name: MegaTankRig.OrangeStar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6365259110272830401
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7279106478649174543}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4220152287246915942}
-  m_Father: {fileID: 1506850974280390495}
+  - {fileID: 4034817201644832652}
+  m_Father: {fileID: 1815007531111459465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7365917131203613832
 GameObject:
@@ -444,7 +412,7 @@ VFXRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
---- !u!1 &7555682993997552807
+--- !u!1 &7400602202167855943
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,7 +420,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6674894399256911857}
+  - component: {fileID: 5966962535699351569}
   m_Layer: 0
   m_Name: MegaTank.Thread.R_end
   m_TagString: Untagged
@@ -460,20 +428,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6674894399256911857
+--- !u!4 &5966962535699351569
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7555682993997552807}
+  m_GameObject: {fileID: 7400602202167855943}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2267520333292537619}
+  m_Father: {fileID: 1231959220010602739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7643692782201695149
 GameObject:
@@ -508,9 +476,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 562585400596129503}
+  - {fileID: 3468509035680638449}
+  - {fileID: 6213530111610641441}
   - {fileID: 3327990212746732797}
-  - {fileID: 4489397578724897297}
-  - {fileID: 6365259110272830401}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5717523473145308939
@@ -547,9 +515,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1cc78dafaee66c46ab53df30523d825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PrefabVariables
-  turret: {fileID: 1684106992841522537}
-  barrel: {fileID: 1895937587089867428}
-  renderer: {fileID: 2870349671354414316}
+  turret: {fileID: 1815007531111459465}
+  barrel: {fileID: 1450349193222870340}
+  renderer: {fileID: 3006876272512099084}
   animator: {fileID: 5717523473145308939}
   collider: {fileID: 3214272064173521322}
   turnSpeed: 70
@@ -582,6 +550,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9978247, y: 1.7747898, z: 2.237276}
   m_Center: {x: 0, y: 0.88738286, z: -0.0014526844}
+--- !u!1 &7740422351266758127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6213530111610641441}
+  m_Layer: 0
+  m_Name: MegaTankRig.OrangeStar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6213530111610641441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7740422351266758127}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0.00000063344737, z: 0.00000063344726, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3819030484381912710}
+  m_Father: {fileID: 1506850974280390495}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7805111441870335647
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,12 +608,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7805111441870335647}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.50000006, y: -0.5000003, z: 0.4999998, w: 0.49999988}
-  m_LocalPosition: {x: 0, y: 0.4729994, z: -0.0039996505}
+  m_LocalRotation: {x: -0.5000005, y: -0.5000008, z: 0.4999993, w: 0.49999946}
+  m_LocalPosition: {x: 0, y: 0.47299892, z: -0.003999293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5274128793281840743}
+  m_Father: {fileID: 5142668672865014151}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!2083052967 &6389798171927978569
 VisualEffect:
@@ -701,7 +701,7 @@ VFXRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 61
   m_MaskInteraction: 0
---- !u!1 &8196265557594584252
+--- !u!1 &8091814338021305687
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -709,29 +709,60 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2267520333292537619}
+  - component: {fileID: 4034817201644832652}
   m_Layer: 0
-  m_Name: MegaTank.Thread.R
+  m_Name: MegaTank.Cannon.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2267520333292537619
+--- !u!4 &4034817201644832652
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8196265557594584252}
+  m_GameObject: {fileID: 8091814338021305687}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000029802322, y: -0.00000035762787, z: -1.0658141e-14, w: 1}
-  m_LocalPosition: {x: 1.0075, y: -0.018980026, z: -0.0887499}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.50000024, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4851300065871767186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8206222005038861578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1450349193222870340}
+  m_Layer: 0
+  m_Name: MegaTank.Cannon.M
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1450349193222870340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8206222005038861578}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0.00000019883753, z: 0.00000020015459, w: 0.7071067}
+  m_LocalPosition: {x: 9.31322e-10, y: 0.55833346, z: 0.59385073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6674894399256911857}
-  m_Father: {fileID: 4220152287246915942}
+  - {fileID: 5142668672865014151}
+  m_Father: {fileID: 1815007531111459465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8427102283361849049
 GameObject:
@@ -855,7 +886,7 @@ VFXRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
---- !u!1 &8445577122924767290
+--- !u!1 &8546898853081376592
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -863,39 +894,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 173226666357181465}
-  m_Layer: 0
-  m_Name: MegaTank.Thread.L
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &173226666357181465
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8445577122924767290}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.000000029802322, y: 0.00000020663208, z: 6.158116e-15, w: 1}
-  m_LocalPosition: {x: -1.0075, y: -0.018980026, z: -0.0887502}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7323389856378861598}
-  m_Father: {fileID: 4220152287246915942}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8715515182132277424
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2437554516025641036}
+  - component: {fileID: 3439900409664429996}
   m_Layer: 0
   m_Name: MegaTank.Cannon.R
   m_TagString: Untagged
@@ -903,23 +902,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2437554516025641036
+--- !u!4 &3439900409664429996
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8715515182132277424}
+  m_GameObject: {fileID: 8546898853081376592}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0.00000036808353, z: 0.00000036808348, w: 0.7071067}
   m_LocalPosition: {x: 0.6, y: 0.55833346, z: 0.59385073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1811266150264430786}
-  m_Father: {fileID: 1684106992841522537}
+  - {fileID: 1679276614596966178}
+  m_Father: {fileID: 1815007531111459465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &9089657800131574455
+--- !u!1 &8888876947762315226
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -927,58 +926,59 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4148264985001349228}
+  - component: {fileID: 867076401579629561}
   m_Layer: 0
-  m_Name: MegaTank.Cannon.L_end
+  m_Name: MegaTank.Thread.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4148264985001349228
+--- !u!4 &867076401579629561
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9089657800131574455}
+  m_GameObject: {fileID: 8888876947762315226}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.50000024, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5565413865237442930}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &9191088966492396266
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1895937587089867428}
-  m_Layer: 0
-  m_Name: MegaTank.Cannon.M
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1895937587089867428
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9191088966492396266}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0.00000019883753, z: 0.00000020015459, w: 0.7071067}
-  m_LocalPosition: {x: 9.31322e-10, y: 0.55833346, z: 0.59385073}
+  m_LocalRotation: {x: 0.000000029802322, y: 0.00000020663208, z: 6.158116e-15, w: 1}
+  m_LocalPosition: {x: -1.0075, y: -0.018980026, z: -0.0887502}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5274128793281840743}
-  m_Father: {fileID: 1684106992841522537}
+  - {fileID: 7768425259785940990}
+  m_Father: {fileID: 3819030484381912710}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9210399731336799068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231959220010602739}
+  m_Layer: 0
+  m_Name: MegaTank.Thread.R
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1231959220010602739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210399731336799068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000029802322, y: -0.00000035762787, z: -1.0658141e-14, w: 1}
+  m_LocalPosition: {x: 1.0075, y: -0.018980026, z: -0.0887499}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5966962535699351569}
+  m_Father: {fileID: 3819030484381912710}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
