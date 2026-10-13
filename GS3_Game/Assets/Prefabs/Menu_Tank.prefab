@@ -154,6 +154,7 @@ MonoBehaviour:
   - {fileID: 6494532152813604233}
   tankprefab: {fileID: 0}
   activeMaterial: {fileID: 0}
+  shootVFX: {fileID: 0}
   playerSetup:
     playerIndex: 0
     tankIndex: 0
@@ -369,6 +370,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6618873108991626708}
     m_Modifications:
+    - target: {fileID: 211347671642761987, guid: 41a6649454d9ce74b8b4fdf793d01592, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2182831303535252484, guid: 41a6649454d9ce74b8b4fdf793d01592, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -409,12 +414,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2756851875448732771, guid: 41a6649454d9ce74b8b4fdf793d01592, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2814932544727199342, guid: 41a6649454d9ce74b8b4fdf793d01592, type: 3}
       propertyPath: m_Name
       value: Lighter_Tank
       objectReference: {fileID: 0}
     - target: {fileID: 2814932544727199342, guid: 41a6649454d9ce74b8b4fdf793d01592, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8661921578397404344, guid: 41a6649454d9ce74b8b4fdf793d01592, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
