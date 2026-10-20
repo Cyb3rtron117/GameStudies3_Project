@@ -44,14 +44,16 @@ public class PlayerSpawning : MonoBehaviour
         player.transform.rotation = SpawnPoints[index].transform.rotation;
         player.GetComponent<Tank_Manager>().tankIndex = setup.tankIndex;
         player.GetComponent<Tank_Manager>().playerIndex = setup.playerIndex;
-        //On players 1 and 3, change tank material to team 1
+        //On players 1 and 3, change tank material to team 1 and swap movement
         if (index % 2 == 0)
         {
             player.GetComponent<Tank_Manager>().activeMaterial = Team1Tank;
+            player.GetComponent<Tank_Manager>().MoveMultiplier = -1;
         }
         else
         {
             player.GetComponent<Tank_Manager>().activeMaterial = Team2Tank;
+            player.GetComponent<Tank_Manager>().MoveMultiplier = 1;
         }
         //Cinemachine
         CinemachineInputAxisController inputController = player.GetComponentInChildren<CinemachineInputAxisController>();

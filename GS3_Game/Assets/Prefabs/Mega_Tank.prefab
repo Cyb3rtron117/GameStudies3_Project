@@ -520,9 +520,9 @@ MonoBehaviour:
   renderer: {fileID: 3006876272512099084}
   animator: {fileID: 5717523473145308939}
   collider: {fileID: 3214272064173521322}
-  turnSpeed: 70
+  turnSpeed: 2
   moveSpeed: 7
-  tankweight: 20
+  tankweight: 50
   shootVFX: {fileID: 6389798171927978569}
   impactVFX: {fileID: 8057801333689203128}
   healthbar: {fileID: 171765569374105907}

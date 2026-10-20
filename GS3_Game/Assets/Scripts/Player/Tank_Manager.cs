@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
@@ -13,13 +14,14 @@ public class Tank_Manager : MonoBehaviour
     public bool freeze = false;
     public int playerIndex;
     [Header("Moving")]
-    private Vector2 movement;
+    private Vector2 movementInput;
     public Rigidbody rb;
     public Animator anim;
     private bool isMoving = false;
     [SerializeField] private float boostTime = 0.5f;
     [SerializeField] private float boostCooldown = 1f;
     [SerializeField] private bool isBoosting = false;
+    public int MoveMultiplier = 1;
 
     [Header("Speeds")]
     [SerializeField] private float moveSpeed = 10f;
@@ -75,8 +77,8 @@ public class Tank_Manager : MonoBehaviour
 
     public void MoveInput(InputAction.CallbackContext context)
     {
-        movement = context.ReadValue<Vector2>();
-        if(movement.sqrMagnitude>0)
+        movementInput = context.ReadValue<Vector2>();
+        if(movementInput.sqrMagnitude>0)
         {
             isMoving = true;
             anim.SetBool("isMoving", isMoving);
@@ -107,11 +109,12 @@ public class Tank_Manager : MonoBehaviour
     {
         if(!freeze)
         {
-            rb.linearVelocity = transform.forward * movement.y * currentSpeed;
+            //rb.linearVelocity = transform.forward * movement.y * currentSpeed;
             //REGULAR   
             //transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
 
             //REVERSE INVERSE
+            /*
             if (movement.y < 0)
             {
                 transform.Rotate(Vector3.up * movement.x * -turnSpeed * Time.fixedDeltaTime);
@@ -119,7 +122,47 @@ public class Tank_Manager : MonoBehaviour
             else
             {
                 transform.Rotate(Vector3.up * movement.x * turnSpeed * Time.fixedDeltaTime);
-            }
+            }*/
+
+            Vector3 movedir = new Vector3(movementInput.x, 0, movementInput.y) * MoveMultiplier;
+            if (movedir.sqrMagnitude < 0.01f)
+            {
+                rb.linearVelocity = Vector3.zero;
+                return;
+            }  
+            // The tank's CURRENT forward direction
+            Vector3 forwardMovement = rb.rotation * Vector3.forward;
+            
+
+            // Signed angle to the desired world-space direction
+            float angle = Vector3.SignedAngle(forwardMovement, movedir, Vector3.up);
+
+            // Reverse if the target is behind the tank
+            float moveSign = Mathf.Abs(angle) > 100f ? -1f : 1f;
+
+            // Move along current forward, or backward when reversing
+            Vector3 _movement = forwardMovement * currentSpeed * moveSign;
+
+            Vector3 velocity = rb.linearVelocity;
+            velocity.x = _movement.x;
+            velocity.z = _movement.z;
+            rb.linearVelocity = velocity;
+
+            // When reversing, face the opposite direction from the target
+            Vector3 facingDirection = moveSign < 0f
+                ? -movedir
+                : movedir;
+
+            Quaternion targetRotation = Quaternion.LookRotation(facingDirection);
+
+            Quaternion smoothRotation = Quaternion.Slerp(
+                    rb.rotation,
+                    targetRotation,
+                    turnSpeed * Time.fixedDeltaTime
+                );
+
+            rb.MoveRotation(smoothRotation);
+
         }
         else
         {
