@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     public float bounceForce = 10f;
     [SerializeField] private float spinSpeed = 1f;
     [SerializeField] private float fallMultiplier = 2f;
+    [SerializeField] private float fallThreshold = 0f;
     [SerializeField] private BulletMode mode;
     [SerializeField] private GameObject _shooter;
 
@@ -74,6 +75,10 @@ public class Projectile : MonoBehaviour
                 {
                     rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
                 }
+                else if (rb.linearVelocity.y <= fallThreshold)
+                {
+                    rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier/2 - 1) * Time.fixedDeltaTime;
+                }
                 break;
         }
     }
@@ -99,19 +104,31 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Arena") && !ignoreCollisions && (mode != BulletMode.Display))
+        if (!ignoreCollisions)
         {
-            placeVFX();
-            goDisplay();
-            smokeVFX.Stop();
-        }
-        if (other.gameObject.CompareTag("Tank") && !ignoreCollisions)
-        {
-            placeVFX();
-            rb.useGravity = false;
-            if(_shooter != null)
+            if (other.gameObject.CompareTag("Arena") && (mode != BulletMode.Display))
             {
-                if (other.gameObject != _shooter)
+                placeVFX();
+                goDisplay();
+                smokeVFX.Stop();
+            }
+            if (other.gameObject.CompareTag("Tank") && mode != BulletMode.Frozen)
+            {
+                placeVFX();
+                rb.useGravity = false;
+                if (_shooter != null)
+                {
+                    if (other.gameObject != _shooter)
+                    {
+                        GoHide();
+                        other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
+                        other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
+                        SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
+                        Damage = 0f;
+                        smokeVFX.Stop();
+                    }
+                }
+                else if (_shooter == null)
                 {
                     GoHide();
                     other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
@@ -121,36 +138,27 @@ public class Projectile : MonoBehaviour
                     smokeVFX.Stop();
                 }
             }
-            else
+
+            if (other.gameObject.CompareTag("Goal1"))
             {
-                GoHide();
-                other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
-                other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
-                SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
-                Damage = 0f;
-                smokeVFX.Stop();
+                print($"{Team.team2} got a point");
+                scoreScript.Score(Team.team2);
+                spawnScript.RespawnPlayers();
+                Reset();
             }
-        }
 
-        if (other.gameObject.CompareTag("Goal1"))
-        {
-            print($"{Team.team2} got a point");
-            scoreScript.Score(Team.team2);
-            spawnScript.RespawnPlayers();
-            Reset();
-        }
-
-        if (other.gameObject.CompareTag("Goal2"))
-        {
-            print($"{Team.team1} got a point");
-            scoreScript.Score(Team.team1);
-            spawnScript.RespawnPlayers();
-            Reset();
+            if (other.gameObject.CompareTag("Goal2"))
+            {
+                print($"{Team.team1} got a point");
+                scoreScript.Score(Team.team1);
+                spawnScript.RespawnPlayers();
+                Reset();
+            }
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Floor") && !ignoreCollisions)
+        if (!ignoreCollisions && collision.gameObject.CompareTag("Floor"))
         {
             goDisplay();
         }
@@ -164,9 +172,9 @@ public class Projectile : MonoBehaviour
 
     public void GoHide()
     {
+        mode = BulletMode.Frozen;
         transform.eulerAngles = Vector3.zero;
         rb.useGravity = false;
-        mode = BulletMode.Frozen;
         Freeze();
         _shooter = null;
         _team = Team.none;

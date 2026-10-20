@@ -50321,6 +50321,10 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 448541277579999724, guid: 8e13f2ef9ae100547b88d2a28ebdc81c, type: 3}
+      propertyPath: fallThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 448541277579999724, guid: 8e13f2ef9ae100547b88d2a28ebdc81c, type: 3}
       propertyPath: fallMultiplier
       value: 3
       objectReference: {fileID: 0}
