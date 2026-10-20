@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     public float bulletSpeed = 1f;
     public float bounceForce = 10f;
     [SerializeField] private float spinSpeed = 1f;
+    [SerializeField] private float fallMultiplier = 2f;
     [SerializeField] private BulletMode mode;
     [SerializeField] private GameObject _shooter;
 
@@ -66,6 +67,13 @@ public class Projectile : MonoBehaviour
 
             case BulletMode.Display:
                 transform.Rotate(Vector3.up * spinSpeed * Time.fixedDeltaTime);
+                break;
+            case BulletMode.Fall:
+                transform.Rotate(Vector3.up * spinSpeed * Time.fixedDeltaTime);
+                if(rb.linearVelocity.y <= 0)
+                {
+                    rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+                }
                 break;
         }
     }
@@ -180,9 +188,9 @@ public class Projectile : MonoBehaviour
         print("bounce");
         ignoreCollisions = true;
         transform.position = bouncePos.position;
-        rb.useGravity = true;
         rb.AddForce(transform.up * bounceForce, ForceMode.Impulse);
-        mode = BulletMode.Display;
+        rb.useGravity = true;        
+        mode = BulletMode.Fall;
         StartCoroutine(enableTankCollision());
         bulletForward = Vector3.zero;
     }
@@ -227,7 +235,8 @@ public enum BulletMode
 {
     Frozen,
     Display, 
-    Move
+    Move,
+    Fall
 }
 
 public enum Team
