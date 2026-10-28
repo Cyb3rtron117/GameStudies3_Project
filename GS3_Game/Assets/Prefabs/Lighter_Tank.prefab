@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7836994105996197571}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tank.Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8453051211757342501}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tank.Thread.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7313160732689025480}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tank.Thread.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 3465226953517744630}
   - component: {fileID: 4413669942683991315}
   - component: {fileID: 2756851875448732771}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Impact vfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8721407045852652368}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tank.Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6174641136669502122}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tank.Thread.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 1845298143671080608}
   - component: {fileID: 2004771631098923015}
   - component: {fileID: 8661921578397404344}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzle Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 4706612375464881310}
   - component: {fileID: 451980711457899703}
   - component: {fileID: 7317871137942437827}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lighter_Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,10 +501,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4754076, y: 1.3275353, z: 1.6053202}
-  m_Center: {x: 0, y: 0.6916204, z: -0.072212815}
+  m_Size: {x: 1.4754076, y: 1.8, z: 1.6053202}
+  m_Center: {x: 0, y: 0.9, z: -0.072212815}
 --- !u!1 &3540739517316088831
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9096780833129372904}
   - component: {fileID: 7241668300952038155}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: medium_tank_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,7 +612,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6267949991625438781}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tank.Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,7 +627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4213329079675640725}
   serializedVersion: 2
-  m_LocalRotation: {x: 1.8807764e-37, y: 2.2204633e-16, z: 7.105428e-15, w: 1}
+  m_LocalRotation: {x: 0.00000026822093, y: 1.8829384e-13, z: -0.0000008958298, w: 1}
   m_LocalPosition: {x: 0.0000000029266018, y: 0.4093933, z: -0.21750933}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -766,7 +766,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1090732534418662648}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tank.Thread.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +797,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3988790526901651967}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TankRig.OrangeStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -829,7 +829,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6251851277285257030}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tank.Cannon_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -861,7 +861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8110363044576640821}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tank.Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1023466800673809260}
   - component: {fileID: 2476548424411145328}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: light_tank_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3830064597980064868}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Recon.Tire.Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2462964138203038525}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Recon.Tire.Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4097097714017123175}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Recon.Head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 262676572286291806}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Recon.Tire.Back_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9115310757918138637}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Recon.Tire.Front_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3885384737642712226}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Recon.Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1563362993106402095}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Recon.Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3653626490743990937}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1592077722412320120}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ReconRig.OrangeStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3126324427141826795}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Recon.Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4464132844649015228}
   serializedVersion: 2
-  m_LocalRotation: {x: 2.4450282e-35, y: 2.2204633e-16, z: -0, w: 1}
+  m_LocalRotation: {x: 0.00000026822093, y: 1.7408298e-13, z: -0.0000008958298, w: 1}
   m_LocalPosition: {x: -0.003323107, y: 0.9344437, z: 0.20174623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 4519211818191165894}
   - component: {fileID: 4882155243555633956}
   - component: {fileID: 4862332930859240841}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzle Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -669,7 +669,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8363789892054957103}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Recon.Bumpers_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 4098002315730674172}
   - component: {fileID: 8411452408929418497}
   - component: {fileID: 2728507733254649569}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Light_Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,8 +797,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1.2789936, y: 1.7156118, z: 1.6599013}
-  m_Center: {x: 0, y: 0.85779387, z: -0.004098594}
+  m_Size: {x: 1.2789936, y: 1.8, z: 1.6599013}
+  m_Center: {x: 0, y: 0.9, z: -0.004098594}
 --- !u!1 &7123207929068918072
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +808,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6491646275019555740}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Recon.Bumpers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 770280984567979839}
   - component: {fileID: 4913982741813484189}
   - component: {fileID: 2322751833791983907}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Impact vfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}

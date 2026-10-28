@@ -33,7 +33,16 @@ public class GoalBarrier : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Tank"))
         {
-            Team _team = other.gameObject.GetComponent<Tank_Manager>()._team;
+            Team _team = Team.none;
+            if (other.gameObject.GetComponent<Tank_Manager>())
+            {
+                _team = other.gameObject.GetComponent<Tank_Manager>()._team;
+            }
+            else if (other.gameObject.GetComponent<Bot_Tank_Manager>())
+            {
+                _team = other.gameObject.GetComponent<Bot_Tank_Manager>()._team;
+            }
+            
             if(_team != whichGoal)
             {
                 if(!enemTeam.Contains(other.gameObject))

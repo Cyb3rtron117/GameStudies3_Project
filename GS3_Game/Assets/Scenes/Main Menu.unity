@@ -31770,6 +31770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b85719158517c43b9228d9e747b35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJoining
+  menuTankPrefab: {fileID: 2551571205644142830, guid: 8449fc47ed8b89441a1dda1b48e55cbf, type: 3}
+  remainingSlots: 4
   SpawnPoints:
   - {fileID: 1895223720}
   - {fileID: 305456969}
@@ -31795,7 +31797,8 @@ MonoBehaviour:
   - {fileID: 573269914}
   - {fileID: 1279026872}
   _sceneLoading: {fileID: 912454579}
-  playersNeeded: 2
+  playersNeeded: 1
+  _playerJoiningScript: {fileID: 1531262405}
 --- !u!114 &1531262407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37901,7 +37904,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 1527
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

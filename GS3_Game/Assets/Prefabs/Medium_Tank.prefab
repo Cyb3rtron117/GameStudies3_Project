@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 40536191657203255}
   - component: {fileID: 3777357199731330274}
   - component: {fileID: 7384995578232837663}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Medium_Tank
   m_TagString: tank_prefab
   m_Icon: {fileID: 0}
@@ -106,8 +106,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1.72, y: 1.655722, z: 2.057351}
-  m_Center: {x: 0, y: 0.827849, z: -0.0040984154}
+  m_Size: {x: 1.72, y: 1.8, z: 2.057351}
+  m_Center: {x: 0, y: 0.9, z: -0.0040984154}
 --- !u!1 &1173055986965029576
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2862541539589422618}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MediumTank.Thread.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 8977027495284730318}
   - component: {fileID: 5361573894237638997}
   - component: {fileID: 1239454732419949682}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzle Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3700354744428450769}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MediumTank.Thread.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5400408461763548625}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MediumTank.Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7131094747798508200}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MediumTank.Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8091929876765433073}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MediumTank.Thread.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 404045820195253447}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MediumTank.Thread.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -550,7 +550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4376847430475814215}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MediumTank.Cannon_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7075716837021958147}
   - component: {fileID: 937459051842376185}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: heavy_tank_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +680,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8892922291552226852}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MediumTank.Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -695,7 +695,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7362838189583965130}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 2.2204633e-16, z: 7.1054274e-15, w: 1}
+  m_LocalRotation: {x: 0.00000026822093, y: 1.8829384e-13, z: -0.0000008958298, w: 1}
   m_LocalPosition: {x: -0.000000008195643, y: 0.38264236, z: -0.22500008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 4479299559459838392}
   - component: {fileID: 7966876088874003285}
   - component: {fileID: 6764439269309020336}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Impact vfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -831,7 +831,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1019005297398604636}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MediumTank.Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -863,7 +863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3512448639719229854}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MediumTankRig.OrangeStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

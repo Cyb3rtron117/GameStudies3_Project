@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,6 +23,8 @@ public class Menu_Tank : MonoBehaviour
     public Material activeMaterial;
     public VisualEffect shootVFX;
     [SerializeField] private PlayerSetup playerSetup;
+    [SerializeField] private BotSetup botSetup;
+    private int _playerIndex = 0;
 
     [Header("Game Manager")]
     public GameObject gameManager;
@@ -29,17 +32,22 @@ public class Menu_Tank : MonoBehaviour
     public void Setup(PlayerSetup setup)
     {
         playerSetup = setup;
-
+        _playerIndex = playerSetup.playerIndex;
         tankIndex = setup.tankIndex;
         //colourIndex = setup.colourIndex;
     }
-
+    public void BotSetup(BotSetup setup)
+    {
+        botSetup = setup;
+        _playerIndex = botSetup.playerIndex;
+        tankIndex = setup.tankIndex;
+    }
 
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         colours = gameManager.GetComponent<Colours>().colours;
-        ChangeTank(TankPrefabs[0]);
+        ChangeTank(tankIndex);
         _teamColours = gameManager.GetComponent<TeamColours>();
         readyAnim = GetComponent<Animator>();
     }
@@ -50,14 +58,14 @@ public class Menu_Tank : MonoBehaviour
     }
 
     //Changing Tanks
-    public void ChangeTank(GameObject tank)
+    public void ChangeTank(int tankIndex)
     {
         if (currentTank != null)
         {
             currentTank.SetActive(false);
         }
 
-        currentTank = tank;
+        currentTank = TankPrefabs[tankIndex];
         currentTank.SetActive(true);
 
         tankprefab = currentTank.GetComponent<TankPrefab>();
@@ -73,8 +81,16 @@ public class Menu_Tank : MonoBehaviour
         {
             tankIndex = 0;
         }
-        playerSetup.tankIndex = tankIndex;
-        ChangeTank(TankPrefabs[tankIndex]);
+
+        if(playerSetup != null)
+        {
+            playerSetup.tankIndex = tankIndex;
+        }
+        else if (botSetup != null)
+        {
+            botSetup.tankIndex = tankIndex;
+        }
+        ChangeTank(tankIndex);
     }
     private void PreviousTank()
     {
@@ -83,8 +99,16 @@ public class Menu_Tank : MonoBehaviour
         {
             tankIndex = TankPrefabs.Count - 1;
         }
-        playerSetup.tankIndex = tankIndex;
-        ChangeTank(TankPrefabs[tankIndex]);
+
+        if (playerSetup != null)
+        {
+            playerSetup.tankIndex = tankIndex;
+        }
+        else if (botSetup != null)
+        {
+            botSetup.tankIndex = tankIndex;
+        }
+        ChangeTank(tankIndex);
     }
     public void ChangeTankInput(InputAction.CallbackContext context)
     {
@@ -133,8 +157,15 @@ public class Menu_Tank : MonoBehaviour
         }
         playerSetup.colourIndex = colourIndex;
         ApplyColour();*/
-
-        _teamColours.NextColour(playerSetup.playerIndex);
+        if (playerSetup != null)
+        {
+            _teamColours.NextColour(playerSetup.playerIndex);
+        }
+        else if (botSetup != null)
+        {
+            _teamColours.NextColour(botSetup.playerIndex);
+        }
+        
     }
     private void PreviousColour()
     {
@@ -148,15 +179,13 @@ public class Menu_Tank : MonoBehaviour
         playerSetup.colourIndex = colourIndex;
         ApplyColour();*/
 
-        _teamColours.PreviousColour(playerSetup.playerIndex);
-    }
-    private void ApplyColour()
-    {
-        //activeMaterial = colours[colourIndex];
-
-        if (tankprefab != null)
+        if (playerSetup != null)
         {
-            tankprefab.changeMaterial(activeMaterial);
+            _teamColours.NextColour(playerSetup.playerIndex);
+        }
+        else if (botSetup != null)
+        {
+            _teamColours.NextColour(botSetup.playerIndex);
         }
     }
     public void PressReady(InputAction.CallbackContext context)
@@ -167,13 +196,28 @@ public class Menu_Tank : MonoBehaviour
         }
         else
         {
-            isReady = !isReady;
-            readyAnim.SetBool("isReady", isReady);
-            if(isReady)
-            {
-                shootVFX.Play();
-            }
-            gameManager.GetComponent<ReadyUp>().playerReady(playerSetup.playerIndex);
+            ReadyAction();
         }
+    }
+    public void ReadyAction()
+    {
+        isReady = !isReady;
+        readyAnim.SetBool("isReady", isReady);
+        if (isReady)
+        {
+            shootVFX.Play();
+        }
+        gameManager.GetComponent<ReadyUp>().playerReady(_playerIndex);
+    }
+
+    public void botReady()
+    {
+        ChangeTank(tankIndex);
+        StartCoroutine(wait());
+    }
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1);
+        ReadyAction();
     }
 }

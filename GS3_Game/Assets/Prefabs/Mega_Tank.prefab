@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1815007531111459465}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481443709147418666}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0.00000005338509, z: -0.000000053385097, w: 0.7071067}
+  m_LocalRotation: {x: -0.70710665, y: -0.0000006868323, z: -0.0000006868325, w: 0.7071069}
   m_LocalPosition: {x: 0.00000010990955, y: -0.31385076, z: -0.72789806}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -43,7 +43,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7768425259785940990}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Thread.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3819030484381912710}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1679276614596966178}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Cannon.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3468509035680638449}
   - component: {fileID: 3006876272512099084}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: mega_tank_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5142668672865014151}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Cannon.M_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4851300065871767186}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Cannon.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 3327990212746732797}
   - component: {fileID: 8057801333689203128}
   - component: {fileID: 2334974243798253385}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Impact vfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5966962535699351569}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Thread.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 5717523473145308939}
   - component: {fileID: 340507965506162711}
   - component: {fileID: 3214272064173521322}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mega_Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,8 +549,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1.9978247, y: 1.7747898, z: 2.237276}
-  m_Center: {x: 0, y: 0.88738286, z: -0.0014526844}
+  m_Size: {x: 1.9978247, y: 1.8, z: 2.237276}
+  m_Center: {x: 0, y: 0.9, z: -0.0014526844}
 --- !u!1 &7740422351266758127
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +560,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6213530111610641441}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTankRig.OrangeStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 4376444093669475990}
   - component: {fileID: 6389798171927978569}
   - component: {fileID: 7949527346777357418}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Muzzle Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,7 +711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4034817201644832652}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Cannon.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +742,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1450349193222870340}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Cannon.M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -896,7 +896,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3439900409664429996}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Cannon.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,7 +928,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867076401579629561}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Thread.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -960,7 +960,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1231959220010602739}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MegaTank.Thread.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,6 +8,7 @@ public class ReadyUp : MonoBehaviour
     public GameObject[] CanvasReadyButtons;
     public SceneLoading _sceneLoading;
     [SerializeField] private int playersNeeded = 2;
+    [SerializeField] private PlayerJoining _playerJoiningScript;
     private void Start()
     {
         foreach(bool _bool in playersReady)
@@ -35,25 +36,49 @@ public class ReadyUp : MonoBehaviour
     }
     private void checkReady()
     {
-        if (playersReady.Count < playersNeeded)//will be 2 for actual game
+        if (playersReady.Count < 4) //if theres not 4 players, both people and bots
         {
-            print("Not enough players");
+            if (playersReady.Count < PlayerJoining.playerSetups.Count)//tests against how many players joined
+            {
+                print("Not enough players");
+            }
+            else
+            {
+                bool peopleReady = true;
+                for (int i = 0; i < playersReady.Count; i++)
+                {
+                    if (!playersReady[i]) //if one is false
+                    {
+                        peopleReady = false;
+                        break;
+                    }
+                }
+                if (peopleReady)
+                {
+                    print("All human players ready");
+                    _playerJoiningScript.FillBots();
+                }
+                else
+                {
+                    print("Not everyone ready");
+                }
+            }
         }
-        else
+        else //if theres 4 players
         {
-            bool everyoneReady = true;
+            bool allReady = true;
             for (int i = 0; i < playersReady.Count; i++)
             {
                 if (!playersReady[i]) //if one is false
                 {
-                    everyoneReady = false;
+                    allReady = false;
                     break;
                 }
             }
-            if (everyoneReady)
+            if (allReady)
             {
                 print("Everyone ready");
-                _sceneLoading.loadLevel();
+                StartCoroutine(Startgame());
             }
             else
             {
@@ -61,5 +86,9 @@ public class ReadyUp : MonoBehaviour
             }
         }
     }
-
+    private IEnumerator Startgame()
+    {
+        yield return new WaitForSeconds(1f);
+        _sceneLoading.loadLevel();
+    }
 }

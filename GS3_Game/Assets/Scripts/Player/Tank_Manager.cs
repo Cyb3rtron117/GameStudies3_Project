@@ -71,8 +71,7 @@ public class Tank_Manager : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         cineOrbit = GetComponentInChildren<CinemachineOrbitalFollow>();
         colours = gameManager.GetComponent<Colours>().colours;
-        ApplyColour();
-        ChangeTank(TankPrefabs[tankIndex]);
+        ChangeTank(tankIndex);
         canvasObjects.SetActive(false);
         isBoosting = false;
         teamNumber.SetText($"You are {_team}");
@@ -246,14 +245,14 @@ public class Tank_Manager : MonoBehaviour
         tankprefab.changeMaterial(newMat);
         
     }
-    public void ChangeTank(GameObject tank)
+    public void ChangeTank(int _tankIndex)
     {
         if (currentTank != null)
         {
             currentTank.SetActive(false);
         }
 
-        currentTank = tank;
+        currentTank = TankPrefabs[_tankIndex];
         currentTank.SetActive(true);
 
         tankprefab = currentTank.GetComponent<TankPrefab>();
@@ -279,6 +278,7 @@ public class Tank_Manager : MonoBehaviour
 
         projectileSpeed = tankprefab.shootSpeed;
         aimSpeed = tankprefab.aimSpeed;
+        ApplyColour();
     }
     private void ApplyColour()
     {
@@ -294,17 +294,34 @@ public class Tank_Manager : MonoBehaviour
         {
             if (isBoosting)
             {
-                Tank_Manager tankScript = collision.gameObject.GetComponent<Tank_Manager>();
-                if (tankScript._team != _team) //if not on my team
+                if(collision.gameObject.GetComponent<Tank_Manager>())
                 {
-                    if (tankScript.canShoot == true) //if they have the bullet
+                    Tank_Manager tankScript = collision.gameObject.GetComponent<Tank_Manager>();
+                    if (tankScript._team != _team) //if not on my team
                     {
-                        CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
-                        tankScript.canShoot = false;
-                        tankScript.canvasObjects.SetActive(false);
-                        Projectile.Instance.Bounce(collision.transform);
+                        if (tankScript.canShoot == true) //if they have the bullet
+                        {
+                            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+                            tankScript.canShoot = false;
+                            tankScript.canvasObjects.SetActive(false);
+                            Projectile.Instance.Bounce(collision.transform);
+                        }
+                        tankScript.TakeDamage(5);
                     }
-                    tankScript.TakeDamage(5);
+                }
+                else if (collision.gameObject.GetComponent<Bot_Tank_Manager>())
+                {
+                    Bot_Tank_Manager tankScript = collision.gameObject.GetComponent<Bot_Tank_Manager>();
+                    if (tankScript._team != _team) //if not on my team
+                    {
+                        if (tankScript.canShoot == true) //if they have the bullet
+                        {
+                            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+                            tankScript.canShoot = false;
+                            Projectile.Instance.Bounce(collision.transform);
+                        }
+                        tankScript.TakeDamage(5);
+                    }
                 }
                 impactVFX.Play();
             }

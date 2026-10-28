@@ -59,11 +59,13 @@ public class Projectile : MonoBehaviour
             case BulletMode.Frozen:
                 transform.localEulerAngles = Vector3.zero;
                 rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
                 break;
 
             case BulletMode.Move:
                 transform.localEulerAngles = bulletForward;
                 rb.linearVelocity = transform.forward * bulletSpeed;
+                rb.angularVelocity = Vector3.zero;
                 break;
 
             case BulletMode.Display:
@@ -84,6 +86,8 @@ public class Projectile : MonoBehaviour
     }
     public void Shoot(Transform shootPos, Vector3 shootRot, GameObject Shooter, Team team, float damage, float speed)
     {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         _shooter = Shooter;
         transform.localEulerAngles = shootRot;
         bulletForward = shootRot;
@@ -98,6 +102,7 @@ public class Projectile : MonoBehaviour
     {
         bulletForward = Vector3.zero;
         rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         transform.position = FreezePos.position;
         transform.localEulerAngles = Vector3.zero;
     }
@@ -121,9 +126,18 @@ public class Projectile : MonoBehaviour
                     if (other.gameObject != _shooter)
                     {
                         GoHide();
-                        other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
-                        other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
-                        SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
+                        if (other.gameObject.GetComponent<Tank_Manager>())
+                        {
+                            other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
+                            other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
+                            SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
+                        }
+                        else if (other.gameObject.GetComponent<Bot_Tank_Manager>())
+                        {
+                            other.gameObject.GetComponent<Bot_Tank_Manager>().HasProjectile();
+                            other.gameObject.GetComponent<Bot_Tank_Manager>().TakeDamage(Damage);
+                            SwapColour(other.gameObject.GetComponent<Bot_Tank_Manager>().activeMaterial);
+                        }
                         Damage = 0f;
                         smokeVFX.Stop();
                     }
@@ -131,9 +145,18 @@ public class Projectile : MonoBehaviour
                 else if (_shooter == null)
                 {
                     GoHide();
-                    other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
-                    other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
-                    SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
+                    if (other.gameObject.GetComponent<Tank_Manager>())
+                    {
+                        other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
+                        other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
+                        SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
+                    }
+                    else if (other.gameObject.GetComponent<Bot_Tank_Manager>())
+                    {
+                        other.gameObject.GetComponent<Bot_Tank_Manager>().HasProjectile();
+                        other.gameObject.GetComponent<Bot_Tank_Manager>().TakeDamage(Damage);
+                        SwapColour(other.gameObject.GetComponent<Bot_Tank_Manager>().activeMaterial);
+                    }
                     Damage = 0f;
                     smokeVFX.Stop();
                 }
@@ -174,6 +197,7 @@ public class Projectile : MonoBehaviour
     {
         mode = BulletMode.Frozen;
         transform.eulerAngles = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         rb.useGravity = false;
         Freeze();
         _shooter = null;
@@ -185,6 +209,7 @@ public class Projectile : MonoBehaviour
         Damage = 0f;
         rb.useGravity = false;
         rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         mode = BulletMode.Display;
         _shooter = null;
         _team = Team.none;
@@ -193,6 +218,9 @@ public class Projectile : MonoBehaviour
     }
     public void Bounce(Transform bouncePos)
     {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        transform.eulerAngles = Vector3.zero;
         print("bounce");
         ignoreCollisions = true;
         transform.position = bouncePos.position;
