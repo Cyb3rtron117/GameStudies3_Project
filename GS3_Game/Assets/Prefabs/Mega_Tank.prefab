@@ -521,7 +521,7 @@ MonoBehaviour:
   animator: {fileID: 5717523473145308939}
   collider: {fileID: 3214272064173521322}
   turnSpeed: 2
-  aimSpeed: 3
+  aimSpeed: 2
   moveSpeed: 7
   tankweight: 50
   shootVFX: {fileID: 6389798171927978569}
