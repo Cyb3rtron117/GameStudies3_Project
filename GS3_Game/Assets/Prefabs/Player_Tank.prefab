@@ -193,7 +193,7 @@ MonoBehaviour:
     Controllers:
     - Name: Look Orbit X
       Owner: {fileID: 2950257283759528554}
-      Enabled: 1
+      Enabled: 0
       Input:
         InputAction: {fileID: 1924317715523682709, guid: 61f9d2cc873ccf945ae4abd67cbd006c, type: 3}
         Gain: 100
@@ -347,11 +347,13 @@ MonoBehaviour:
   maxHealth: 100
   freeze: 0
   playerIndex: 0
+  aimSpeed: 10
   rb: {fileID: 6759753703300375904}
   anim: {fileID: 0}
   boostTime: 0.5
   boostCooldown: 1
   isBoosting: 0
+  MoveMultiplier: 1
   moveSpeed: 10
   boostSpeed: 10
   currentSpeed: 10
@@ -496,6 +498,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8fa2c3f0-aff6-4765-805a-49bc5855ab7c
     m_ActionName: 'Player/Boost[/Keyboard/leftShift]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 247226085798550487}
+        m_TargetAssemblyTypeName: Tank_Manager, Assembly-CSharp
+        m_MethodName: AimInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5d6db9bc-7f81-4b7a-93b3-f013a05de333
+    m_ActionName: 'Player/Aim[/XInputControllerWindows/rightStick/x,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1273,8 +1291,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6938309921592093967}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  m_LocalPosition: {x: 0, y: 10.123056, z: -10.1230545}
+  m_LocalRotation: {x: 0.12218007, y: 0.6964711, z: -0.12218006, w: 0.6964712}
+  m_LocalPosition: {x: 0.9530449, y: 6.3889165, z: -0.0000037311875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1313,8 +1331,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
-  field of view: 60
+  far clip plane: 50
+  field of view: 32.2
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

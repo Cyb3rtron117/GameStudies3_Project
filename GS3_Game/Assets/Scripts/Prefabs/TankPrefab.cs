@@ -9,6 +9,7 @@ public class TankPrefab : MonoBehaviour
     public Animator animator;
     public BoxCollider collider;
     public float turnSpeed = 10f;
+    public float aimSpeed = 10f;
     public float moveSpeed = 10f;
     public float tankweight = 10f;
     public VisualEffect shootVFX;

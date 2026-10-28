@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
+using UnityEngine.Windows;
 
 public class Tank_Manager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Tank_Manager : MonoBehaviour
     public int playerIndex;
     [Header("Moving")]
     private Vector2 movementInput;
+    private float aimInput;
+    private float additionalAngle = 0f;
     public Rigidbody rb;
     public Animator anim;
     private bool isMoving = false;
@@ -28,8 +31,8 @@ public class Tank_Manager : MonoBehaviour
     [SerializeField] private float boostSpeed = 10f;
     [SerializeField] private float currentSpeed = 10f;
     [SerializeField] private float turnSpeed = 10f;
-    
-    
+    [SerializeField] private float aimSpeed = 1f;
+
     [Header("Shooting")]
     public float shootCooldown = 1f;
     private float cooldownTime;
@@ -73,6 +76,15 @@ public class Tank_Manager : MonoBehaviour
         canvasObjects.SetActive(false);
         isBoosting = false;
         teamNumber.SetText($"You are {_team}");
+        switch(_team)
+        {
+            case Team.team1:
+                additionalAngle = 180f;
+                break;
+            case Team.team2:
+                additionalAngle = 0f;
+                break;
+        }
     }
 
     public void MoveInput(InputAction.CallbackContext context)
@@ -96,6 +108,10 @@ public class Tank_Manager : MonoBehaviour
         {
             Shoot();
         }
+    }
+    public void AimInput(InputAction.CallbackContext context)
+    {
+        aimInput = context.ReadValue<float>();
     }
     public void BoostInput(InputAction.CallbackContext context)
     {
@@ -202,7 +218,9 @@ public class Tank_Manager : MonoBehaviour
     }
     private void RotateTurret()
     {
-        turret.transform.eulerAngles = new Vector3(0, cineOrbit.HorizontalAxis.Value, 0);
+        //Vector3 aimDir = new Vector3(aimInput.x, 0, aimInput.y);
+        additionalAngle += aimInput * aimSpeed;
+        turret.transform.eulerAngles = new Vector3(0, additionalAngle, 0);
     }
 
     private void FixedUpdate()
@@ -260,6 +278,7 @@ public class Tank_Manager : MonoBehaviour
         Health = maxHealth;
 
         projectileSpeed = tankprefab.shootSpeed;
+        aimSpeed = tankprefab.aimSpeed;
     }
     private void ApplyColour()
     {
@@ -322,6 +341,15 @@ public class Tank_Manager : MonoBehaviour
     IEnumerator Respawn(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        switch (_team)
+        {
+            case Team.team1:
+                additionalAngle = 180f;
+                break;
+            case Team.team2:
+                additionalAngle = 0f;
+                break;
+        }
         freeze = false;
         Health = maxHealth;
         if (currentTank != null)
