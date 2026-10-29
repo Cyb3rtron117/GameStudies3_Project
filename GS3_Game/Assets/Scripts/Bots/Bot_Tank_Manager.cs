@@ -62,6 +62,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     [Header("Game Systems")]
     public GameObject gameManager;
     public Team _team; //set by PlayerSpawning
+    public List<GameObject> MyTeam = new List<GameObject>();
 
     private void Start()
     {
@@ -96,6 +97,21 @@ public class Bot_Tank_Manager : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * turnSpeed);
             }
 
+            //Boosting Logic
+            Vector3 targetDistance = Projectile.priorityObject.transform.position - transform.position;
+            if (Projectile.priorityObject != gameObject && !MyTeam.Contains(Projectile.priorityObject)) //redundant to check for self, because self is already in my team
+            {
+                Vector3 direction = (Projectile.priorityObject.transform.position - transform.position).normalized;
+
+                if (Vector3.Dot(transform.forward, direction) > 0.8f) //if target is roughly in front of me
+                {
+                    if (targetDistance.sqrMagnitude < 7f && !isBoosting && !freeze)
+                    {
+                        isBoosting = true;
+                        StartCoroutine(Boost(boostTime));
+                    }
+                }
+            }
             agent.nextPosition = transform.position;
         }
         else
@@ -123,9 +139,11 @@ public class Bot_Tank_Manager : MonoBehaviour
     IEnumerator Boost(float waitTime)
     {
         currentSpeed = boostSpeed;
+        agent.nextPosition = transform.position;
         yield return new WaitForSeconds(waitTime);
         currentSpeed = moveSpeed;
         StartCoroutine(BoostCooldown(boostCooldown));
+        agent.nextPosition = transform.position;
     }
     IEnumerator BoostCooldown(float waitTime)
     {

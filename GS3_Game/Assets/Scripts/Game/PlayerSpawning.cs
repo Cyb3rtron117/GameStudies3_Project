@@ -48,22 +48,23 @@ public class PlayerSpawning : MonoBehaviour
     }
     private void SetupPlayer(PlayerInput player, PlayerSetup setup)
     {
+        Tank_Manager playerTank = player.GetComponent<Tank_Manager>();
         int index = player.playerIndex;
-        player.GetComponent<Tank_Manager>().tankIndex = setup.tankIndex;
-        player.GetComponent<Tank_Manager>().playerIndex = setup.playerIndex;
-        player.GetComponent<Tank_Manager>().controlScheme = player.currentControlScheme;
+        playerTank.tankIndex = setup.tankIndex;
+        playerTank.playerIndex = setup.playerIndex;
+        playerTank.controlScheme = player.currentControlScheme;
         player.transform.position = SpawnPoints[index].transform.position;
         player.transform.rotation = SpawnPoints[index].transform.rotation;
         //On players 1 and 3, change tank material to team 1 and swap movement
         if (index % 2 == 0)
         {
-            player.GetComponent<Tank_Manager>().activeMaterial = Team1Tank;
-            player.GetComponent<Tank_Manager>().MoveMultiplier = -1;
+            playerTank.activeMaterial = Team1Tank;
+            playerTank.MoveMultiplier = -1;
         }
         else
         {
-            player.GetComponent<Tank_Manager>().activeMaterial = Team2Tank;
-            player.GetComponent<Tank_Manager>().MoveMultiplier = 1;
+            playerTank.activeMaterial = Team2Tank;
+            playerTank.MoveMultiplier = 1;
         }
         //Cinemachine
         CinemachineInputAxisController inputController = player.GetComponentInChildren<CinemachineInputAxisController>();
@@ -75,7 +76,7 @@ public class PlayerSpawning : MonoBehaviour
         //Assign players to teams
         if (index % 2 == 0) //Players 1 and 3
         {
-            player.GetComponent<Tank_Manager>()._team = Team.team1;
+            playerTank._team = Team.team1;
             if(!Team1.Contains(player.gameObject))
             {
                 Team1.Add(player.gameObject);
@@ -83,7 +84,7 @@ public class PlayerSpawning : MonoBehaviour
         }
         else //Players 2 and 4
         {
-            player.GetComponent<Tank_Manager>()._team = Team.team2;
+            playerTank._team = Team.team2;
             if (!Team2.Contains(player.gameObject))
             {
                 Team2.Add(player.gameObject);
@@ -122,29 +123,32 @@ public class PlayerSpawning : MonoBehaviour
     }
     private void SetupBot(GameObject bot, BotSetup setup)
     {
+        Bot_Tank_Manager botScript = bot.GetComponent<Bot_Tank_Manager>();
         int index = setup.playerIndex;
-        bot.GetComponent<Bot_Tank_Manager>().tankIndex = setup.tankIndex;
-        bot.GetComponent<Bot_Tank_Manager>().playerIndex = setup.playerIndex;
+        botScript.tankIndex = setup.tankIndex;
+        botScript.playerIndex = setup.playerIndex;
         bot.transform.position = SpawnPoints[index].transform.position;
         bot.transform.rotation = SpawnPoints[index].transform.rotation;
         //On players 1 and 3, change tank material to team 1 and swap movement
         if (index % 2 == 0)
         {
-            bot.GetComponent<Bot_Tank_Manager>().activeMaterial = Team1Tank;
-            bot.GetComponent<Bot_Tank_Manager>().MoveMultiplier = -1;
-            bot.GetComponent<Bot_Tank_Manager>().goalTarget = GoalTargets[1];
+            botScript.activeMaterial = Team1Tank;
+            botScript.MoveMultiplier = -1;
+            botScript.goalTarget = GoalTargets[1];
+            botScript.MyTeam = Team1;
         }
         else
         {
-            bot.GetComponent<Bot_Tank_Manager>().activeMaterial = Team2Tank;
-            bot.GetComponent<Bot_Tank_Manager>().MoveMultiplier = 1;
-            bot.GetComponent<Bot_Tank_Manager>().goalTarget = GoalTargets[0];
+            botScript.activeMaterial = Team2Tank;
+            botScript.MoveMultiplier = 1;
+            botScript.goalTarget = GoalTargets[0];
+            botScript.MyTeam = Team2;
         }
         
         //Assign players to teams
         if (index % 2 == 0) //Bots 1 and 3
         {
-            bot.GetComponent<Bot_Tank_Manager>()._team = Team.team1;
+            botScript._team = Team.team1;
             if (!Team1.Contains(bot.gameObject))
             {
                 Team1.Add(bot.gameObject);
@@ -152,7 +156,7 @@ public class PlayerSpawning : MonoBehaviour
         }
         else //Bots 2 and 4
         {
-            bot.GetComponent<Bot_Tank_Manager>()._team = Team.team2;
+            botScript._team = Team.team2;
             if (!Team2.Contains(bot.gameObject))
             {
                 Team2.Add(bot.gameObject);

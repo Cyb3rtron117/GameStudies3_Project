@@ -180,6 +180,8 @@ public class Projectile : MonoBehaviour
                 print($"{Team.team2} got a point");
                 scoreScript.Score(Team.team2);
                 spawnScript.RespawnPlayers();
+                priorityObject = gameObject;
+                _priorityObj = priorityObject;
                 Reset();
             }
 
@@ -188,6 +190,8 @@ public class Projectile : MonoBehaviour
                 print($"{Team.team1} got a point");
                 scoreScript.Score(Team.team1);
                 spawnScript.RespawnPlayers();
+                priorityObject = gameObject;
+                _priorityObj = priorityObject;
                 Reset();
             }
         }
