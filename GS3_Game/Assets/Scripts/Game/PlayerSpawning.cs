@@ -11,6 +11,7 @@ using static UnityEngine.Audio.GeneratorInstance;
 public class PlayerSpawning : MonoBehaviour
 {
     public Transform[] SpawnPoints;
+    public GameObject[] GoalTargets;
     public GameObject PlayerPrefab;
     public GameObject BotPrefab;
     private List <PlayerInput> _playerInputs = new List<PlayerInput>();
@@ -131,11 +132,13 @@ public class PlayerSpawning : MonoBehaviour
         {
             bot.GetComponent<Bot_Tank_Manager>().activeMaterial = Team1Tank;
             bot.GetComponent<Bot_Tank_Manager>().MoveMultiplier = -1;
+            bot.GetComponent<Bot_Tank_Manager>().goalTarget = GoalTargets[1];
         }
         else
         {
             bot.GetComponent<Bot_Tank_Manager>().activeMaterial = Team2Tank;
             bot.GetComponent<Bot_Tank_Manager>().MoveMultiplier = 1;
+            bot.GetComponent<Bot_Tank_Manager>().goalTarget = GoalTargets[0];
         }
         
         //Assign players to teams

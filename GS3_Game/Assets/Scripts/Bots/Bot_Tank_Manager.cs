@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
@@ -14,6 +15,8 @@ public class Bot_Tank_Manager : MonoBehaviour
     public float maxHealth = 100f;
     public bool freeze = false;
     public int playerIndex;
+    public NavMeshAgent agent;
+    public GameObject goalTarget;
     [Header("Moving")]
     private float additionalAngle = 0f;
     public Rigidbody rb;
@@ -38,6 +41,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     public bool canShoot = false;
     public float ShakeIntensity = 1f;
     public float ShakeTime = 0.5f;
+    private Vector3 aimpos;
 
     [Header("Tank Prefabs")]
     public List<GameObject> TankPrefabs = new List<GameObject>();
@@ -61,79 +65,38 @@ public class Bot_Tank_Manager : MonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        agent.updatePosition = false;
+        agent.updateRotation = false;
+
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         colours = gameManager.GetComponent<Colours>().colours;
         ChangeTank(tankIndex);
         isBoosting = false;
-        switch(_team)
-        {
-            case Team.team1:
-                additionalAngle = 180f;
-                break;
-            case Team.team2:
-                additionalAngle = 0f;
-                break;
-        }
-    }
-    public void ShootInput(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            Shoot();
-        }
-    }
-    public void BoostInput(InputAction.CallbackContext context)
-    {
-        if (context.performed && !isBoosting && !freeze)
-        {
-            isBoosting = true;
-            StartCoroutine(Boost(boostTime));
-        }
     }
     private void Move()
     {
         if(!freeze)
         {
-
-            Vector3 movedir = new Vector3(0, 0, 0) * MoveMultiplier;
-            if (movedir.sqrMagnitude < 0.01f)
+            if (Projectile.priorityObject != gameObject)
             {
-                rb.linearVelocity = Vector3.zero;
-                return;
-            }  
-            // The tank's CURRENT forward direction
-            Vector3 forwardMovement = rb.rotation * Vector3.forward;
-            
+                agent.SetDestination(Projectile.priorityObject.transform.position);
+            }
+            else
+            {
+                agent.SetDestination(goalTarget.transform.position);
+            }
+            Vector3 desiredVelocity = agent.desiredVelocity;
+            Vector3 targetVelocity = new Vector3(desiredVelocity.x, rb.linearVelocity.y, desiredVelocity.z);
+            rb.linearVelocity = targetVelocity;
 
-            // Signed angle to the desired world-space direction
-            float angle = Vector3.SignedAngle(forwardMovement, movedir, Vector3.up);
+            if (desiredVelocity.sqrMagnitude > 0.1f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(desiredVelocity.normalized);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * turnSpeed);
+            }
 
-            // Reverse if the target is behind the tank
-            float moveSign = Mathf.Abs(angle) > 100f ? -1f : 1f;
-
-            // Move along current forward, or backward when reversing
-            Vector3 _movement = forwardMovement * currentSpeed * moveSign;
-
-            Vector3 velocity = rb.linearVelocity;
-            velocity.x = _movement.x;
-            velocity.z = _movement.z;
-            rb.linearVelocity = velocity;
-
-            // When reversing, face the opposite direction from the target
-            Vector3 facingDirection = moveSign < 0f
-                ? -movedir
-                : movedir;
-
-            Quaternion targetRotation = Quaternion.LookRotation(facingDirection);
-
-            Quaternion smoothRotation = Quaternion.Slerp(
-                    rb.rotation,
-                    targetRotation,
-                    turnSpeed * Time.fixedDeltaTime
-                );
-
-            rb.MoveRotation(smoothRotation);
-
+            agent.nextPosition = transform.position;
         }
         else
         {
@@ -171,9 +134,16 @@ public class Bot_Tank_Manager : MonoBehaviour
     }
     private void RotateTurret()
     {
-        //Vector3 aimDir = new Vector3(aimInput.x, 0, aimInput.y);
-        //additionalAngle += aimInput * aimSpeed;
-        turret.transform.eulerAngles = new Vector3(0, additionalAngle, 0);
+        if (Projectile.priorityObject != gameObject)
+        {
+            aimpos = Projectile.priorityObject.transform.position - transform.position;
+        }
+        else
+        {
+            aimpos = goalTarget.transform.position - transform.position;
+        }
+        aimpos.y = 0;
+        turret.transform.eulerAngles = Quaternion.LookRotation(aimpos).eulerAngles;
     }
 
     private void FixedUpdate()
@@ -217,6 +187,7 @@ public class Bot_Tank_Manager : MonoBehaviour
         moveSpeed = tankprefab.moveSpeed;
         boostSpeed = moveSpeed + 5;
         currentSpeed = moveSpeed;
+        agent.speed = currentSpeed;
         turnSpeed = tankprefab.turnSpeed;
         GetComponent<BoxCollider>().size = tankprefab.collider.size;
         GetComponent<BoxCollider>().center = tankprefab.collider.center;
@@ -224,18 +195,18 @@ public class Bot_Tank_Manager : MonoBehaviour
         shootVFX = tankprefab.shootVFX;
         impactVFX = tankprefab.impactVFX;
         healthVFX = tankprefab.healthbar;
-        print("3");
+        
         print(activeMaterial);
         changeMaterial(activeMaterial);
         ShootDamage = tankprefab.DamageAmt;
-        print("4");
+        
         maxHealth = tankprefab.maxHealth;
         Health = maxHealth;
 
         projectileSpeed = tankprefab.shootSpeed;
         aimSpeed = tankprefab.aimSpeed;
         ApplyColour();
-        print("5");
+        
     }
     private void ApplyColour()
     {

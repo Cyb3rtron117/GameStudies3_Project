@@ -13596,7 +13596,7 @@ PrefabInstance:
       objectReference: {fileID: 393968214}
     - target: {fileID: 2361527188308226472, guid: 8e13f2ef9ae100547b88d2a28ebdc81c, type: 3}
       propertyPath: m_Name
-      value: Missle2
+      value: Missle
       objectReference: {fileID: 0}
     - target: {fileID: 3138451332595821330, guid: 8e13f2ef9ae100547b88d2a28ebdc81c, type: 3}
       propertyPath: m_LocalPosition.x

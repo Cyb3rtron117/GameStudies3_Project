@@ -16,6 +16,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float fallThreshold = 0f;
     [SerializeField] private BulletMode mode;
     [SerializeField] private GameObject _shooter;
+    public static GameObject priorityObject;
+    [SerializeField] private GameObject _priorityObj;
 
     [SerializeField] private Transform FreezePos;
     private MeshRenderer renderer;
@@ -38,6 +40,8 @@ public class Projectile : MonoBehaviour
     }
     private void Start()
     {
+        priorityObject = this.gameObject;
+        _priorityObj = priorityObject;
         smokeVFX = GetComponentInChildren<VisualEffect>();
         Damage = 0;
         if (SceneManager.GetActiveScene().buildIndex != 0)
@@ -99,6 +103,8 @@ public class Projectile : MonoBehaviour
         smokeVFX.Play();
         mode = BulletMode.Move;
         triggerZone.enabled = true;
+        priorityObject = gameObject;
+        _priorityObj = priorityObject;
     }
     private void Freeze()
     {
@@ -141,6 +147,8 @@ public class Projectile : MonoBehaviour
                             other.gameObject.GetComponent<Bot_Tank_Manager>().TakeDamage(Damage);
                             SwapColour(other.gameObject.GetComponent<Bot_Tank_Manager>().activeMaterial);
                         }
+                        priorityObject = other.gameObject;
+                        _priorityObj = priorityObject;
                         Damage = 0f;
                         smokeVFX.Stop();
                     }
@@ -160,6 +168,8 @@ public class Projectile : MonoBehaviour
                         other.gameObject.GetComponent<Bot_Tank_Manager>().TakeDamage(Damage);
                         SwapColour(other.gameObject.GetComponent<Bot_Tank_Manager>().activeMaterial);
                     }
+                    priorityObject = other.gameObject;
+                    _priorityObj = priorityObject;
                     Damage = 0f;
                     smokeVFX.Stop();
                 }
@@ -223,6 +233,8 @@ public class Projectile : MonoBehaviour
     }
     public void Bounce(Transform bouncePos)
     {
+        priorityObject = gameObject;
+        _priorityObj = priorityObject;
         triggerZone.enabled = false;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -255,6 +267,8 @@ public class Projectile : MonoBehaviour
         ignoreCollisions = false;
         bulletForward = Vector3.zero;
         StartCoroutine(recallVFX());
+        priorityObject = gameObject;
+        _priorityObj = priorityObject;
     }
     private void placeVFX()
     {
