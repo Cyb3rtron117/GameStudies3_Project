@@ -224,6 +224,8 @@ public class Projectile : MonoBehaviour
     }
     private void goDisplay()
     {
+        priorityObject = gameObject;
+        _priorityObj = priorityObject;
         triggerZone.enabled = true;
         Damage = 0f;
         rb.useGravity = false;

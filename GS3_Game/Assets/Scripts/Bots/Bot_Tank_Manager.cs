@@ -18,8 +18,8 @@ public class Bot_Tank_Manager : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject goalTarget;
     [SerializeField] private GameObject target;
+    private List<GameObject> hitObjects = new List<GameObject>();
     [Header("Moving")]
-    private float additionalAngle = 0f;
     public Rigidbody rb;
     public Animator anim;
     private bool isMoving = false;
@@ -75,6 +75,7 @@ public class Bot_Tank_Manager : MonoBehaviour
         colours = gameManager.GetComponent<Colours>().colours;
         ChangeTank(tankIndex);
         isBoosting = false;
+        hitObjects.Clear();
     }
     private void Move()
     {
@@ -151,6 +152,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         isBoosting = false;
+        hitObjects.Clear();//resets for next boost
     }
     private void RotateTurret()
     {
@@ -250,8 +252,9 @@ public class Bot_Tank_Manager : MonoBehaviour
         {
             if (isBoosting)
             {
-                if (collision.gameObject.GetComponent<Tank_Manager>())
+                if (collision.gameObject.GetComponent<Tank_Manager>() && !hitObjects.Contains(collision.gameObject))
                 {
+                    hitObjects.Add(collision.gameObject);
                     Tank_Manager tankScript = collision.gameObject.GetComponent<Tank_Manager>();
                     if (tankScript._team != _team) //if not on my team
                     {
@@ -265,8 +268,9 @@ public class Bot_Tank_Manager : MonoBehaviour
                         tankScript.TakeDamage(5);
                     }
                 }
-                else if (collision.gameObject.GetComponent<Bot_Tank_Manager>())
+                else if (collision.gameObject.GetComponent<Bot_Tank_Manager>() && !hitObjects.Contains(collision.gameObject))
                 {
+                    hitObjects.Add(collision.gameObject);
                     Bot_Tank_Manager tankScript = collision.gameObject.GetComponent<Bot_Tank_Manager>();
                     if (tankScript._team != _team) //if not on my team
                     {
@@ -313,15 +317,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     IEnumerator Respawn(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        switch (_team)
-        {
-            case Team.team1:
-                additionalAngle = 180f;
-                break;
-            case Team.team2:
-                additionalAngle = 0f;
-                break;
-        }
+        hitObjects.Clear();
         freeze = false;
         Health = maxHealth;
         if (currentTank != null)

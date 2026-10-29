@@ -15,6 +15,7 @@ public class Tank_Manager : MonoBehaviour
     public float maxHealth = 100f;
     public bool freeze = false;
     public int playerIndex;
+    private List<GameObject> hitObjects = new List<GameObject>();
     [Header("Moving")]
     private Vector2 movementInput;
     private float aimInput;
@@ -76,6 +77,7 @@ public class Tank_Manager : MonoBehaviour
 
     private void Start()
     {
+        hitObjects.Clear();
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         cineOrbit = GetComponentInChildren<CinemachineOrbitalFollow>();
         colours = gameManager.GetComponent<Colours>().colours;
@@ -235,6 +237,7 @@ public class Tank_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         isBoosting = false;
+        hitObjects.Clear();
     }
     private void RotateTurret()
     {
@@ -325,8 +328,9 @@ public class Tank_Manager : MonoBehaviour
         {
             if (isBoosting)
             {
-                if(collision.gameObject.GetComponent<Tank_Manager>())
+                if (collision.gameObject.GetComponent<Tank_Manager>() && !hitObjects.Contains(collision.gameObject))
                 {
+                    hitObjects.Add(collision.gameObject);
                     Tank_Manager tankScript = collision.gameObject.GetComponent<Tank_Manager>();
                     if (tankScript._team != _team) //if not on my team
                     {
@@ -340,7 +344,7 @@ public class Tank_Manager : MonoBehaviour
                         tankScript.TakeDamage(5);
                     }
                 }
-                else if (collision.gameObject.GetComponent<Bot_Tank_Manager>())
+                else if (collision.gameObject.GetComponent<Bot_Tank_Manager>() && !hitObjects.Contains(collision.gameObject))
                 {
                     Bot_Tank_Manager tankScript = collision.gameObject.GetComponent<Bot_Tank_Manager>();
                     if (tankScript._team != _team) //if not on my team
@@ -398,6 +402,7 @@ public class Tank_Manager : MonoBehaviour
                 additionalAngle = 0f;
                 break;
         }
+        hitObjects.Clear();
         freeze = false;
         Health = maxHealth;
         if (currentTank != null)
