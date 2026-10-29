@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.XR;
 using static UnityEngine.Audio.GeneratorInstance;
 
 public class PlayerSpawning : MonoBehaviour
@@ -16,6 +17,9 @@ public class PlayerSpawning : MonoBehaviour
     private List<GameObject> Tanks = new List<GameObject>();
     public Material Team2Tank;
     public Material Team1Tank;
+
+    [SerializeField] private List<GameObject> Team1 = new List<GameObject>();
+    [SerializeField] private List<GameObject> Team2 = new List<GameObject>();
     private void Start()
     {
         _playerInputs.Clear();
@@ -70,10 +74,18 @@ public class PlayerSpawning : MonoBehaviour
         if (index % 2 == 0) //Players 1 and 3
         {
             player.GetComponent<Tank_Manager>()._team = Team.team1;
+            if(!Team1.Contains(player.gameObject))
+            {
+                Team1.Add(player.gameObject);
+            }
         }
         else //Players 2 and 4
         {
             player.GetComponent<Tank_Manager>()._team = Team.team2;
+            if (!Team2.Contains(player.gameObject))
+            {
+                Team2.Add(player.gameObject);
+            }
         }
         FlipCamera(index, player);
     }
@@ -126,31 +138,139 @@ public class PlayerSpawning : MonoBehaviour
         }
         
         //Assign players to teams
-        if (index % 2 == 0) //Players 1 and 3
+        if (index % 2 == 0) //Bots 1 and 3
         {
             bot.GetComponent<Bot_Tank_Manager>()._team = Team.team1;
+            if (!Team1.Contains(bot.gameObject))
+            {
+                Team1.Add(bot.gameObject);
+            }
         }
-        else //Players 2 and 4
+        else //Bots 2 and 4
         {
             bot.GetComponent<Bot_Tank_Manager>()._team = Team.team2;
+            if (!Team2.Contains(bot.gameObject))
+            {
+                Team2.Add(bot.gameObject);
+            }
         }
     }
     public void RespawnPlayers()
     {
-        foreach(PlayerInput player in _playerInputs)
+        int rand1 = (UnityEngine.Random.Range(0, 2) * 2); //0 or 2
+        int rand2 = (UnityEngine.Random.Range(0, 2) * 2) + 1; //1 or 3
+        //Team 1
+        for (int j = 0; j < Team1.Count; j++)
+        {
+            if(Team1[j].GetComponent<Tank_Manager>())
+            {
+                if(j == 0)
+                {
+                    Team1[j].GetComponent<Tank_Manager>().Die(rand1);
+                }
+                else
+                {
+                    if(rand1/2 == 1) //if 0, then returns 0. If 2, then returns 1
+                    {
+                        Team1[j].GetComponent<Tank_Manager>().Die(0);
+                    }
+                    else
+                    {
+                        Team1[j].GetComponent<Tank_Manager>().Die(2);
+                    }
+                }
+            }
+            else if (Team1[j].GetComponent<Bot_Tank_Manager>())
+            {
+                if (j == 0)
+                {
+                    Team1[j].GetComponent<Bot_Tank_Manager>().Die(rand1);
+                }
+                else
+                {
+                    if (rand1 / 2 == 1) //if 0, then returns 0. If 2, then returns 1
+                    {
+                        Team1[j].GetComponent<Bot_Tank_Manager>().Die(0);
+                    }
+                    else
+                    {
+                        Team1[j].GetComponent<Bot_Tank_Manager>().Die(2);
+                    }
+                }
+            }
+        }
+        //Team 2
+        for (int j = 0; j < Team1.Count; j++)
+        {
+            if (Team2[j].GetComponent<Tank_Manager>())
+            {
+                if (j == 0)
+                {
+                    Team2[j].GetComponent<Tank_Manager>().Die(rand2);
+                }
+                else
+                {
+                    if (rand2 % 3 == 0) //if 3, then returns 0. If 1, then returns 1
+                    {
+                        Team2[j].GetComponent<Tank_Manager>().Die(1);
+                    }
+                    else
+                    {
+                        Team2[j].GetComponent<Tank_Manager>().Die(3);
+                    }
+                }
+            }
+            else if (Team2[j].GetComponent<Bot_Tank_Manager>())
+            {
+                if (j == 0)
+                {
+                    Team2[j].GetComponent<Bot_Tank_Manager>().Die(rand2);
+                }
+                else
+                {
+                    if (rand2 % 3 == 0) //if 3, then returns 0. If 1, then returns 1
+                    {
+                        Team2[j].GetComponent<Bot_Tank_Manager>().Die(1);
+                    }
+                    else
+                    {
+                        Team2[j].GetComponent<Bot_Tank_Manager>().Die(3);
+                    }
+                }
+            }
+        }
+
+        /*
+
+        foreach (PlayerInput player in _playerInputs)
         {
             /*
             int index = player.playerIndex;
             player.transform.position = SpawnPoints[index].transform.position;
             player.transform.rotation = SpawnPoints[index].transform.rotation;
             FlipCamera(index, player);
-            */
+            
             player.GetComponent<Tank_Manager>().Die();
             FlipCamera(player.playerIndex, player);
         }
         foreach (GameObject bot in Tanks)
         {
             bot.GetComponent<Bot_Tank_Manager>().Die();
+        }*/
+    }
+    public static int Randomised(Team _team)
+    {
+        int rand = 0;
+        switch (_team)
+        {
+            case Team.team1:
+                rand = (UnityEngine.Random.Range(0, 1) * 2);
+                break;
+
+            case Team.team2:
+                rand = (UnityEngine.Random.Range(0, 1) * 2) + 1;
+                break;
         }
+        return rand;
     }
 }

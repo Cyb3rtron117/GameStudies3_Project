@@ -15,6 +15,7 @@ public class PlayerJoining : MonoBehaviour
     private void Start()
     {
         playerSetups.Clear();
+        botSetups.Clear();
     }
 
     public void OnPlayerJoined(PlayerInput playerInput)

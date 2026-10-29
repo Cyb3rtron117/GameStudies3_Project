@@ -290,11 +290,11 @@ public class Bot_Tank_Manager : MonoBehaviour
         Health -= amount;
         if(Health <= 0)
         {
-            Die();
+            Die(PlayerSpawning.Randomised(_team));
         }
     }
 
-    public void Die()
+    public void Die(int where)
     {
         if (canShoot) //if tank has the bullet
         {
@@ -307,8 +307,8 @@ public class Bot_Tank_Manager : MonoBehaviour
         {
             currentTank.SetActive(false);
         }
-        transform.position = gameManager.GetComponent<PlayerSpawning>().SpawnPoints[playerIndex].position;
-        transform.eulerAngles = gameManager.GetComponent<PlayerSpawning>().SpawnPoints[playerIndex].eulerAngles;
+        transform.position = gameManager.GetComponent<PlayerSpawning>().SpawnPoints[where].position;
+        transform.eulerAngles = gameManager.GetComponent<PlayerSpawning>().SpawnPoints[where].eulerAngles;
         StartCoroutine(Respawn(2));
     }
     IEnumerator Respawn(float waitTime)
