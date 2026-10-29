@@ -58,10 +58,11 @@ MonoBehaviour:
   playerIndex: 0
   agent: {fileID: 5306134165105143955}
   goalTarget: {fileID: 0}
+  target: {fileID: 0}
   rb: {fileID: 6759753703300375904}
   anim: {fileID: 0}
   boostTime: 0.5
-  boostCooldown: 2
+  boostCooldown: 3
   isBoosting: 0
   MoveMultiplier: 1
   moveSpeed: 10

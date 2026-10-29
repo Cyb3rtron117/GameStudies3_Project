@@ -240,11 +240,11 @@ public class Projectile : MonoBehaviour
         priorityObject = gameObject;
         _priorityObj = priorityObject;
         triggerZone.enabled = false;
+        ignoreCollisions = true;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.eulerAngles = Vector3.zero;
         print("bounce");
-        ignoreCollisions = true;
         transform.position = bouncePos.position;
         rb.AddForce(transform.up * bounceForce, ForceMode.Impulse);
         rb.useGravity = true;        

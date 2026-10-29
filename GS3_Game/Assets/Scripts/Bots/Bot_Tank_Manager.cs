@@ -17,6 +17,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     public int playerIndex;
     public NavMeshAgent agent;
     public GameObject goalTarget;
+    [SerializeField] private GameObject target;
     [Header("Moving")]
     private float additionalAngle = 0f;
     public Rigidbody rb;
@@ -79,14 +80,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     {
         if(!freeze)
         {
-            if (Projectile.priorityObject != gameObject)
-            {
-                agent.SetDestination(Projectile.priorityObject.transform.position);
-            }
-            else
-            {
-                agent.SetDestination(goalTarget.transform.position);
-            }
+            agent.SetDestination(target.transform.position);
             Vector3 desiredVelocity = agent.desiredVelocity;
             Vector3 targetVelocity = new Vector3(desiredVelocity.x, rb.linearVelocity.y, desiredVelocity.z);
             rb.linearVelocity = targetVelocity;
@@ -97,19 +91,27 @@ public class Bot_Tank_Manager : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * turnSpeed);
             }
 
+            Vector3 targetDistance = target.transform.position - transform.position;
+
             //Boosting Logic
-            Vector3 targetDistance = Projectile.priorityObject.transform.position - transform.position;
-            if (Projectile.priorityObject != gameObject && !MyTeam.Contains(Projectile.priorityObject)) //redundant to check for self, because self is already in my team
+            if (target != goalTarget && !MyTeam.Contains(target)) //if not me and my teammate ,or the goal
             {
-                Vector3 direction = (Projectile.priorityObject.transform.position - transform.position).normalized;
+                Vector3 direction = (target.transform.position - transform.position).normalized;
 
                 if (Vector3.Dot(transform.forward, direction) > 0.8f) //if target is roughly in front of me
                 {
-                    if (targetDistance.sqrMagnitude < 7f && !isBoosting && !freeze)
+                    if (targetDistance.sqrMagnitude < 9f && !isBoosting && !freeze)
                     {
                         isBoosting = true;
                         StartCoroutine(Boost(boostTime));
                     }
+                }
+            }
+            else if(target == goalTarget)
+            {
+                if (targetDistance.sqrMagnitude <= 20f && canShoot)
+                {
+                    Shoot();
                 }
             }
             agent.nextPosition = transform.position;
@@ -152,9 +154,9 @@ public class Bot_Tank_Manager : MonoBehaviour
     }
     private void RotateTurret()
     {
-        if (Projectile.priorityObject != gameObject)
+        if (target != gameObject)
         {
-            aimpos = Projectile.priorityObject.transform.position - transform.position;
+            aimpos = target.transform.position - transform.position;
         }
         else
         {
@@ -166,6 +168,14 @@ public class Bot_Tank_Manager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Projectile.priorityObject != gameObject)
+        {
+            target = Projectile.priorityObject;
+        }
+        else
+        {
+            target = goalTarget;
+        }
         Move();
         RotateTurret();
         //SHOOT COOLDOWN
