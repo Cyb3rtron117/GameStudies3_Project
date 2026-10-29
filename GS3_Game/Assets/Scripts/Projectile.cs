@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] private Transform FreezePos;
     private MeshRenderer renderer;
+    [SerializeField] private BoxCollider triggerZone;
     [SerializeField] private Material defaultMat;
     [SerializeField] private Team _team;
     [SerializeField] private Scoring scoreScript;
@@ -92,14 +93,16 @@ public class Projectile : MonoBehaviour
         transform.localEulerAngles = shootRot;
         bulletForward = shootRot;
         transform.position = shootPos.position;
-        mode = BulletMode.Move;
         _team = team;
         Damage = damage;
         bulletSpeed = speed;
         smokeVFX.Play();
+        mode = BulletMode.Move;
+        triggerZone.enabled = true;
     }
     private void Freeze()
     {
+        triggerZone.enabled = false;
         bulletForward = Vector3.zero;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -195,6 +198,7 @@ public class Projectile : MonoBehaviour
 
     public void GoHide()
     {
+        triggerZone.enabled = false;
         mode = BulletMode.Frozen;
         transform.eulerAngles = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -206,6 +210,7 @@ public class Projectile : MonoBehaviour
     }
     private void goDisplay()
     {
+        triggerZone.enabled = true;
         Damage = 0f;
         rb.useGravity = false;
         rb.linearVelocity = Vector3.zero;
@@ -218,6 +223,7 @@ public class Projectile : MonoBehaviour
     }
     public void Bounce(Transform bouncePos)
     {
+        triggerZone.enabled = false;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.eulerAngles = Vector3.zero;
@@ -235,6 +241,7 @@ public class Projectile : MonoBehaviour
         print("collisions enabled");
         yield return new WaitForSeconds(1f);
         ignoreCollisions = false;
+        triggerZone.enabled = true;
     }
     private void Reset()
     {

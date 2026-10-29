@@ -8259,6 +8259,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3476d0334cb894c4cbfb5faedc06c6c1, type: 3}
   m_PrefabInstance: {fileID: 388382420}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &393968214 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 4288508375691118368, guid: 8e13f2ef9ae100547b88d2a28ebdc81c, type: 3}
+  m_PrefabInstance: {fileID: 651703698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &396843708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13585,6 +13590,10 @@ PrefabInstance:
       propertyPath: impactVFX
       value: 
       objectReference: {fileID: 599811213}
+    - target: {fileID: 448541277579999724, guid: 8e13f2ef9ae100547b88d2a28ebdc81c, type: 3}
+      propertyPath: triggerZone
+      value: 
+      objectReference: {fileID: 393968214}
     - target: {fileID: 2361527188308226472, guid: 8e13f2ef9ae100547b88d2a28ebdc81c, type: 3}
       propertyPath: m_Name
       value: Missle2
@@ -31771,7 +31780,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJoining
   menuTankPrefab: {fileID: 2551571205644142830, guid: 8449fc47ed8b89441a1dda1b48e55cbf, type: 3}
-  remainingSlots: 4
   SpawnPoints:
   - {fileID: 1895223720}
   - {fileID: 305456969}

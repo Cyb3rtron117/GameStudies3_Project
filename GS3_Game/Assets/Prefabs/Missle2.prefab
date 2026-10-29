@@ -246,9 +246,12 @@ MonoBehaviour:
   bulletSpeed: 15
   bounceForce: 13
   spinSpeed: 30
+  fallMultiplier: 2
+  fallThreshold: 0
   mode: 1
   _shooter: {fileID: 0}
   FreezePos: {fileID: 0}
+  triggerZone: {fileID: 4288508375691118368}
   defaultMat: {fileID: 2100000, guid: fd9460583791e02429e7127918bb5f38, type: 2}
   _team: 2
   scoreScript: {fileID: 0}
@@ -318,7 +321,7 @@ BoxCollider:
     m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 1783
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
