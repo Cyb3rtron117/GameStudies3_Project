@@ -50,6 +50,7 @@ public class PlayerSpawning : MonoBehaviour
         int index = player.playerIndex;
         player.GetComponent<Tank_Manager>().tankIndex = setup.tankIndex;
         player.GetComponent<Tank_Manager>().playerIndex = setup.playerIndex;
+        player.GetComponent<Tank_Manager>().controlScheme = player.currentControlScheme;
         player.transform.position = SpawnPoints[index].transform.position;
         player.transform.rotation = SpawnPoints[index].transform.rotation;
         //On players 1 and 3, change tank material to team 1 and swap movement

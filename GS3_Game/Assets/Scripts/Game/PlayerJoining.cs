@@ -23,6 +23,7 @@ public class PlayerJoining : MonoBehaviour
         int index = playerInput.playerIndex;
         playerInput.transform.position = SpawnPoints[index].transform.position;
         playerInput.transform.rotation = SpawnPoints[index].transform.rotation;
+        print(playerInput.currentControlScheme);
         //On players 1 and 3
         if (index % 2 == 0)
         {

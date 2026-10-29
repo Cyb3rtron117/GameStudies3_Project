@@ -5,6 +5,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.VFX;
 using UnityEngine.Windows;
 
@@ -40,7 +41,13 @@ public class Tank_Manager : MonoBehaviour
     public bool canShoot = false;
     public float ShakeIntensity = 1f;
     public float ShakeTime = 0.5f;
+
+    [Header("UI")]
     public GameObject canvasObjects;
+    public GameObject keyboardText;
+    public GameObject controllerText;
+    public Image dashBar;
+    private bool drainDash = false;
 
     [Header("Tank Prefabs")]
     public List<GameObject> TankPrefabs = new List<GameObject>();
@@ -62,6 +69,7 @@ public class Tank_Manager : MonoBehaviour
     public GameObject gameManager;
     public Team _team; //set by PlayerSpawning
     public TextMeshProUGUI teamNumber;
+    public string controlScheme = " ";
 
     [Header("Cinemachine")]
     [SerializeField] private CinemachineOrbitalFollow cineOrbit;
@@ -73,6 +81,8 @@ public class Tank_Manager : MonoBehaviour
         colours = gameManager.GetComponent<Colours>().colours;
         ChangeTank(tankIndex);
         canvasObjects.SetActive(false);
+        keyboardText.SetActive(false);
+        controllerText.SetActive(false);
         isBoosting = false;
         teamNumber.SetText($"You are {_team}");
         switch(_team)
@@ -82,6 +92,15 @@ public class Tank_Manager : MonoBehaviour
                 break;
             case Team.team2:
                 additionalAngle = 0f;
+                break;
+        }
+        switch (controlScheme)
+        {
+            case "Mouse & Keyboard":
+                keyboardText.SetActive(true);
+                break;
+            case "Gamepad":
+                controllerText.SetActive(true);
                 break;
         }
     }
@@ -206,7 +225,9 @@ public class Tank_Manager : MonoBehaviour
     IEnumerator Boost(float waitTime)
     {
         currentSpeed = boostSpeed;
+        drainDash = true;
         yield return new WaitForSeconds(waitTime);
+        drainDash = false;
         currentSpeed = moveSpeed;
         StartCoroutine(BoostCooldown(boostCooldown));
     }
@@ -238,6 +259,16 @@ public class Tank_Manager : MonoBehaviour
         }*/
         float _health = Health / maxHealth;
         healthVFX.SetFloat("FillAmt", _health);
+
+        
+        if (drainDash && dashBar.fillAmount > 0)
+        {
+            dashBar.fillAmount -= (1/boostTime) * Time.fixedDeltaTime;
+        }
+        else if(!drainDash && dashBar.fillAmount < 1)
+        {
+            dashBar.fillAmount += (1/boostCooldown) * Time.fixedDeltaTime;
+        }
     }
 
     public void changeMaterial(Material newMat)
