@@ -67,6 +67,7 @@ public class Bot_Tank_Manager : MonoBehaviour
 
     private void Start()
     {
+        freeze = true;
         rb = GetComponent<Rigidbody>();
         agent.updatePosition = false;
         agent.updateRotation = false;
@@ -79,7 +80,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     }
     private void Move()
     {
-        if(!freeze)
+        if(!freeze && target != null)
         {
             agent.SetDestination(target.transform.position);
             Vector3 desiredVelocity = agent.desiredVelocity;
@@ -156,11 +157,15 @@ public class Bot_Tank_Manager : MonoBehaviour
     }
     private void RotateTurret()
     {
-        if (target != gameObject)
+        if(target == null)
+        {
+            aimpos = transform.forward;
+        }
+        else if (target != gameObject)
         {
             aimpos = target.transform.position - transform.position;
         }
-        else
+        else if (target == goalTarget)
         {
             aimpos = goalTarget.transform.position - transform.position;
         }
@@ -170,13 +175,28 @@ public class Bot_Tank_Manager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Projectile.priorityObject != gameObject)
+        if(Countdown.count)
         {
-            target = Projectile.priorityObject;
+            if(Countdown.number <=0)
+            {
+                freeze = false;
+            }
+        }
+
+        if (!freeze)
+        {
+            if (Projectile.priorityObject != gameObject)
+            {
+                target = Projectile.priorityObject;
+            }
+            else
+            {
+                target = goalTarget;
+            }
         }
         else
         {
-            target = goalTarget;
+            target = null;
         }
         Move();
         RotateTurret();
@@ -299,13 +319,13 @@ public class Bot_Tank_Manager : MonoBehaviour
 
     public void Die(int where)
     {
-        if (canShoot) //if tank has the bullet
+        if (canShoot || Projectile.priorityObject == gameObject) //if tank has the bullet
         {
-            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
-            canShoot = false;
+            Projectile.Instance.UpdatePriority(null);
             Projectile.Instance.Bounce(transform);
-            Projectile.Instance.UpdatePriority(Projectile.Instance.gameObject);
         }
+        CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+        canShoot = false;
         freeze = true;
         if (currentTank != null)
         {
@@ -319,7 +339,10 @@ public class Bot_Tank_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         hitObjects.Clear();
-        freeze = false;
+        if (!Countdown.count)
+        {
+            freeze = false;
+        }
         Health = maxHealth;
         if (currentTank != null)
         {

@@ -40,7 +40,7 @@ public class Projectile : MonoBehaviour
     }
     private void Start()
     {
-        UpdatePriority(gameObject);
+        UpdatePriority(this.gameObject);
         smokeVFX = GetComponentInChildren<VisualEffect>();
         Damage = 0;
         if (SceneManager.GetActiveScene().buildIndex != 0)
@@ -102,7 +102,7 @@ public class Projectile : MonoBehaviour
         smokeVFX.Play();
         mode = BulletMode.Move;
         triggerZone.enabled = true;
-        UpdatePriority(gameObject);
+        UpdatePriority(this.gameObject);
     }
     private void Freeze()
     {
@@ -176,7 +176,7 @@ public class Projectile : MonoBehaviour
                 print($"{Team.team2} got a point");
                 scoreScript.Score(Team.team2);
                 spawnScript.RespawnPlayers();
-                UpdatePriority(gameObject);
+                UpdatePriority(this.gameObject);
                 Reset();
             }
 
@@ -185,7 +185,7 @@ public class Projectile : MonoBehaviour
                 print($"{Team.team1} got a point");
                 scoreScript.Score(Team.team1);
                 spawnScript.RespawnPlayers();
-                UpdatePriority(gameObject);
+                UpdatePriority(this.gameObject);
                 Reset();
             }
         }
@@ -218,7 +218,7 @@ public class Projectile : MonoBehaviour
     }
     private void goDisplay()
     {
-        UpdatePriority(gameObject);
+        UpdatePriority(this.gameObject);
         triggerZone.enabled = true;
         Damage = 0f;
         rb.useGravity = false;
@@ -232,7 +232,7 @@ public class Projectile : MonoBehaviour
     }
     public void Bounce(Transform bouncePos)
     {
-        UpdatePriority(gameObject);
+        UpdatePriority(this.gameObject);
         triggerZone.enabled = false;
         ignoreCollisions = true;
         rb.linearVelocity = Vector3.zero;
@@ -265,7 +265,7 @@ public class Projectile : MonoBehaviour
         ignoreCollisions = false;
         bulletForward = Vector3.zero;
         StartCoroutine(recallVFX());
-        UpdatePriority(gameObject);
+        UpdatePriority(this.gameObject);
     }
     private void placeVFX()
     {
@@ -284,8 +284,16 @@ public class Projectile : MonoBehaviour
     }
     public void UpdatePriority(GameObject whichObject)
     {
-        priorityObject = whichObject;
-        _priorityObj = priorityObject;
+        if(whichObject == null)
+        {
+            priorityObject = this.gameObject;
+            _priorityObj = priorityObject;
+        }
+        else
+        {
+            priorityObject = whichObject;
+            _priorityObj = priorityObject;
+        }
     }
 }
 

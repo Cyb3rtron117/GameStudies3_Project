@@ -70,6 +70,7 @@ public class Tank_Manager : MonoBehaviour
     public GameObject gameManager;
     public Team _team; //set by PlayerSpawning
     public TextMeshProUGUI teamNumber;
+    public TextMeshProUGUI countDown;
     public string controlScheme = " ";
 
     [Header("Cinemachine")]
@@ -82,6 +83,7 @@ public class Tank_Manager : MonoBehaviour
 
     private void Start()
     {
+        freeze = true;
         hitObjects.Clear();
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         cineOrbit = GetComponentInChildren<CinemachineOrbitalFollow>();
@@ -256,6 +258,20 @@ public class Tank_Manager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Countdown.count)
+        {
+            countDown.SetText(Countdown.Counter);
+            if (Countdown.number <= 0)
+            {
+                countDown.SetText(" ");
+                freeze = false;
+            }
+            else if (Countdown.number <= 0.5)
+            {
+                countDown.SetText("Go!");
+            }
+        }
+
         Move();
         RotateTurret();
         //SHOOT COOLDOWN
@@ -394,14 +410,15 @@ public class Tank_Manager : MonoBehaviour
 
     public void Die(int where)
     {
-        if (canShoot) //if tank has the bullet
+        if (canShoot || Projectile.priorityObject == gameObject) //if tank has the bullet
         {
-            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
-            canShoot = false;
-            canvasObjects.SetActive(false);
+            Projectile.Instance.UpdatePriority(null);
             Projectile.Instance.Bounce(transform);
-            Projectile.Instance.UpdatePriority(Projectile.Instance.gameObject);
+            
         }
+        CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+        canShoot = false;
+        canvasObjects.SetActive(false);
         freeze = true;
         if (currentTank != null)
         {
@@ -424,7 +441,10 @@ public class Tank_Manager : MonoBehaviour
                 break;
         }
         hitObjects.Clear();
-        freeze = false;
+        if(!Countdown.count)
+        {
+            freeze = false;
+        }
         Health = maxHealth;
         if (currentTank != null)
         {

@@ -265,6 +265,8 @@ public class PlayerSpawning : MonoBehaviour
         {
             bot.GetComponent<Bot_Tank_Manager>().Die();
         }*/
+
+        GetComponent<Countdown>().startCountDown();
     }
     public static int Randomised(Team _team)
     {

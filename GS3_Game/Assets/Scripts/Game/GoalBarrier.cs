@@ -15,6 +15,7 @@ public class GoalBarrier : MonoBehaviour
         {
             Debug.LogWarning("Animator not assigned!");
         }
+        enemTeam.Clear();
     }
     IEnumerator Opengoal(float waitTime)
     {
