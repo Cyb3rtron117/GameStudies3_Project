@@ -380,6 +380,7 @@ public class Tank_Manager : MonoBehaviour
             canShoot = false;
             canvasObjects.SetActive(false);
             Projectile.Instance.Bounce(transform);
+            Projectile.Instance.UpdatePriority(Projectile.Instance.gameObject);
         }
         freeze = true;
         if (currentTank != null)

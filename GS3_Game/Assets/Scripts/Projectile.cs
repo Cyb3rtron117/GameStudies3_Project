@@ -40,8 +40,7 @@ public class Projectile : MonoBehaviour
     }
     private void Start()
     {
-        priorityObject = this.gameObject;
-        _priorityObj = priorityObject;
+        UpdatePriority(gameObject);
         smokeVFX = GetComponentInChildren<VisualEffect>();
         Damage = 0;
         if (SceneManager.GetActiveScene().buildIndex != 0)
@@ -103,8 +102,7 @@ public class Projectile : MonoBehaviour
         smokeVFX.Play();
         mode = BulletMode.Move;
         triggerZone.enabled = true;
-        priorityObject = gameObject;
-        _priorityObj = priorityObject;
+        UpdatePriority(gameObject);
     }
     private void Freeze()
     {
@@ -147,8 +145,7 @@ public class Projectile : MonoBehaviour
                             other.gameObject.GetComponent<Bot_Tank_Manager>().TakeDamage(Damage);
                             SwapColour(other.gameObject.GetComponent<Bot_Tank_Manager>().activeMaterial);
                         }
-                        priorityObject = other.gameObject;
-                        _priorityObj = priorityObject;
+                        UpdatePriority(other.gameObject);
                         Damage = 0f;
                         smokeVFX.Stop();
                     }
@@ -168,8 +165,7 @@ public class Projectile : MonoBehaviour
                         other.gameObject.GetComponent<Bot_Tank_Manager>().TakeDamage(Damage);
                         SwapColour(other.gameObject.GetComponent<Bot_Tank_Manager>().activeMaterial);
                     }
-                    priorityObject = other.gameObject;
-                    _priorityObj = priorityObject;
+                    UpdatePriority(other.gameObject);
                     Damage = 0f;
                     smokeVFX.Stop();
                 }
@@ -180,8 +176,7 @@ public class Projectile : MonoBehaviour
                 print($"{Team.team2} got a point");
                 scoreScript.Score(Team.team2);
                 spawnScript.RespawnPlayers();
-                priorityObject = gameObject;
-                _priorityObj = priorityObject;
+                UpdatePriority(gameObject);
                 Reset();
             }
 
@@ -190,8 +185,7 @@ public class Projectile : MonoBehaviour
                 print($"{Team.team1} got a point");
                 scoreScript.Score(Team.team1);
                 spawnScript.RespawnPlayers();
-                priorityObject = gameObject;
-                _priorityObj = priorityObject;
+                UpdatePriority(gameObject);
                 Reset();
             }
         }
@@ -224,8 +218,7 @@ public class Projectile : MonoBehaviour
     }
     private void goDisplay()
     {
-        priorityObject = gameObject;
-        _priorityObj = priorityObject;
+        UpdatePriority(gameObject);
         triggerZone.enabled = true;
         Damage = 0f;
         rb.useGravity = false;
@@ -239,8 +232,7 @@ public class Projectile : MonoBehaviour
     }
     public void Bounce(Transform bouncePos)
     {
-        priorityObject = gameObject;
-        _priorityObj = priorityObject;
+        UpdatePriority(gameObject);
         triggerZone.enabled = false;
         ignoreCollisions = true;
         rb.linearVelocity = Vector3.zero;
@@ -273,8 +265,7 @@ public class Projectile : MonoBehaviour
         ignoreCollisions = false;
         bulletForward = Vector3.zero;
         StartCoroutine(recallVFX());
-        priorityObject = gameObject;
-        _priorityObj = priorityObject;
+        UpdatePriority(gameObject);
     }
     private void placeVFX()
     {
@@ -291,7 +282,11 @@ public class Projectile : MonoBehaviour
         impactVFX.gameObject.transform.position = transform.position;
         impactVFX.gameObject.transform.eulerAngles = transform.eulerAngles;
     }
-
+    public void UpdatePriority(GameObject whichObject)
+    {
+        priorityObject = whichObject;
+        _priorityObj = priorityObject;
+    }
 }
 
 public enum BulletMode

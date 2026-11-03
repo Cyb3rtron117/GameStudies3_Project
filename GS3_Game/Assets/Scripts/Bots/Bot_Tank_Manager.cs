@@ -304,6 +304,7 @@ public class Bot_Tank_Manager : MonoBehaviour
             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
             canShoot = false;
             Projectile.Instance.Bounce(transform);
+            Projectile.Instance.UpdatePriority(Projectile.Instance.gameObject);
         }
         freeze = true;
         if (currentTank != null)
