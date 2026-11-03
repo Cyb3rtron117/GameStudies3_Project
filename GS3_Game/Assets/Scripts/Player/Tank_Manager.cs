@@ -74,12 +74,18 @@ public class Tank_Manager : MonoBehaviour
 
     [Header("Cinemachine")]
     [SerializeField] private CinemachineOrbitalFollow cineOrbit;
+    [SerializeField] private CinemachineCamera cineCam;
+    [SerializeField] private float BoostFOV = 70f;
+    [SerializeField] private float RegularFOV = 60f;
+    private bool zoomFOV = false;
+    [SerializeField] private float zoomSpeed = 1f;
 
     private void Start()
     {
         hitObjects.Clear();
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         cineOrbit = GetComponentInChildren<CinemachineOrbitalFollow>();
+        cineCam.Lens.FieldOfView = RegularFOV;
         colours = gameManager.GetComponent<Colours>().colours;
         ChangeTank(tankIndex);
         canvasObjects.SetActive(false);
@@ -226,11 +232,13 @@ public class Tank_Manager : MonoBehaviour
     }
     IEnumerator Boost(float waitTime)
     {
+        zoomFOV = true;
         currentSpeed = boostSpeed;
         drainDash = true;
         yield return new WaitForSeconds(waitTime);
         drainDash = false;
         currentSpeed = moveSpeed;
+        zoomFOV = false;
         StartCoroutine(BoostCooldown(boostCooldown));
     }
     IEnumerator BoostCooldown(float waitTime)
@@ -263,6 +271,7 @@ public class Tank_Manager : MonoBehaviour
         float _health = Health / maxHealth;
         healthVFX.SetFloat("FillAmt", _health);
 
+        CamZoom(zoomFOV);
         
         if (drainDash && dashBar.fillAmount > 0)
         {
@@ -271,6 +280,17 @@ public class Tank_Manager : MonoBehaviour
         else if(!drainDash && dashBar.fillAmount < 1)
         {
             dashBar.fillAmount += (1/boostCooldown) * Time.fixedDeltaTime;
+        }
+    }
+    private void CamZoom(bool zoom)
+    {
+        if (zoom && cineCam.Lens.FieldOfView < BoostFOV)
+        {
+            cineCam.Lens.FieldOfView = Mathf.Lerp(cineCam.Lens.FieldOfView, BoostFOV, Time.fixedDeltaTime * zoomSpeed);
+        }
+        else if (!zoom && cineCam.Lens.FieldOfView > RegularFOV)
+        {
+            cineCam.Lens.FieldOfView = Mathf.Lerp(cineCam.Lens.FieldOfView, RegularFOV, Time.fixedDeltaTime * zoomSpeed);
         }
     }
 

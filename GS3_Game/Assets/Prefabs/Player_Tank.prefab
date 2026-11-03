@@ -603,6 +603,10 @@ MonoBehaviour:
   teamNumber: {fileID: 1339657966822718117}
   controlScheme: ' '
   cineOrbit: {fileID: 0}
+  cineCam: {fileID: 3236582846877275128}
+  BoostFOV: 70
+  RegularFOV: 60
+  zoomSpeed: 10
 --- !u!114 &1046732697416124327
 MonoBehaviour:
   m_ObjectHideFlags: 0
