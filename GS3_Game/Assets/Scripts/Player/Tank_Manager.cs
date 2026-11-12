@@ -44,11 +44,14 @@ public class Tank_Manager : MonoBehaviour
     public float ShakeTime = 0.5f;
 
     [Header("UI")]
-    public GameObject canvasObjects;
+    public RawImage rocketItem;
+    public Image rocketButton;
+    public Image dashButton;
     public GameObject keyboardText;
     public GameObject controllerText;
     public Image dashBar;
     private bool drainDash = false;
+    public Color inactiveColor;
 
     [Header("Tank Prefabs")]
     public List<GameObject> TankPrefabs = new List<GameObject>();
@@ -90,7 +93,9 @@ public class Tank_Manager : MonoBehaviour
         cineCam.Lens.FieldOfView = RegularFOV;
         colours = gameManager.GetComponent<Colours>().colours;
         ChangeTank(tankIndex);
-        canvasObjects.SetActive(false);
+        rocketItem.color = inactiveColor;
+        rocketButton.color = inactiveColor;
+        dashButton.color = Color.white;
         keyboardText.SetActive(false);
         controllerText.SetActive(false);
         isBoosting = false;
@@ -216,7 +221,8 @@ public class Tank_Manager : MonoBehaviour
     public void HasProjectile()
     {
         canShoot = true;
-        canvasObjects.SetActive(true);
+        rocketItem.color = Color.green;
+        rocketButton.color = Color.white;
     }
     private void Shoot()
     {
@@ -228,7 +234,8 @@ public class Tank_Manager : MonoBehaviour
             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
             Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
             Projectile.Instance.Shoot(barrel, shootDir, gameObject, _team, ShootDamage, projectileSpeed);
-            canvasObjects.SetActive(false);
+            rocketItem.color = inactiveColor;
+            rocketButton.color = inactiveColor;
             shootVFX.Play();
         }
     }
@@ -237,6 +244,7 @@ public class Tank_Manager : MonoBehaviour
         zoomFOV = true;
         currentSpeed = boostSpeed;
         drainDash = true;
+        dashButton.color = inactiveColor;
         yield return new WaitForSeconds(waitTime);
         drainDash = false;
         currentSpeed = moveSpeed;
@@ -247,6 +255,7 @@ public class Tank_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         isBoosting = false;
+        dashButton.color = Color.white;
         hitObjects.Clear();
     }
     private void RotateTurret()
@@ -374,7 +383,8 @@ public class Tank_Manager : MonoBehaviour
                         {
                             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
                             tankScript.canShoot = false;
-                            tankScript.canvasObjects.SetActive(false);
+                            tankScript.rocketItem.color = inactiveColor;
+                            tankScript.rocketButton.color = inactiveColor;
                             Projectile.Instance.Bounce(collision.transform);
                         }
                         tankScript.TakeDamage(5);
@@ -418,7 +428,8 @@ public class Tank_Manager : MonoBehaviour
         }
         CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
         canShoot = false;
-        canvasObjects.SetActive(false);
+        rocketItem.color = inactiveColor;
+        rocketButton.color = inactiveColor;
         freeze = true;
         if (currentTank != null)
         {

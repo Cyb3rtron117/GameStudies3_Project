@@ -282,10 +282,11 @@ public class Bot_Tank_Manager : MonoBehaviour
                         {
                             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
                             tankScript.canShoot = false;
-                            tankScript.canvasObjects.SetActive(false);
                             Projectile.Instance.Bounce(collision.transform);
                         }
                         tankScript.TakeDamage(5);
+                        tankScript.rocketItem.color = tankScript.inactiveColor;
+                        tankScript.rocketButton.color = tankScript.inactiveColor;
                     }
                 }
                 else if (collision.gameObject.GetComponent<Bot_Tank_Manager>() && !hitObjects.Contains(collision.gameObject))

@@ -260,7 +260,6 @@ public class old_bot_move : MonoBehaviour
                         {
                             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
                             tankScript.canShoot = false;
-                            tankScript.canvasObjects.SetActive(false);
                             Projectile.Instance.Bounce(collision.transform);
                         }
                         tankScript.TakeDamage(5);
