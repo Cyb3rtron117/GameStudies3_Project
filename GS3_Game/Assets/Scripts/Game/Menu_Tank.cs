@@ -181,11 +181,11 @@ public class Menu_Tank : MonoBehaviour
 
         if (playerSetup != null)
         {
-            _teamColours.NextColour(playerSetup.playerIndex);
+            _teamColours.PreviousColour(playerSetup.playerIndex);
         }
         else if (botSetup != null)
         {
-            _teamColours.NextColour(botSetup.playerIndex);
+            _teamColours.PreviousColour(botSetup.playerIndex);
         }
     }
     public void PressReady(InputAction.CallbackContext context)
