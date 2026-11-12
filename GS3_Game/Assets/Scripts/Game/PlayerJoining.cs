@@ -40,6 +40,7 @@ public class PlayerJoining : MonoBehaviour
             tankIndex = 0
         };
         playerSetups.Add(setup);
+        GetComponent<MenuButtons>().AddPlayer(playerInput);
         Menu_Tank menuTank = playerInput.GetComponent<Menu_Tank>();
 
         if (menuTank != null)
@@ -47,6 +48,7 @@ public class PlayerJoining : MonoBehaviour
             menuTank.Setup(setup);
         }
         GetComponent<ReadyUp>().playersReady.Add(false);
+        
     }
     public void OnPlayerLeft(PlayerInput playerInput)
     {
