@@ -30,6 +30,7 @@ public class ReadyUp : MonoBehaviour
     public void playerReady(int which)
     {
         playersReady[which] = !playersReady[which];
+        GetComponent<MenuButtons>().ToggleReadyButton(which, playersReady[which]);
         //CanvasReadyButtons[which].SetActive(playersReady[which]);
         //print(playersReady[which]);
         checkReady();

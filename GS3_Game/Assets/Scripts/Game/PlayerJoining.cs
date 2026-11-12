@@ -59,6 +59,7 @@ public class PlayerJoining : MonoBehaviour
             _coloursShown++;
             _menuButtonsScript.ShowColourSwitch(_coloursShown);
         }
+        _menuButtonsScript.ShowReadyButton(index);
     }
     public void OnPlayerLeft(PlayerInput playerInput)
     {

@@ -4,6 +4,7 @@ public class tankButtons : MonoBehaviour
 {
     public GameObject[] tankStats;
     public GameObject[] swapButtons;
+    public GameObject[] readyButtons;
     public string playerControlscheme = "";
     private void Start()
     {
@@ -13,6 +14,8 @@ public class tankButtons : MonoBehaviour
         }
         swapButtons[0].SetActive(false);
         swapButtons[1].SetActive(false);
+        readyButtons[0].SetActive(false);
+        readyButtons[1].SetActive(false);
     }
 
     public void changeTank(int index)
@@ -30,10 +33,16 @@ public class tankButtons : MonoBehaviour
             case "Mouse & Keyboard":
                 swapButtons[0].SetActive(false);
                 swapButtons[1].SetActive(true);
+
+                readyButtons[0].SetActive(false);
+                readyButtons[1].SetActive(true);
                 break;
             case "Gamepad":
                 swapButtons[1].SetActive(false);
                 swapButtons[0].SetActive(true);
+
+                readyButtons[1].SetActive(false);
+                readyButtons[0].SetActive(true);
                 break;
         }
     }
