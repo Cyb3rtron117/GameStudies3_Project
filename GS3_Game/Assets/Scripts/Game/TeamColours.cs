@@ -101,6 +101,7 @@ public class TeamColours : MonoBehaviour
         Team1Mat2.SetTexture("_Team_Texture", textures[team1Index]);
         Team1Tank.SetTexture("_BaseMap", textures[team1Index]);
         Team1Tank.SetTexture("_EmissionMap", textures[team1Index]);
+        GetComponent<MenuButtons>().team1Image.texture = textures[team1Index];
     }
     private void SetTeam2()
     {
@@ -108,5 +109,6 @@ public class TeamColours : MonoBehaviour
         Team2Mat2.SetTexture("_Team_Texture", textures[team2Index]);
         Team2Tank.SetTexture("_BaseMap", textures[team2Index]);
         Team2Tank.SetTexture("_EmissionMap", textures[team2Index]);
+        GetComponent<MenuButtons>().team2Image.texture = textures[team2Index];
     }
 }

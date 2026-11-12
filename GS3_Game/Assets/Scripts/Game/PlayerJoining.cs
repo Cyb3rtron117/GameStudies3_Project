@@ -12,10 +12,14 @@ public class PlayerJoining : MonoBehaviour
 
     public Transform[] SpawnPoints;
     public TeamColours teamColoursScript;
+    private MenuButtons _menuButtonsScript;
+    private int _coloursShown = 0;
     private void Start()
     {
+        _coloursShown = 0;
         playerSetups.Clear();
         botSetups.Clear();
+        _menuButtonsScript = GetComponent<MenuButtons>();
     }
 
     public void OnPlayerJoined(PlayerInput playerInput)
@@ -40,15 +44,21 @@ public class PlayerJoining : MonoBehaviour
             tankIndex = 0
         };
         playerSetups.Add(setup);
-        GetComponent<MenuButtons>().AddPlayer(playerInput);
+        _menuButtonsScript.AddPlayer(playerInput);
         Menu_Tank menuTank = playerInput.GetComponent<Menu_Tank>();
 
         if (menuTank != null)
         {
             menuTank.Setup(setup);
+            menuTank.AssignButtonScript(_menuButtonsScript.tankButtonScripts[index]);
+            _menuButtonsScript.tankButtonScripts[index].changeControls(playerInput.currentControlScheme);
         }
         GetComponent<ReadyUp>().playersReady.Add(false);
-        
+        if(_coloursShown < 2)
+        {
+            _coloursShown++;
+            _menuButtonsScript.ShowColourSwitch(_coloursShown);
+        }
     }
     public void OnPlayerLeft(PlayerInput playerInput)
     {

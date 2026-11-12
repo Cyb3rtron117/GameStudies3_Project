@@ -29,6 +29,7 @@ public class Menu_Tank : MonoBehaviour
     [Header("Game Manager")]
     public GameObject gameManager;
     private TeamColours _teamColours;
+    public tankButtons tankButtonsScript;
     public void Setup(PlayerSetup setup)
     {
         playerSetup = setup;
@@ -55,6 +56,11 @@ public class Menu_Tank : MonoBehaviour
     public void changeMaterial(Material newMat)
     {
         tankprefab.changeMaterial(newMat);        
+    }
+    public void AssignButtonScript(tankButtons script)
+    {
+        tankButtonsScript = script;
+        tankButtonsScript.changeTank(tankIndex);
     }
 
     //Changing Tanks
@@ -91,6 +97,7 @@ public class Menu_Tank : MonoBehaviour
             botSetup.tankIndex = tankIndex;
         }
         ChangeTank(tankIndex);
+        tankButtonsScript.changeTank(tankIndex);
     }
     private void PreviousTank()
     {
@@ -109,6 +116,7 @@ public class Menu_Tank : MonoBehaviour
             botSetup.tankIndex = tankIndex;
         }
         ChangeTank(tankIndex);
+        tankButtonsScript.changeTank(tankIndex);
     }
     public void ChangeTankInput(InputAction.CallbackContext context)
     {
