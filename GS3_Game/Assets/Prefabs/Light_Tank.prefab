@@ -776,7 +776,7 @@ MonoBehaviour:
   impactVFX: {fileID: 4913982741813484189}
   healthbar: {fileID: 1298958943058137971}
   DamageAmt: 10
-  maxHealth: 100
+  maxHealth: 30
   shootSpeed: 15
 --- !u!65 &2728507733254649569
 BoxCollider:
