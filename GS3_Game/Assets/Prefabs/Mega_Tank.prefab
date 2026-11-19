@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1815007531111459465}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,6 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4736262691071134343}
   - {fileID: 4851300065871767186}
   - {fileID: 1450349193222870340}
   - {fileID: 3439900409664429996}
@@ -43,7 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7768425259785940990}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Thread.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +75,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3819030484381912710}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1679276614596966178}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Cannon.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3468509035680638449}
   - component: {fileID: 3006876272512099084}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: mega_tank_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5142668672865014151}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Cannon.M_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4851300065871767186}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Cannon.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +305,7 @@ GameObject:
   - component: {fileID: 3327990212746732797}
   - component: {fileID: 8057801333689203128}
   - component: {fileID: 2334974243798253385}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Impact vfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5966962535699351569}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Thread.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +456,7 @@ GameObject:
   - component: {fileID: 5717523473145308939}
   - component: {fileID: 340507965506162711}
   - component: {fileID: 3214272064173521322}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Mega_Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,6 +518,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrefabVariables
   turret: {fileID: 1815007531111459465}
   barrel: {fileID: 1450349193222870340}
+  Machinegun: {fileID: 620758830260079601}
+  LineShoot: {fileID: 5948182807259575334}
   renderer: {fileID: 3006876272512099084}
   animator: {fileID: 5717523473145308939}
   collider: {fileID: 3214272064173521322}
@@ -560,7 +563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6213530111610641441}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTankRig.OrangeStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +597,7 @@ GameObject:
   - component: {fileID: 4376444093669475990}
   - component: {fileID: 6389798171927978569}
   - component: {fileID: 7949527346777357418}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Muzzle Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,7 +714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4034817201644832652}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Cannon.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1450349193222870340}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Cannon.M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -883,9 +886,9 @@ VFXRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 2138862595
+  m_SortingLayer: 1
+  m_SortingOrder: 10
   m_MaskInteraction: 0
 --- !u!1 &8546898853081376592
 GameObject:
@@ -896,7 +899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3439900409664429996}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Cannon.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,7 +931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867076401579629561}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Thread.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -960,7 +963,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1231959220010602739}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: MegaTank.Thread.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -983,3 +986,107 @@ Transform:
   - {fileID: 5966962535699351569}
   m_Father: {fileID: 3819030484381912710}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4122199097682461250
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1815007531111459465}
+    m_Modifications:
+    - target: {fileID: 2059440896538715585, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427147376650745972, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874219411939310985, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578566077490809267, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_Name
+      value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578566077490809267, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910351265506401172, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.244
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.083
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.224
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 6.344114e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -1.0708914e-13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842655688163062278, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+--- !u!1 &620758830260079601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3578566077490809267, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+  m_PrefabInstance: {fileID: 4122199097682461250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4736262691071134343 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8686999408957950149, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+  m_PrefabInstance: {fileID: 4122199097682461250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5948182807259575334 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7762181018651883108, guid: c5bfefaccaadcba48a71e0946c963113, type: 3}
+  m_PrefabInstance: {fileID: 4122199097682461250}
+  m_PrefabAsset: {fileID: 0}

@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net;
+using System.Security.Cryptography;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -42,6 +45,13 @@ public class Tank_Manager : MonoBehaviour
     public bool canShoot = false;
     public float ShakeIntensity = 1f;
     public float ShakeTime = 0.5f;
+    public bool mgCanShoot = false;
+    [SerializeField] private float mgMaxDistance = 10f;
+    [SerializeField] private LayerMask mgLayerMask = ~0;
+    [SerializeField] private LineRenderer tracer;
+    [SerializeField] private float tracerDuration = 0.04f;
+    public float MGDamage = 1f;
+    private Vector3 finalPoint = Vector3.zero;
 
     [Header("UI")]
     public RawImage rocketItem;
@@ -68,6 +78,8 @@ public class Tank_Manager : MonoBehaviour
     public VisualEffect healthVFX;
     public float ShootDamage = 0f;
     private float projectileSpeed;
+    public GameObject Machinegun;
+    public Transform lineShoot;
 
     [Header("Game Systems")]
     public GameObject gameManager;
@@ -142,9 +154,40 @@ public class Tank_Manager : MonoBehaviour
             Shoot();
         }
     }
+    public void MGInput(InputAction.CallbackContext context)
+    {
+        if (!freeze)
+        {
+            if (context.performed)
+            {
+                mgCanShoot = true;
+                Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);
+                InvokeRepeating(nameof(MGShot), 0f, 0.1f);
+            }
+            else if (context.canceled)
+            {
+                mgCanShoot = false;
+                Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);
+                CancelInvoke(nameof(MGShot));
+            }
+        }
+        else
+        {
+            mgCanShoot = false;
+            Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);
+            CancelInvoke(nameof(MGShot));
+        }
+    }
     public void AimInput(InputAction.CallbackContext context)
     {
-        aimInput = context.ReadValue<float>();
+        if (!freeze)
+        {
+            aimInput = context.ReadValue<float>();
+        }
+        else
+        {
+            aimInput = 0f;
+        }
     }
     public void BoostInput(InputAction.CallbackContext context)
     {
@@ -239,6 +282,51 @@ public class Tank_Manager : MonoBehaviour
             shootVFX.Play();
         }
     }
+    public void MGShot()
+    {
+        if (freeze)
+        {
+            return;
+        }
+        //print("mg shooting");
+        Vector3 startPos = turret.position;
+        Vector3 endPos = startPos + turret.forward * mgMaxDistance;
+
+        finalPoint = endPos;
+
+        if (Physics.Linecast(startPos, endPos, out RaycastHit hit, mgLayerMask))
+        {
+            finalPoint = hit.point;
+            //print($"Machine gun hit {hit.collider.name}. Parent is {hit.collider.transform.parent}");
+            if(hit.collider.GetComponent<Tank_Manager>())
+            {
+                Tank_Manager tankScript = hit.collider.GetComponent<Tank_Manager>();
+                if (tankScript._team != _team) //if not on my team
+                {
+                    tankScript.TakeDamage(MGDamage);
+                }
+            }
+            else if (hit.collider.GetComponent<Bot_Tank_Manager>())
+            {
+                Bot_Tank_Manager bottankScript = hit.collider.GetComponent<Bot_Tank_Manager>();
+                if (bottankScript._team != _team) //if not on my team
+                {
+                    bottankScript.TakeDamage(MGDamage);
+                }
+            }
+        }
+        StartCoroutine(ShowTracer());
+
+    }
+    private IEnumerator ShowTracer()
+    {
+
+        tracer.enabled = true;
+
+        yield return new WaitForSeconds(tracerDuration);
+
+        tracer.enabled = false;
+    }
     IEnumerator Boost(float waitTime)
     {
         zoomFOV = true;
@@ -280,6 +368,9 @@ public class Tank_Manager : MonoBehaviour
                 countDown.SetText("Go!");
             }
         }
+        
+        tracer.SetPosition(0, lineShoot.position);
+        tracer.SetPosition(1, finalPoint);
 
         Move();
         RotateTurret();
@@ -338,6 +429,8 @@ public class Tank_Manager : MonoBehaviour
 
         turret = tankprefab.turret;
         barrel = tankprefab.barrel;
+        Machinegun = tankprefab.Machinegun;
+        lineShoot = tankprefab.LineShoot;
         anim = tankprefab.animator;
         moveSpeed = tankprefab.moveSpeed;
         boostSpeed = moveSpeed + 5;
@@ -420,14 +513,17 @@ public class Tank_Manager : MonoBehaviour
 
     public void Die(int where)
     {
-        if (canShoot || Projectile.priorityObject == gameObject) //if tank has the bullet
+        if (Projectile.priorityObject == gameObject) //if tank has the bullet
         {
             Projectile.Instance.UpdatePriority(null);
             Projectile.Instance.Bounce(transform);
-            
         }
         CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
         canShoot = false;
+        mgCanShoot = false;
+        Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);
+        CancelInvoke(nameof(MGShot));
+        tracer.enabled = false;
         rocketItem.color = inactiveColor;
         rocketButton.color = inactiveColor;
         freeze = true;

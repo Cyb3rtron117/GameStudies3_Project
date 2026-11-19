@@ -5,6 +5,8 @@ public class TankPrefab : MonoBehaviour
 {
     public Transform turret;
     public Transform barrel;
+    public GameObject Machinegun;
+    public Transform LineShoot;
     public SkinnedMeshRenderer renderer;
     public Animator animator;
     public BoxCollider collider;

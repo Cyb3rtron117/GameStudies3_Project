@@ -66,10 +66,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 0
-    y: -472
-    width: 2337
-    height: 1439
+    x: 789
+    y: -531
+    width: 1574
+    height: 1524
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2592,9 +2592,9 @@ MonoBehaviour:
   m_OutputFlowSlot:
   - link: []
   blendMode: 3
-  cullMode: 0
+  cullMode: 3
   zWriteMode: 0
-  zTestMode: 0
+  zTestMode: 7
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTUAndAA: 0
