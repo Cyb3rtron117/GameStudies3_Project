@@ -50,6 +50,10 @@ public class MenuButtons : MonoBehaviour
                 break;
         }
     }
+    public void AddBot(int Playerindex)
+    {
+        joinButtons[Playerindex].SetTrigger("HideKeyboard");
+    }
     public void ShowReadyButton(int which)
     {
         readyCanvas[which].SetActive(true);

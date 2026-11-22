@@ -91,16 +91,17 @@ public class PlayerJoining : MonoBehaviour
                 tankIndex = UnityEngine.Random.Range(0, 4) //randomly select between the 4 tanks
             };
             botSetups.Add(setup);
-
+            _menuButtonsScript.AddBot(index);
             Menu_Tank menuTank = bot.GetComponent<Menu_Tank>();
 
             if (menuTank != null)
             {
                 menuTank.BotSetup(setup);
+                menuTank.AssignButtonScript(_menuButtonsScript.tankButtonScripts[index]);
             }
-            
+            _menuButtonsScript.ShowReadyButton(index);
             GetComponent<ReadyUp>().playersReady.Add(false);
-            bot.GetComponent<Menu_Tank>().botReady();
+            menuTank.botReady();
         }
     }
 }
