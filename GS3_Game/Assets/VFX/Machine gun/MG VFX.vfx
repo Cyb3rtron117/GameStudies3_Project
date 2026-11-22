@@ -725,7 +725,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -1155,7 +1155,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.24
+      m_SerializableObject: 0.38
     m_Space: -1
   m_Property:
     name: _Size
@@ -3921,7 +3921,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":1286.69482421875,"g":725.7120971679688,"b":182.07928466796876,"a":1.0},"time":0.0},{"color":{"r":1.0,"g":0.5254969596862793,"b":0.27987414598464968,"a":1.0},"time":0.32353705167770388},{"color":{"r":1.0,"g":0.7995075583457947,"b":0.7012578248977661,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.10000763088464737},{"alpha":1.0,"time":0.8019683957099915},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":1717.8387451171875,"g":856.864501953125,"b":27.009868621826173,"a":1.0},"time":0.0},{"color":{"r":32.84187698364258,"g":21.5761661529541,"b":7.539167881011963,"a":1.0},"time":0.32353705167770388},{"color":{"r":0.8113207817077637,"g":0.49648502469062807,"b":0.0,"a":1.0},"time":0.6313725709915161},{"color":{"r":1.0,"g":0.7995075583457947,"b":0.7012578248977661,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.10000763088464737},{"alpha":1.0,"time":0.8019683957099915},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
     m_Space: -1
   m_Property:
     name: Color
@@ -4017,7 +4017,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 2
+      m_SerializableObject: 5.46
     m_Space: -1
   m_Property:
     name: _Size
@@ -4113,7 +4113,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 3
+      m_SerializableObject: 1
     m_Space: -1
   m_Property:
     name: _Scale
