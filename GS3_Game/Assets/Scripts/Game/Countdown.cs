@@ -19,6 +19,7 @@ public class Countdown : MonoBehaviour
     }
     public void startCountDown()
     {
+        freeze = true;
         number = 3.1f;
         count = false;
         StartCoroutine(wait());
