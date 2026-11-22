@@ -79052,6 +79052,7 @@ GameObject:
   - component: {fileID: 1531262406}
   - component: {fileID: 1531262407}
   - component: {fileID: 1531262408}
+  - component: {fileID: 1531262409}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: GameController
@@ -79320,6 +79321,19 @@ MonoBehaviour:
   - {fileID: 621392873}
   readycolour: {r: 0.67058825, g: 0.7294118, b: 0.003921569, a: 1}
   unReadycolour: {r: 0.8050314, g: 0.8050314, b: 0.8050314, a: 1}
+--- !u!114 &1531262409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531262400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2b447380fa2424aa8dcb3848beeae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FPSLimiter
+  targetFPS: 60
 --- !u!1 &1537587286
 GameObject:
   m_ObjectHideFlags: 0
