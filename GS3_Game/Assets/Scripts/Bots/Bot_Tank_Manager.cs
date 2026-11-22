@@ -358,7 +358,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         hitObjects.Clear();
-        if (!Countdown.count)
+        if (!Countdown.count && !Countdown.freeze)
         {
             Unfreeze();
         }

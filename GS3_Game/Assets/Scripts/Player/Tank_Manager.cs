@@ -564,7 +564,7 @@ public class Tank_Manager : MonoBehaviour
                 break;
         }
         hitObjects.Clear();
-        if(!Countdown.count)
+        if(!Countdown.count && !Countdown.freeze)
         {
             Unfreeze();
         }

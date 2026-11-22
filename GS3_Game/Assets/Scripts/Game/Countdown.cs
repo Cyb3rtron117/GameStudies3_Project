@@ -7,12 +7,14 @@ public class Countdown : MonoBehaviour
     public static string Counter = "Start";
     public static float number = 3.1f;
     public static bool count = false;
+    public static bool freeze = false;
 
     public static event Action UnfreezeAllPlayers;
     private void Start()
     {
         number = 3.1f;
         count = false;
+        freeze = true;
         startCountDown();
     }
     public void startCountDown()
@@ -40,6 +42,7 @@ public class Countdown : MonoBehaviour
             else
             {
                 count = false;
+                freeze = false;
                 UnfreezeAllPlayers?.Invoke();
             }
         }
