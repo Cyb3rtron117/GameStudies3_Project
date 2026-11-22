@@ -1,12 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using UnityEngine.XR;
-using static UnityEngine.Audio.GeneratorInstance;
 
 public class PlayerSpawning : MonoBehaviour
 {
@@ -21,6 +16,7 @@ public class PlayerSpawning : MonoBehaviour
 
     [SerializeField] private List<GameObject> Team1 = new List<GameObject>();
     [SerializeField] private List<GameObject> Team2 = new List<GameObject>();
+
     private void Start()
     {
         _playerInputs.Clear();

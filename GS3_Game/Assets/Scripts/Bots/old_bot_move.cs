@@ -18,7 +18,6 @@ public class old_bot_move : MonoBehaviour
     private float additionalAngle = 0f;
     public Rigidbody rb;
     public Animator anim;
-    private bool isMoving = false;
     [SerializeField] private float boostTime = 0.5f;
     [SerializeField] private float boostCooldown = 1f;
     [SerializeField] private bool isBoosting = false;

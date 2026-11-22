@@ -96,6 +96,17 @@ public class Tank_Manager : MonoBehaviour
     private bool zoomFOV = false;
     [SerializeField] private float zoomSpeed = 1f;
 
+    private void OnEnable()
+    {
+        // Subscribe when enabled
+        Countdown.UnfreezeAllPlayers += Unfreeze;
+    }
+
+    private void OnDisable()
+    {
+        // Always unsubscribe when disabled/destroyed
+        Countdown.UnfreezeAllPlayers -= Unfreeze;
+    }
     private void Start()
     {
         freeze = true;
@@ -156,7 +167,7 @@ public class Tank_Manager : MonoBehaviour
     }
     public void MGInput(InputAction.CallbackContext context)
     {
-        if (!freeze)
+        if (!freeze && !canShoot)
         {
             if (context.performed)
             {
@@ -267,6 +278,12 @@ public class Tank_Manager : MonoBehaviour
         rocketItem.color = Color.green;
         rocketButton.color = Color.white;
     }
+    public void LoseProjectile()
+    {
+        canShoot = false;
+        rocketItem.color = inactiveColor;
+        rocketButton.color = inactiveColor;
+    }
     private void Shoot()
     {
         if (canShoot && !freeze)
@@ -284,7 +301,7 @@ public class Tank_Manager : MonoBehaviour
     }
     public void MGShot()
     {
-        if (freeze)
+        if (freeze || canShoot)
         {
             return;
         }
@@ -475,9 +492,7 @@ public class Tank_Manager : MonoBehaviour
                         if (tankScript.canShoot == true) //if they have the bullet
                         {
                             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
-                            tankScript.canShoot = false;
-                            tankScript.rocketItem.color = inactiveColor;
-                            tankScript.rocketButton.color = inactiveColor;
+                            tankScript.LoseProjectile();
                             Projectile.Instance.Bounce(collision.transform);
                         }
                         tankScript.TakeDamage(5);
@@ -491,7 +506,7 @@ public class Tank_Manager : MonoBehaviour
                         if (tankScript.canShoot == true) //if they have the bullet
                         {
                             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
-                            tankScript.canShoot = false;
+                            tankScript.LoseProjectile();
                             Projectile.Instance.Bounce(collision.transform);
                         }
                         tankScript.TakeDamage(5);
@@ -503,7 +518,7 @@ public class Tank_Manager : MonoBehaviour
     }
     public void TakeDamage(float amount)
     {
-        print("damaged");
+        //print("damaged");
         Health -= amount;
         if(Health <= 0)
         {
@@ -518,6 +533,7 @@ public class Tank_Manager : MonoBehaviour
             Projectile.Instance.UpdatePriority(null);
             Projectile.Instance.Bounce(transform);
         }
+        LoseProjectile();
         CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
         canShoot = false;
         mgCanShoot = false;
@@ -550,12 +566,20 @@ public class Tank_Manager : MonoBehaviour
         hitObjects.Clear();
         if(!Countdown.count)
         {
-            freeze = false;
+            Unfreeze();
+        }
+        else
+        {
+            freeze = true;
         }
         Health = maxHealth;
         if (currentTank != null)
         {
             currentTank.SetActive(true);
         }
+    }
+    private void Unfreeze()
+    {
+        freeze = false;
     }
 }

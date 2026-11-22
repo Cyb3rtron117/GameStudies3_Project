@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -44,7 +45,6 @@ public class Scoring : MonoBehaviour
         Team2Score = 0;
         team1Text.SetText($"Team 1:\n{Team1Score}");
         team2Text.SetText($"Team 2:\n{Team2Score}");
-
         foreach(GameObject heart in T1Hearts)
         {
             heart.SetActive(true);

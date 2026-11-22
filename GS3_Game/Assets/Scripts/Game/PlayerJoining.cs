@@ -105,7 +105,7 @@ public class PlayerJoining : MonoBehaviour
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class PlayerSetup
 {
     public int playerIndex;
@@ -113,7 +113,7 @@ public class PlayerSetup
     public InputDevice[] devices;
 
 }
-[System.Serializable]
+[Serializable]
 public class BotSetup
 {
     public int playerIndex;

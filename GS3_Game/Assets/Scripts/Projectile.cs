@@ -53,7 +53,7 @@ public class Projectile : MonoBehaviour
             }
             
         }
-        Reset();
+        ResetBullet();
 
     }
     private void FixedUpdate()
@@ -177,7 +177,7 @@ public class Projectile : MonoBehaviour
                 scoreScript.Score(Team.team2);
                 spawnScript.RespawnPlayers();
                 UpdatePriority(this.gameObject);
-                Reset();
+                ResetBullet();
             }
 
             if (other.gameObject.CompareTag("Goal2"))
@@ -186,7 +186,7 @@ public class Projectile : MonoBehaviour
                 scoreScript.Score(Team.team1);
                 spawnScript.RespawnPlayers();
                 UpdatePriority(this.gameObject);
-                Reset();
+                ResetBullet();
             }
         }
     }
@@ -253,8 +253,9 @@ public class Projectile : MonoBehaviour
         ignoreCollisions = false;
         triggerZone.enabled = true;
     }
-    private void Reset()
+    private void ResetBullet()
     {
+        _shooter = null;
         smokeVFX.Stop();
         Damage = 0f;
         rb.useGravity = false;
