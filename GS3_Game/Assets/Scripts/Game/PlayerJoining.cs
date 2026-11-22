@@ -14,8 +14,10 @@ public class PlayerJoining : MonoBehaviour
     public TeamColours teamColoursScript;
     private MenuButtons _menuButtonsScript;
     private int _coloursShown = 0;
+    public PlayerInputManager _playerInputManager;
     private void Start()
     {
+        _playerInputManager = GetComponent<PlayerInputManager>();
         _coloursShown = 0;
         playerSetups.Clear();
         botSetups.Clear();
@@ -53,7 +55,7 @@ public class PlayerJoining : MonoBehaviour
             menuTank.AssignButtonScript(_menuButtonsScript.tankButtonScripts[index]);
             _menuButtonsScript.tankButtonScripts[index].changeControls(playerInput.currentControlScheme);
         }
-        GetComponent<ReadyUp>().playersReady.Add(false);
+        GetComponent<ReadyUp>().addPlayer();
         if(_coloursShown < 2)
         {
             _coloursShown++;
@@ -69,6 +71,7 @@ public class PlayerJoining : MonoBehaviour
 
     public void FillBots()
     {
+        _playerInputManager.DisableJoining();
         for (int i = playerSetups.Count; i < 4; i++)
         {
             print("adding bot");

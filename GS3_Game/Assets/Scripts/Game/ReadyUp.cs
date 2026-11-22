@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using TMPro;
 
 public class ReadyUp : MonoBehaviour
 {
@@ -9,9 +10,16 @@ public class ReadyUp : MonoBehaviour
     public SceneLoading _sceneLoading;
     [SerializeField] private int playersNeeded = 2;
     [SerializeField] private PlayerJoining _playerJoiningScript;
+    [SerializeField] private float MaxPlayerWaitTime;
+    [SerializeField] private float CurrentPlayerWaitTime;
+    public bool startPlayerWait = false;
+    [SerializeField] private Animator ReadyAnim;
+    [SerializeField] private TextMeshProUGUI playerWaitText;
     private void Start()
     {
-        foreach(bool _bool in playersReady)
+        resetTimer();
+        startPlayerWait = false;
+        foreach (bool _bool in playersReady)
         {
             _bool.Equals(false);
         }/*
@@ -27,12 +35,19 @@ public class ReadyUp : MonoBehaviour
             }
         }*/
     }
+    public void addPlayer()
+    {
+        playersReady.Add(false);
+        startPlayerWait = false;
+    }
     public void playerReady(int which)
     {
         playersReady[which] = !playersReady[which];
         GetComponent<MenuButtons>().ToggleReadyButton(which, playersReady[which]);
         //CanvasReadyButtons[which].SetActive(playersReady[which]);
         //print(playersReady[which]);
+        resetTimer();
+        startPlayerWait = false;
         checkReady();
     }
     private void checkReady()
@@ -57,7 +72,8 @@ public class ReadyUp : MonoBehaviour
                 if (peopleReady)
                 {
                     print("All human players ready");
-                    _playerJoiningScript.FillBots();
+                    resetTimer();
+                    startPlayerWait = true;
                 }
                 else
                 {
@@ -91,5 +107,27 @@ public class ReadyUp : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         _sceneLoading.loadLevel();
+    }
+    private void resetTimer()
+    {
+        CurrentPlayerWaitTime = MaxPlayerWaitTime + 0.5f;
+    }
+    private void FixedUpdate()
+    {
+        ReadyAnim.SetBool("Show",startPlayerWait);
+        if (startPlayerWait)
+        {
+            if(CurrentPlayerWaitTime > 0)
+            {
+                CurrentPlayerWaitTime -= Time.fixedDeltaTime;
+                playerWaitText.SetText($"Waiting for players: {CurrentPlayerWaitTime:F0}s");
+            }
+            else
+            {
+                playerWaitText.SetText("Waiting for players: 0s");
+                startPlayerWait = false;
+                _playerJoiningScript.FillBots();
+            }
+        }
     }
 }
