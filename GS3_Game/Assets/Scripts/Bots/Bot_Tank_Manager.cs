@@ -13,6 +13,7 @@ public class Bot_Tank_Manager : MonoBehaviour
 {
     [SerializeField] private float Health = 100f;
     public float maxHealth = 100f;
+    public bool isDead = false;
     public bool freeze = false;
     public int playerIndex;
     public NavMeshAgent agent;
@@ -141,6 +142,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     public void LoseProjectile()
     {
         canShoot = false;
+        Projectile.Instance.Bounce(transform);
     }
     private void Shoot()
     {
@@ -293,11 +295,10 @@ public class Bot_Tank_Manager : MonoBehaviour
                     Tank_Manager tankScript = collision.gameObject.GetComponent<Tank_Manager>();
                     if (tankScript._team != _team) //if not on my team
                     {
-                        if (tankScript.canShoot == true) //if they have the bullet
+                        if (tankScript.canShoot == true && Projectile.priorityObject == collision.gameObject) //if they have the bullet
                         {
                             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
                             tankScript.LoseProjectile();
-                            Projectile.Instance.Bounce(collision.transform);
                         }
                         tankScript.TakeDamage(5);
                         tankScript.rocketItem.color = tankScript.inactiveColor;
@@ -310,11 +311,10 @@ public class Bot_Tank_Manager : MonoBehaviour
                     Bot_Tank_Manager tankScript = collision.gameObject.GetComponent<Bot_Tank_Manager>();
                     if (tankScript._team != _team) //if not on my team
                     {
-                        if (tankScript.canShoot == true) //if they have the bullet
+                        if (tankScript.canShoot == true && Projectile.priorityObject == collision.gameObject) //if they have the bullet
                         {
                             CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
                             tankScript.LoseProjectile();
-                            Projectile.Instance.Bounce(collision.transform);
                         }
                         tankScript.TakeDamage(5);
                     }
@@ -325,24 +325,28 @@ public class Bot_Tank_Manager : MonoBehaviour
     }
     public void TakeDamage(float amount)
     {
+        if (isDead)
+        {
+            return;
+        }
         //print("damaged");
         Health -= amount;
         if(Health <= 0)
         {
+            isDead = true;
             Die(PlayerSpawning.Randomised(_team));
         }
     }
 
     public void Die(int where)
     {
-        //Debug.Log($"Bot tank {playerIndex} has died. \n The priority gameobject was: {Projectile.priorityObject}");
+        Debug.Log($"Bot died. Current priority: {Projectile.priorityObject}");
         if (Projectile.priorityObject == gameObject) //if tank has the bullet
         {
-            Projectile.Instance.UpdatePriority(null);
             Projectile.Instance.Bounce(transform);
         }
-        LoseProjectile();
-        //Debug.Log($"The priority gameobject is now: {Projectile.priorityObject}");
+        Debug.Log($"Priority after death: {Projectile.priorityObject}");
+
         CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
         canShoot = false;
         freeze = true;
@@ -367,6 +371,7 @@ public class Bot_Tank_Manager : MonoBehaviour
             freeze = true;
         }
         Health = maxHealth;
+        isDead = false;
         if (currentTank != null)
         {
             currentTank.SetActive(true);

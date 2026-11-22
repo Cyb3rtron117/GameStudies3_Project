@@ -13,7 +13,6 @@ public class Projectile : MonoBehaviour
     public float bounceForce = 10f;
     [SerializeField] private float spinSpeed = 1f;
     [SerializeField] private float fallMultiplier = 2f;
-    [SerializeField] private float fallThreshold = 0f;
     [SerializeField] private BulletMode mode;
     [SerializeField] private GameObject _shooter;
     public static GameObject priorityObject;
@@ -30,6 +29,9 @@ public class Projectile : MonoBehaviour
     [SerializeField] private VisualEffect impactVFX;
     [SerializeField] private VisualEffect smokeVFX;
     private Vector3 bulletForward;
+
+    private Coroutine bounceCoroutine;
+    private bool isBouncing = false;
 
     public float Damage;
     private void Awake()
@@ -81,10 +83,15 @@ public class Projectile : MonoBehaviour
                 {
                     rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
                 }
-                else if (rb.linearVelocity.y <= fallThreshold)
+                break;
+            case BulletMode.Bounce:
+                /*
+                if (mode == BulletMode.Bounce)
                 {
-                    rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier/2 - 1) * Time.fixedDeltaTime;
+                    Debug.Log($"Actual bounce velocity: {rb.linearVelocity}");
                 }
+                */
+                transform.Rotate(Vector3.up * spinSpeed * Time.fixedDeltaTime);
                 break;
         }
     }
@@ -116,62 +123,67 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!ignoreCollisions)
+        if(ignoreCollisions)
         {
-            if (other.gameObject.CompareTag("Arena") && (mode != BulletMode.Display))
+            return;
+        }
+        else
+        {
+            if (other.gameObject.CompareTag("Arena") && (mode != BulletMode.Display) && (mode != BulletMode.Bounce))
             {
                 placeVFX();
                 goDisplay();
                 smokeVFX.Stop();
             }
-            if (other.gameObject.CompareTag("Tank") && mode != BulletMode.Frozen)
+            if (other.gameObject.CompareTag("Tank") && mode != BulletMode.Frozen && (mode != BulletMode.Bounce) && (mode != BulletMode.Fall))
             {
-                placeVFX();
                 rb.useGravity = false;
-                if (_shooter != null)
+                if (_shooter != null && other.gameObject == _shooter) //if it is the shooter, if there is one, ignore it
                 {
-                    if (other.gameObject != _shooter)
-                    {
-                        GoHide();
-                        if (other.gameObject.GetComponent<Tank_Manager>())
-                        {
-                            other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
-                            other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
-                            SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
-                        }
-                        else if (other.gameObject.GetComponent<Bot_Tank_Manager>())
-                        {
-                            other.gameObject.GetComponent<Bot_Tank_Manager>().HasProjectile();
-                            other.gameObject.GetComponent<Bot_Tank_Manager>().TakeDamage(Damage);
-                            SwapColour(other.gameObject.GetComponent<Bot_Tank_Manager>().activeMaterial);
-                        }
-                        UpdatePriority(other.gameObject);
-                        Damage = 0f;
-                        smokeVFX.Stop();
-                    }
+                    return;
                 }
-                else if (_shooter == null)
+                Tank_Manager player = other.GetComponent<Tank_Manager>();
+                Bot_Tank_Manager bot = other.GetComponent<Bot_Tank_Manager>();
+
+                if (player == null && bot == null)
+                    return;
+
+                // Don't give the projectile to a dead player.
+                if (player != null && player.isDead)
                 {
-                    GoHide();
-                    if (other.gameObject.GetComponent<Tank_Manager>())
-                    {
-                        other.gameObject.GetComponent<Tank_Manager>().HasProjectile();
-                        other.gameObject.GetComponent<Tank_Manager>().TakeDamage(Damage);
-                        SwapColour(other.gameObject.GetComponent<Tank_Manager>().activeMaterial);
-                    }
-                    else if (other.gameObject.GetComponent<Bot_Tank_Manager>())
-                    {
-                        other.gameObject.GetComponent<Bot_Tank_Manager>().HasProjectile();
-                        other.gameObject.GetComponent<Bot_Tank_Manager>().TakeDamage(Damage);
-                        SwapColour(other.gameObject.GetComponent<Bot_Tank_Manager>().activeMaterial);
-                    }
-                    UpdatePriority(other.gameObject);
-                    Damage = 0f;
-                    smokeVFX.Stop();
+                    return;
+                }
+
+                else if (bot != null && bot.isDead)
+                {
+                    return;
+                }
+                    
+                placeVFX();
+
+                float damageToApply = Damage;
+
+                GoHide();
+                UpdatePriority(other.gameObject);
+
+                Damage = 0f;
+                smokeVFX.Stop();
+
+                if (player != null)
+                {
+                    player.HasProjectile();
+                    SwapColour(player.activeMaterial);
+                    player.TakeDamage(damageToApply);
+                }
+                else if (bot != null)
+                {
+                    bot.HasProjectile();
+                    SwapColour(bot.activeMaterial);
+                    bot.TakeDamage(damageToApply);
                 }
             }
 
-            if (other.gameObject.CompareTag("Goal1"))
+            if (other.gameObject.CompareTag("Goal1") && mode != BulletMode.Frozen && (mode != BulletMode.Bounce) && (mode != BulletMode.Fall))
             {
                 print($"{Team.team2} got a point");
                 scoreScript.Score(Team.team2);
@@ -180,7 +192,7 @@ public class Projectile : MonoBehaviour
                 ResetBullet();
             }
 
-            if (other.gameObject.CompareTag("Goal2"))
+            if (other.gameObject.CompareTag("Goal2") && mode != BulletMode.Frozen && (mode != BulletMode.Bounce) && (mode != BulletMode.Fall))
             {
                 print($"{Team.team1} got a point");
                 scoreScript.Score(Team.team1);
@@ -190,9 +202,9 @@ public class Projectile : MonoBehaviour
             }
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        if (!ignoreCollisions && collision.gameObject.CompareTag("Floor"))
+        if (collision.gameObject.CompareTag("Floor") && mode != BulletMode.Bounce && mode != BulletMode.Display)
         {
             goDisplay();
         }
@@ -219,7 +231,6 @@ public class Projectile : MonoBehaviour
     private void goDisplay()
     {
         UpdatePriority(this.gameObject);
-        triggerZone.enabled = true;
         Damage = 0f;
         rb.useGravity = false;
         rb.linearVelocity = Vector3.zero;
@@ -229,29 +240,61 @@ public class Projectile : MonoBehaviour
         _team = Team.none;
         transform.position = new Vector3(transform.position.x, 1, transform.position.z);
         bulletForward = Vector3.zero;
+        
+        ignoreCollisions = false;
+        triggerZone.enabled = true;
     }
     public void Bounce(Transform bouncePos)
     {
-        UpdatePriority(this.gameObject);
+        if (isBouncing)
+            return;
+
+        isBouncing = true;
         triggerZone.enabled = false;
         ignoreCollisions = true;
+        if (bounceCoroutine != null)
+        {
+            StopCoroutine(bounceCoroutine);
+            bounceCoroutine = null;
+        }
+
+        mode = BulletMode.Bounce;
+
+        UpdatePriority(this.gameObject);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        transform.eulerAngles = Vector3.zero;
-        print("bounce");
+
+        transform.rotation = Quaternion.identity;
         transform.position = bouncePos.position;
-        rb.AddForce(transform.up * bounceForce, ForceMode.Impulse);
-        rb.useGravity = true;        
-        mode = BulletMode.Fall;
-        StartCoroutine(enableTankCollision());
+
         bulletForward = Vector3.zero;
+
+        rb.useGravity = true;
+        rb.WakeUp();
+
+        rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
+
+        //Debug.Log($"Bounce velocity: {rb.linearVelocity}");
+        
+        bounceCoroutine = StartCoroutine(startFall());
     }
     private IEnumerator enableTankCollision()
     {
-        print("collisions enabled");
         yield return new WaitForSeconds(1f);
+        isBouncing = false;
+        mode = BulletMode.Fall;
         ignoreCollisions = false;
         triggerZone.enabled = true;
+
+        bounceCoroutine = null;
+    }
+    private IEnumerator startFall()
+    {
+        yield return new WaitForSeconds(1f);
+        isBouncing = false;
+        mode = BulletMode.Fall;
+
+        bounceCoroutine = null;
     }
     private void ResetBullet()
     {
@@ -285,16 +328,31 @@ public class Projectile : MonoBehaviour
     }
     public void UpdatePriority(GameObject whichObject)
     {
+        /*
         if(whichObject == null)
         {
             priorityObject = this.gameObject;
-            _priorityObj = priorityObject;
         }
         else
         {
             priorityObject = whichObject;
-            _priorityObj = priorityObject;
         }
+        _priorityObj = priorityObject;
+        */
+        GameObject oldPriority = priorityObject;
+
+        priorityObject = whichObject != null ? whichObject : gameObject;
+        _priorityObj = priorityObject;
+
+        
+        Debug.Log(
+            $"PROJECTILE PRIORITY CHANGED\n" +
+            $"Old: {(oldPriority != null ? oldPriority.name : "NULL")}\n" +
+            $"New: {priorityObject.name}\n" +
+            $"Time: {Time.time}\n" +
+            $"CALL STACK:\n{System.Environment.StackTrace}"
+        );
+        
     }
 }
 
@@ -303,7 +361,8 @@ public enum BulletMode
     Frozen,
     Display, 
     Move,
-    Fall
+    Fall,
+    Bounce
 }
 
 public enum Team
