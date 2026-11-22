@@ -7,6 +7,7 @@ public class Scoring : MonoBehaviour
     [SerializeField] private int Team1Score = 0;
     [SerializeField] private int Team2Score = 0;
     [SerializeField] private SceneLoading sceneScript;
+    [SerializeField] private ExplosionManager explodeScript;
     public TextMeshProUGUI team1Text;
     public TextMeshProUGUI team2Text;
     public GameObject[] T1Hearts;
@@ -38,6 +39,7 @@ public class Scoring : MonoBehaviour
             case Team.none:
                 break;
         }
+        explodeScript.GoalExplode(_team);
     }
     private void Start()
     {

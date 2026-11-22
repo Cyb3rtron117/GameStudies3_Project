@@ -84,6 +84,7 @@ public class Tank_Manager : MonoBehaviour
     public TextMeshProUGUI teamNumber;
     public TextMeshProUGUI countDown;
     public string controlScheme = " ";
+    public ExplosionManager explodescript;
 
     [Header("Cinemachine")]
     [SerializeField] private CinemachineOrbitalFollow cineOrbit;
@@ -113,6 +114,7 @@ public class Tank_Manager : MonoBehaviour
         cineOrbit = GetComponentInChildren<CinemachineOrbitalFollow>();
         cineCam.Lens.FieldOfView = RegularFOV;
         colours = gameManager.GetComponent<Colours>().colours;
+        explodescript = gameManager.GetComponent<ExplosionManager>();
         ChangeTank(tankIndex);
         rocketItem.color = inactiveColor;
         rocketButton.color = inactiveColor;
@@ -533,6 +535,7 @@ public class Tank_Manager : MonoBehaviour
 
     public void Die(int where)
     {
+        explodescript.PlayerExplode(playerIndex, transform.position);
         Debug.Log($"Player died. Current priority: {Projectile.priorityObject}");
         if (Projectile.priorityObject == gameObject) //if tank has the bullet
         {

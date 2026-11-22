@@ -1,13 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.VFX;
-using UnityEngine.Windows;
 
 public class Bot_Tank_Manager : MonoBehaviour
 {
@@ -65,6 +60,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     public GameObject gameManager;
     public Team _team; //set by PlayerSpawning
     public List<GameObject> MyTeam = new List<GameObject>();
+    public ExplosionManager explodescript;
 
     private void OnEnable()
     {
@@ -86,6 +82,7 @@ public class Bot_Tank_Manager : MonoBehaviour
 
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         colours = gameManager.GetComponent<Colours>().colours;
+        explodescript = gameManager.GetComponent<ExplosionManager>();
         ChangeTank(tankIndex);
         isBoosting = false;
         hitObjects.Clear();
@@ -340,6 +337,7 @@ public class Bot_Tank_Manager : MonoBehaviour
 
     public void Die(int where)
     {
+        explodescript.PlayerExplode(playerIndex, transform.position);
         Debug.Log($"Bot died. Current priority: {Projectile.priorityObject}");
         if (Projectile.priorityObject == gameObject) //if tank has the bullet
         {
