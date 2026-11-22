@@ -22,6 +22,7 @@ public class PlayerJoining : MonoBehaviour
         playerSetups.Clear();
         botSetups.Clear();
         _menuButtonsScript = GetComponent<MenuButtons>();
+        SplitscreenDivider.PlayerAmt = 0;
     }
 
     public void OnPlayerJoined(PlayerInput playerInput)
@@ -62,6 +63,7 @@ public class PlayerJoining : MonoBehaviour
             _menuButtonsScript.ShowColourSwitch(_coloursShown);
         }
         _menuButtonsScript.ShowReadyButton(index);
+        SplitscreenDivider.PlayerAmt++;
     }
     public void OnPlayerLeft(PlayerInput playerInput)
     {
