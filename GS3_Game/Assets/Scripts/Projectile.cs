@@ -28,6 +28,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private bool ignoreCollisions = false;
     [SerializeField] private VisualEffect impactVFX;
     [SerializeField] private VisualEffect smokeVFX;
+    [SerializeField] private VisualEffect Indicator;
     private Vector3 bulletForward;
 
     private Coroutine bounceCoroutine;
@@ -93,6 +94,19 @@ public class Projectile : MonoBehaviour
                 */
                 transform.Rotate(Vector3.up * spinSpeed * Time.fixedDeltaTime);
                 break;
+        }
+        if(Indicator != null)
+        {
+            if(priorityObject == this.gameObject)
+            {
+                Indicator.SetFloat("Offset", 1f);
+                Indicator.SetVector3("Position", priorityObject.transform.position);
+            }
+            else
+            {
+                Indicator.SetFloat("Offset", 3.8f);
+                Indicator.SetVector3("Position", priorityObject.transform.position);
+            }
         }
     }
     public void Shoot(Transform shootPos, Vector3 shootRot, GameObject Shooter, Team team, float damage, float speed)
