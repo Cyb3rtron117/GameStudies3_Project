@@ -43,6 +43,12 @@ public class Tank_Manager : MonoBehaviour
     public bool canShoot = false;
     public float ShakeTime = 0.5f;
     public bool mgCanShoot = false;
+    public float MaxMgShotAmt = 10;
+    public float CurrentMgShotAmt = 10;
+    [SerializeField] private float mgRechargeDelay = 2f;
+    [SerializeField] private float mgRechargeInterval = 0.1f;
+    private Coroutine rechargeCoroutine;
+
     [SerializeField] private float mgMaxDistance = 10f;
     [SerializeField] private LayerMask mgLayerMask = ~0;
     [SerializeField] private LineRenderer tracer;
@@ -54,11 +60,13 @@ public class Tank_Manager : MonoBehaviour
 
     [Header("UI")]
     public RawImage rocketItem;
-    public Image rocketButton;
-    public Image dashButton;
-    public GameObject keyboardText;
-    public GameObject controllerText;
+    public Image[] rocketButton;
+    public Image[] dashButton;
+    public Image[] mgButton;
+    public GameObject[] KeyboardUI;
+    public GameObject[] ControllerUI;
     public Image dashBar;
+    public Image mgBar;
     private bool drainDash = false;
     public Color inactiveColor;
 
@@ -119,11 +127,23 @@ public class Tank_Manager : MonoBehaviour
         colours = gameManager.GetComponent<Colours>().colours;
         explodescript = gameManager.GetComponent<ExplosionManager>();
         ChangeTank(tankIndex);
+        CurrentMgShotAmt = MaxMgShotAmt;
+
         rocketItem.color = inactiveColor;
-        rocketButton.color = inactiveColor;
-        dashButton.color = Color.white;
-        keyboardText.SetActive(false);
-        controllerText.SetActive(false);
+
+        rocketButton[0].color = inactiveColor;
+        rocketButton[1].color = inactiveColor;
+        dashButton[0].color = Color.white;
+        dashButton[1].color = Color.white;
+
+        foreach(var thing in KeyboardUI)
+        {
+            thing.SetActive(false);
+        }
+        foreach (var thing in ControllerUI)
+        {
+            thing.SetActive(false);
+        }
         isBoosting = false;
         teamNumber.SetText($"You are {_team}");
         switch(_team)
@@ -138,11 +158,17 @@ public class Tank_Manager : MonoBehaviour
         switch (controlScheme)
         {
             case "Mouse & Keyboard":
-                keyboardText.SetActive(true);
+                foreach (var thing in KeyboardUI)
+                {
+                    thing.SetActive(true);
+                }
                 isKeyboard = true;
                 break;
             case "Gamepad":
-                controllerText.SetActive(true);
+                foreach (var thing in ControllerUI)
+                {
+                    thing.SetActive(true);
+                }
                 isKeyboard = false;
                 break;
         }
@@ -182,6 +208,10 @@ public class Tank_Manager : MonoBehaviour
             }
             else if (context.canceled)
             {
+                if (rechargeCoroutine == null)
+                {
+                    rechargeCoroutine = StartCoroutine(ReloadMG());
+                }
                 mgCanShoot = false;
                 Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);
                 CancelInvoke(nameof(MGShot));
@@ -279,14 +309,16 @@ public class Tank_Manager : MonoBehaviour
     {
         canShoot = true;
         rocketItem.color = Color.green;
-        rocketButton.color = Color.white;
+        rocketButton[0].color = Color.white;
+        rocketButton[1].color = Color.white;
     }
     public void LoseProjectile()
     {
         Debug.Log($"Player tank {playerIndex} lost projectile. \n The priority gameobject was: {Projectile.priorityObject}");
         canShoot = false;
         rocketItem.color = inactiveColor;
-        rocketButton.color = inactiveColor;
+        rocketButton[0].color = inactiveColor;
+        rocketButton[1].color = inactiveColor;
         Projectile.Instance.Bounce(transform);
     }
     private void Shoot()
@@ -300,16 +332,34 @@ public class Tank_Manager : MonoBehaviour
             Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
             Projectile.Instance.Shoot(barrel, shootDir, gameObject, _team, ShootDamage, projectileSpeed);
             rocketItem.color = inactiveColor;
-            rocketButton.color = inactiveColor;
+            rocketButton[0].color = inactiveColor;
+            rocketButton[1].color = inactiveColor;
+
             shootVFX.Play();
         }
     }
     public void MGShot()
     {
-        if (freeze || canShoot || isDead)
+        if (freeze || canShoot || isDead || CurrentMgShotAmt <= 0)
         {
+            if (CurrentMgShotAmt <= 0)
+            {
+                CancelInvoke(nameof(MGShot));
+                mgCanShoot = false;
+                Machinegun.GetComponent<Animator>().SetBool("Shoot", false);
+                tracer.enabled = false;
+
+                if (rechargeCoroutine == null)
+                {
+                    rechargeCoroutine = StartCoroutine(ReloadMG());
+                }
+            }
+
             return;
         }
+
+        CurrentMgShotAmt--;
+
         //print("mg shooting");
         Vector3 startPos = turret.position;
         Vector3 endPos = startPos + turret.forward * mgMaxDistance;
@@ -352,7 +402,6 @@ public class Tank_Manager : MonoBehaviour
         MGPingVFX.SetVector3("Position", finalPoint);
         MGPingVFX.Play();
         StartCoroutine(ShowTracer());
-
     }
     private IEnumerator ShowTracer()
     {
@@ -363,12 +412,26 @@ public class Tank_Manager : MonoBehaviour
 
         tracer.enabled = false;
     }
+    private IEnumerator ReloadMG()
+    {
+        yield return new WaitForSeconds(mgRechargeDelay);
+
+        while (CurrentMgShotAmt < MaxMgShotAmt)
+        {
+            CurrentMgShotAmt++;
+
+            yield return new WaitForSeconds(mgRechargeInterval);
+        }
+
+        rechargeCoroutine = null;
+    }
     IEnumerator Boost(float waitTime)
     {
         zoomFOV = true;
         currentSpeed = boostSpeed;
         drainDash = true;
-        dashButton.color = inactiveColor;
+        dashButton[0].color = inactiveColor;
+        dashButton[1].color = inactiveColor;
         yield return new WaitForSeconds(waitTime);
         drainDash = false;
         currentSpeed = moveSpeed;
@@ -379,7 +442,8 @@ public class Tank_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         isBoosting = false;
-        dashButton.color = Color.white;
+        dashButton[0].color = Color.white;
+        dashButton[1].color = Color.white;
         hitObjects.Clear();
     }
     private void RotateTurret()
@@ -454,6 +518,20 @@ public class Tank_Manager : MonoBehaviour
         }*/
         float _health = Health / maxHealth;
         healthVFX.SetFloat("FillAmt", _health);
+
+        mgBar.fillAmount = CurrentMgShotAmt / MaxMgShotAmt;
+
+        if(!freeze && !canShoot && !isDead && CurrentMgShotAmt > 0)
+        {
+            mgButton[0].color = Color.white;
+            mgButton[1].color = Color.white;
+
+        }
+        else
+        {
+            mgButton[0].color = inactiveColor;
+            mgButton[1].color = inactiveColor;
+        }
 
         CamZoom(zoomFOV);
         
@@ -603,7 +681,8 @@ public class Tank_Manager : MonoBehaviour
         CancelInvoke(nameof(MGShot));
         tracer.enabled = false;
         rocketItem.color = inactiveColor;
-        rocketButton.color = inactiveColor;
+        rocketButton[0].color = inactiveColor;
+        rocketButton[1].color = inactiveColor;
         freeze = true;
         if (currentTank != null)
         {
@@ -635,6 +714,7 @@ public class Tank_Manager : MonoBehaviour
         {
             freeze = true;
         }
+        CurrentMgShotAmt = MaxMgShotAmt;
         Health = maxHealth;
         isDead = false;
         if (currentTank != null)

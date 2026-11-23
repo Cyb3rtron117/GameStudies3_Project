@@ -302,7 +302,8 @@ public class Bot_Tank_Manager : MonoBehaviour
                         }
                         tankScript.TakeDamage(5);
                         tankScript.rocketItem.color = tankScript.inactiveColor;
-                        tankScript.rocketButton.color = tankScript.inactiveColor;
+                        tankScript.rocketButton[0].color = tankScript.inactiveColor;
+                        tankScript.rocketButton[1].color = tankScript.inactiveColor;
                     }
                 }
                 else if (collision.gameObject.GetComponent<Bot_Tank_Manager>() && !hitObjects.Contains(collision.gameObject))
