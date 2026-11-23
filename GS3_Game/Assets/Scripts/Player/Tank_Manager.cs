@@ -322,8 +322,9 @@ public class Tank_Manager : MonoBehaviour
             if(hit.collider.GetComponent<Tank_Manager>())
             {
                 Tank_Manager tankScript = hit.collider.GetComponent<Tank_Manager>();
-                /*
+                
                 Debug.Log($"MG HIT PLAYER: {tankScript.name}");
+                /*
                 Debug.Log($"Shooter team: {_team} | Target team: {tankScript._team}");
                 Debug.Log($"Target isDead: {tankScript.isDead}");
                 */
@@ -335,8 +336,9 @@ public class Tank_Manager : MonoBehaviour
             else if (hit.collider.GetComponent<Bot_Tank_Manager>())
             {
                 Bot_Tank_Manager bottankScript = hit.collider.GetComponent<Bot_Tank_Manager>();
-                /*
+                
                 Debug.Log($"MG HIT PLAYER: {bottankScript.name}");
+                /*
                 Debug.Log($"Shooter team: {_team} | Target team: {bottankScript._team}");
                 Debug.Log($"Target isDead: {bottankScript.isDead}");
                 */
