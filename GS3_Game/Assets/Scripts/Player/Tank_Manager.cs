@@ -202,6 +202,12 @@ public class Tank_Manager : MonoBehaviour
         {
             if (context.performed)
             {
+                if (rechargeCoroutine != null)
+                {
+                    StopCoroutine(rechargeCoroutine);
+                    rechargeCoroutine = null;
+                }
+
                 mgCanShoot = true;
                 Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);
                 InvokeRepeating(nameof(MGShot), 0.1f, 0.1f);
