@@ -73,6 +73,7 @@ public class PlayerJoining : MonoBehaviour
 
     public void FillBots()
     {
+        float BotRerollDelay = 0;
         _playerInputManager.DisableJoining();
         for (int i = playerSetups.Count; i < 4; i++)
         {
@@ -93,12 +94,12 @@ public class PlayerJoining : MonoBehaviour
             BotSetup setup = new BotSetup
             {
                 playerIndex = index,
-                tankIndex = UnityEngine.Random.Range(0, 4) //randomly select between the 4 tanks
+                tankIndex = 0
             };
             botSetups.Add(setup);
             _menuButtonsScript.AddBot(index);
             Menu_Tank menuTank = bot.GetComponent<Menu_Tank>();
-
+            
             if (menuTank != null)
             {
                 menuTank.BotSetup(setup);
@@ -106,7 +107,8 @@ public class PlayerJoining : MonoBehaviour
             }
             _menuButtonsScript.ShowReadyButton(index);
             GetComponent<ReadyUp>().playersReady.Add(false);
-            menuTank.botReady();
+            bot.GetComponent<BotReroll>().StartLoop(BotRerollDelay);
+            BotRerollDelay += 0.5f;
         }
     }
 }

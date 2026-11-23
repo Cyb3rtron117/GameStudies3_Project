@@ -30,8 +30,10 @@ public class Menu_Tank : MonoBehaviour
     public GameObject gameManager;
     private TeamColours _teamColours;
     public tankButtons tankButtonsScript;
+    private bool isBot = false;
     public void Setup(PlayerSetup setup)
     {
+        isBot = false;
         playerSetup = setup;
         _playerIndex = playerSetup.playerIndex;
         tankIndex = setup.tankIndex;
@@ -39,6 +41,7 @@ public class Menu_Tank : MonoBehaviour
     }
     public void BotSetup(BotSetup setup)
     {
+        isBot = true;
         botSetup = setup;
         _playerIndex = botSetup.playerIndex;
         tankIndex = setup.tankIndex;
@@ -71,6 +74,15 @@ public class Menu_Tank : MonoBehaviour
             currentTank.SetActive(false);
         }
 
+        if (playerSetup != null && !isBot)
+        {
+            playerSetup.tankIndex = tankIndex;
+        }
+        else if (botSetup != null && isBot)
+        {
+            botSetup.tankIndex = tankIndex;
+        }
+
         currentTank = TankPrefabs[tankIndex];
         currentTank.SetActive(true);
 
@@ -79,25 +91,17 @@ public class Menu_Tank : MonoBehaviour
         anim = tankprefab.animator;
         shootVFX = tankprefab.shootVFX;
         changeMaterial(activeMaterial);
+        tankButtonsScript.changeTank(tankIndex);
     }
-    private void NextTank()
+    public void NextTank()
     {
         tankIndex++;
         if(tankIndex >= TankPrefabs.Count)
         {
             tankIndex = 0;
         }
-
-        if(playerSetup != null)
-        {
-            playerSetup.tankIndex = tankIndex;
-        }
-        else if (botSetup != null)
-        {
-            botSetup.tankIndex = tankIndex;
-        }
         ChangeTank(tankIndex);
-        tankButtonsScript.changeTank(tankIndex);
+        
     }
     private void PreviousTank()
     {
@@ -106,17 +110,7 @@ public class Menu_Tank : MonoBehaviour
         {
             tankIndex = TankPrefabs.Count - 1;
         }
-
-        if (playerSetup != null)
-        {
-            playerSetup.tankIndex = tankIndex;
-        }
-        else if (botSetup != null)
-        {
-            botSetup.tankIndex = tankIndex;
-        }
         ChangeTank(tankIndex);
-        tankButtonsScript.changeTank(tankIndex);
     }
     public void ChangeTankInput(InputAction.CallbackContext context)
     {
