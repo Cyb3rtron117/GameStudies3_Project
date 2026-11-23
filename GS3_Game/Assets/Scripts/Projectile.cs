@@ -29,6 +29,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private VisualEffect impactVFX;
     [SerializeField] private VisualEffect smokeVFX;
     [SerializeField] private VisualEffect Indicator;
+    [SerializeField] private VisualEffect FallIndicator;
+    private Vector3 fallpos;
     private Vector3 bulletForward;
 
     private Coroutine bounceCoroutine;
@@ -79,6 +81,8 @@ public class Projectile : MonoBehaviour
                 transform.Rotate(Vector3.up * spinSpeed * Time.fixedDeltaTime);
                 break;
             case BulletMode.Fall:
+                fallpos = new Vector3(transform.position.x, 0, transform.position.z);
+                FallIndicator.transform.position = fallpos;
                 transform.Rotate(Vector3.up * spinSpeed * Time.fixedDeltaTime);
                 if(rb.linearVelocity.y <= 0)
                 {
@@ -92,6 +96,8 @@ public class Projectile : MonoBehaviour
                     Debug.Log($"Actual bounce velocity: {rb.linearVelocity}");
                 }
                 */
+                fallpos = new Vector3(transform.position.x, 0, transform.position.z);
+                FallIndicator.transform.position = fallpos;
                 transform.Rotate(Vector3.up * spinSpeed * Time.fixedDeltaTime);
                 break;
         }
@@ -143,6 +149,8 @@ public class Projectile : MonoBehaviour
         }
         else
         {
+            FallIndicator.transform.position = -Vector3.up;
+            FallIndicator.enabled = false;
             if (other.gameObject.CompareTag("Arena") && (mode != BulletMode.Display) && (mode != BulletMode.Bounce))
             {
                 placeVFX();
@@ -236,6 +244,8 @@ public class Projectile : MonoBehaviour
 
     public void GoHide()
     {
+        FallIndicator.transform.position = -Vector3.up;
+        FallIndicator.enabled = false;
         triggerZone.enabled = false;
         mode = BulletMode.Frozen;
         transform.eulerAngles = Vector3.zero;
@@ -248,6 +258,8 @@ public class Projectile : MonoBehaviour
     }
     private void goDisplay()
     {
+        FallIndicator.transform.position = -Vector3.up;
+        FallIndicator.enabled = false;
         UpdatePriority(this.gameObject);
         Damage = 0f;
         rb.useGravity = false;
@@ -275,9 +287,10 @@ public class Projectile : MonoBehaviour
             StopCoroutine(bounceCoroutine);
             bounceCoroutine = null;
         }
-
         mode = BulletMode.Bounce;
-
+        fallpos = new Vector3(transform.position.x, 0, transform.position.z);
+        FallIndicator.transform.position = fallpos;
+        FallIndicator.enabled = true;
         UpdatePriority(this.gameObject);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -311,7 +324,6 @@ public class Projectile : MonoBehaviour
         yield return new WaitForSeconds(1f);
         isBouncing = false;
         mode = BulletMode.Fall;
-
         bounceCoroutine = null;
     }
     private void ResetBullet()
@@ -328,6 +340,8 @@ public class Projectile : MonoBehaviour
         bulletForward = Vector3.zero;
         StartCoroutine(recallVFX());
         UpdatePriority(this.gameObject);
+        FallIndicator.transform.position = -Vector3.up;
+        FallIndicator.enabled = false;
     }
     private void placeVFX()
     {
