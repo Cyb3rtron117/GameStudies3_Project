@@ -86,6 +86,7 @@ public class PlayerSpawning : MonoBehaviour
                 Team2.Add(player.gameObject);
             }
         }
+        CinemachineShake.Instance.AddCams(playerTank.cineCam);
         FlipCamera(index, player);
     }
     private void FlipCamera(int index, PlayerInput player)

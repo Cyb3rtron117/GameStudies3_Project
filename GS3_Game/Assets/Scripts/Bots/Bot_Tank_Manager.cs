@@ -148,7 +148,7 @@ public class Bot_Tank_Manager : MonoBehaviour
             anim.SetTrigger("Shoot");
             canShoot = false;
             cooldownTime = shootCooldown;
-            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+            CinemachineShake.Instance.ShakeCam(ShakeType.Shoot, ShakeTime);
             Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
             Projectile.Instance.Shoot(barrel, shootDir, gameObject, _team, ShootDamage, projectileSpeed);
             shootVFX.Play();
@@ -294,7 +294,7 @@ public class Bot_Tank_Manager : MonoBehaviour
                     {
                         if (tankScript.canShoot == true && Projectile.priorityObject == collision.gameObject) //if they have the bullet
                         {
-                            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+                            CinemachineShake.Instance.ShakeCam(ShakeType.Ram, ShakeTime);
                             tankScript.LoseProjectile();
                         }
                         tankScript.TakeDamage(5);
@@ -310,7 +310,7 @@ public class Bot_Tank_Manager : MonoBehaviour
                     {
                         if (tankScript.canShoot == true && Projectile.priorityObject == collision.gameObject) //if they have the bullet
                         {
-                            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+                            CinemachineShake.Instance.ShakeCam(ShakeType.Ram, ShakeTime);
                             tankScript.LoseProjectile();
                         }
                         tankScript.TakeDamage(5);
@@ -345,7 +345,7 @@ public class Bot_Tank_Manager : MonoBehaviour
         }
         Debug.Log($"Priority after death: {Projectile.priorityObject}");
 
-        CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+        CinemachineShake.Instance.ShakeCam(ShakeType.Dead, ShakeTime);
         canShoot = false;
         freeze = true;
         if (currentTank != null)

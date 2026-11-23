@@ -64,7 +64,7 @@ public class Tank_Move_Old : MonoBehaviour
             anim.SetTrigger("Shoot");
             canShoot = false;
             cooldownTime = shootCooldown;
-            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+            //CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
         }
     }
 

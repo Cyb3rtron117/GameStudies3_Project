@@ -73,7 +73,7 @@ MonoBehaviour:
   aimSpeed: 10
   shootCooldown: 1
   canShoot: 0
-  ShakeIntensity: 1
+  ShakeIntensity: 10
   ShakeTime: 0.5
   TankPrefabs:
   - {fileID: 3970782593307740903}

@@ -39,7 +39,6 @@ public class Tank_Manager : MonoBehaviour
     private float cooldownTime;
     
     public bool canShoot = false;
-    public float ShakeIntensity = 1f;
     public float ShakeTime = 0.5f;
     public bool mgCanShoot = false;
     [SerializeField] private float mgMaxDistance = 10f;
@@ -89,7 +88,7 @@ public class Tank_Manager : MonoBehaviour
 
     [Header("Cinemachine")]
     [SerializeField] private CinemachineOrbitalFollow cineOrbit;
-    [SerializeField] private CinemachineCamera cineCam;
+    public CinemachineCamera cineCam;
     [SerializeField] private float BoostFOV = 70f;
     [SerializeField] private float RegularFOV = 60f;
     private bool zoomFOV = false;
@@ -296,7 +295,7 @@ public class Tank_Manager : MonoBehaviour
             anim.SetTrigger("Shoot");
             canShoot = false;
             cooldownTime = shootCooldown;
-            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+            CinemachineShake.Instance.ShakeCam(ShakeType.Shoot, ShakeTime);
             Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
             Projectile.Instance.Shoot(barrel, shootDir, gameObject, _team, ShootDamage, projectileSpeed);
             rocketItem.color = inactiveColor;
@@ -510,7 +509,7 @@ public class Tank_Manager : MonoBehaviour
                     {
                         if (tankScript.canShoot == true && Projectile.priorityObject == collision.gameObject) //if they have the bullet
                         {
-                            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+                            CinemachineShake.Instance.ShakeCam(ShakeType.Ram, ShakeTime);
                             tankScript.LoseProjectile();
                         }
                         tankScript.TakeDamage(5);
@@ -523,7 +522,7 @@ public class Tank_Manager : MonoBehaviour
                     {
                         if (tankScript.canShoot == true && Projectile.priorityObject == collision.gameObject) //if they have the bullet
                         {
-                            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+                            CinemachineShake.Instance.ShakeCam(ShakeType.Ram, ShakeTime);
                             tankScript.LoseProjectile();
                         }
                         tankScript.TakeDamage(5);
@@ -559,7 +558,7 @@ public class Tank_Manager : MonoBehaviour
         Debug.Log($"Priority after death: {Projectile.priorityObject}");
 
 
-        CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+        CinemachineShake.Instance.ShakeCam(ShakeType.Dead, ShakeTime);
         
         mgCanShoot = false;
         Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);

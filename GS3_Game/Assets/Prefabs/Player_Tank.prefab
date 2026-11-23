@@ -384,7 +384,6 @@ GameObject:
   - component: {fileID: 3123866363621364904}
   - component: {fileID: 214308300956649468}
   - component: {fileID: 6651787759380872844}
-  - component: {fileID: 4468330943377689802}
   - component: {fileID: 4118700205264211444}
   m_Layer: 10
   m_Name: CinemachineCamera
@@ -596,18 +595,6 @@ MonoBehaviour:
         DecelTime: 0
   PlayerIndex: -1
   AutoEnableInputs: 1
---- !u!114 &4468330943377689802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2122150570693427764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b364eda620f73a84eb7c26f7c91c7db1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CinemachineShake
 --- !u!114 &4118700205264211444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,7 +720,7 @@ MonoBehaviour:
   aimSpeed: 10
   shootCooldown: 1
   canShoot: 0
-  ShakeIntensity: 1
+  ShakeIntensity: 10
   ShakeTime: 0.5
   mgCanShoot: 0
   mgMaxDistance: 50

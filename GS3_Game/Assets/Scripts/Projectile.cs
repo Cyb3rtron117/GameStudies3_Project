@@ -182,7 +182,7 @@ public class Projectile : MonoBehaviour
                     bot.TakeDamage(damageToApply);
                 }
             }
-
+            CinemachineShake.Instance.ShakeCam(ShakeType.BulletHit, 0.5f);
             if (other.gameObject.CompareTag("Goal1") && mode != BulletMode.Frozen && (mode != BulletMode.Bounce) && (mode != BulletMode.Fall))
             {
                 print($"{Team.team2} got a point");
@@ -190,6 +190,7 @@ public class Projectile : MonoBehaviour
                 spawnScript.RespawnPlayers();
                 UpdatePriority(this.gameObject);
                 ResetBullet();
+                CinemachineShake.Instance.ShakeCam(ShakeType.Goal, 1);
             }
 
             if (other.gameObject.CompareTag("Goal2") && mode != BulletMode.Frozen && (mode != BulletMode.Bounce) && (mode != BulletMode.Fall))
@@ -199,6 +200,8 @@ public class Projectile : MonoBehaviour
                 spawnScript.RespawnPlayers();
                 UpdatePriority(this.gameObject);
                 ResetBullet();
+                CinemachineShake.Instance.ShakeCam(ShakeType.Goal, 1);
+
             }
         }
     }
@@ -207,6 +210,7 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor") && mode != BulletMode.Bounce && mode != BulletMode.Display)
         {
             goDisplay();
+            CinemachineShake.Instance.ShakeCam(ShakeType.BulletHit, 0.5f);
         }
     }
     private void SwapColour(Material newMat)

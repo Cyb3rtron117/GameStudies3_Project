@@ -21442,6 +21442,7 @@ GameObject:
   - component: {fileID: 937394645}
   - component: {fileID: 937394644}
   - component: {fileID: 937394643}
+  - component: {fileID: 937394647}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -21583,6 +21584,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &937394647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937394642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b364eda620f73a84eb7c26f7c91c7db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CinemachineShake
+  CineNoise: []
+  GoalIntensity: 10
+  ShootIntensity: 5
+  DeadIntensity: 7
+  BulletIntensity: 2
 --- !u!1001 &943116992
 PrefabInstance:
   m_ObjectHideFlags: 0

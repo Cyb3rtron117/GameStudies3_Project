@@ -150,7 +150,7 @@ public class old_bot_move : MonoBehaviour
             anim.SetTrigger("Shoot");
             canShoot = false;
             cooldownTime = shootCooldown;
-            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+            //CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
             Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
             Projectile.Instance.Shoot(barrel, shootDir, gameObject, _team, ShootDamage, projectileSpeed);
             shootVFX.Play();
@@ -257,7 +257,7 @@ public class old_bot_move : MonoBehaviour
                     {
                         if (tankScript.canShoot == true) //if they have the bullet
                         {
-                            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+                            //CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
                             tankScript.canShoot = false;
                             Projectile.Instance.Bounce(collision.transform);
                         }
@@ -271,7 +271,7 @@ public class old_bot_move : MonoBehaviour
                     {
                         if (tankScript.canShoot == true) //if they have the bullet
                         {
-                            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+                            //CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
                             tankScript.canShoot = false;
                             Projectile.Instance.Bounce(collision.transform);
                         }
@@ -296,7 +296,7 @@ public class old_bot_move : MonoBehaviour
     {
         if (canShoot) //if tank has the bullet
         {
-            CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
+            //CinemachineShake.Instance.shakeCam(ShakeIntensity, ShakeTime);
             canShoot = false;
             Projectile.Instance.Bounce(transform);
         }
