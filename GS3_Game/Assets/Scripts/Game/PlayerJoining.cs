@@ -64,6 +64,11 @@ public class PlayerJoining : MonoBehaviour
         }
         _menuButtonsScript.ShowReadyButton(index);
         SplitscreenDivider.PlayerAmt++;
+
+        if(index == 0)
+        {
+            GetComponent<HowPlay>().ShowPrompt();
+        }
     }
     public void OnPlayerLeft(PlayerInput playerInput)
     {

@@ -30,6 +30,7 @@ public class Menu_Tank : MonoBehaviour
     public GameObject gameManager;
     private TeamColours _teamColours;
     public tankButtons tankButtonsScript;
+    public HowPlay _howPlayScript;
     private bool isBot = false;
     public void Setup(PlayerSetup setup)
     {
@@ -54,6 +55,26 @@ public class Menu_Tank : MonoBehaviour
         ChangeTank(tankIndex);
         _teamColours = gameManager.GetComponent<TeamColours>();
         readyAnim = GetComponent<Animator>();
+        _howPlayScript = gameManager.GetComponent<HowPlay>();
+    }
+    public void ChangeSlideInput(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+            return;
+        float direction = context.ReadValue<float>();
+
+        _howPlayScript.ChangeSlideInput(direction);
+    }
+    public void OpenSlideInput(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        {
+            return;
+        }
+        else
+        {
+            _howPlayScript.ShowSlides();
+        }
     }
 
     public void changeMaterial(Material newMat)
@@ -116,7 +137,7 @@ public class Menu_Tank : MonoBehaviour
     {
         if (!context.performed)
             return;
-        if (isReady)
+        if (isReady || HowPlay.TutisActive)
             return;
         float direction = context.ReadValue<float>();
 

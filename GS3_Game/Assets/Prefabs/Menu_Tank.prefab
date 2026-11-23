@@ -106,6 +106,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4970665517879601029}
+        m_TargetAssemblyTypeName: Menu_Tank, Assembly-CSharp
+        m_MethodName: ChangeSlideInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2b3a5003-86bf-4ba9-bae3-6f2a5a67a1f1
     m_ActionName: 'Player/SwapTank[/Keyboard/a,/Keyboard/d]'
   - m_PersistentCalls:
@@ -132,6 +144,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5d6db9bc-7f81-4b7a-93b3-f013a05de333
     m_ActionName: 'Player/Aim[/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f74a3415-7b1d-4c0b-945f-f7ab9a8d16a3
+    m_ActionName: 'Player/MGShoot[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4970665517879601029}
+        m_TargetAssemblyTypeName: Menu_Tank, Assembly-CSharp
+        m_MethodName: OpenSlideInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3bfa39b4-74c9-4279-8b9a-7e9b7d8aea2a
+    m_ActionName: 'Player/ShowTutorial[/Keyboard/h]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -162,7 +194,12 @@ MonoBehaviour:
   playerSetup:
     playerIndex: 0
     tankIndex: 0
+  botSetup:
+    playerIndex: 0
+    tankIndex: 0
   gameManager: {fileID: 0}
+  tankButtonsScript: {fileID: 0}
+  _howPlayScript: {fileID: 0}
 --- !u!95 &4106077662498721408
 Animator:
   serializedVersion: 7
