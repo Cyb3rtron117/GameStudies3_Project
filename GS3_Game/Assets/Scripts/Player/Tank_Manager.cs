@@ -14,10 +14,12 @@ public class Tank_Manager : MonoBehaviour
     public bool isDead = false;
     public bool freeze = false;
     public int playerIndex;
+    private bool isKeyboard = false;
+    [SerializeField] private LayerMask MouseIncludeLayers = ~0;
     private List<GameObject> hitObjects = new List<GameObject>();
     [Header("Moving")]
     private Vector2 movementInput;
-    private float aimInput;
+    private Vector2 aimInput;
     private float additionalAngle = 0f;
     public Rigidbody rb;
     public Animator anim;
@@ -89,6 +91,7 @@ public class Tank_Manager : MonoBehaviour
     [Header("Cinemachine")]
     [SerializeField] private CinemachineOrbitalFollow cineOrbit;
     public CinemachineCamera cineCam;
+    public Camera mainCam;
     [SerializeField] private float BoostFOV = 70f;
     [SerializeField] private float RegularFOV = 60f;
     private bool zoomFOV = false;
@@ -136,9 +139,11 @@ public class Tank_Manager : MonoBehaviour
         {
             case "Mouse & Keyboard":
                 keyboardText.SetActive(true);
+                isKeyboard = true;
                 break;
             case "Gamepad":
                 controllerText.SetActive(true);
+                isKeyboard = false;
                 break;
         }
     }
@@ -195,11 +200,7 @@ public class Tank_Manager : MonoBehaviour
     {
         if (!freeze)
         {
-            aimInput = context.ReadValue<float>();
-        }
-        else
-        {
-            aimInput = 0f;
+            aimInput = context.ReadValue<Vector2>();
         }
     }
     public void BoostInput(InputAction.CallbackContext context)
@@ -383,9 +384,44 @@ public class Tank_Manager : MonoBehaviour
     }
     private void RotateTurret()
     {
-        //Vector3 aimDir = new Vector3(aimInput.x, 0, aimInput.y);
-        additionalAngle += aimInput * aimSpeed;
-        turret.transform.eulerAngles = new Vector3(0, additionalAngle, 0);
+        if (freeze || isDead)
+        {
+            turret.rotation = Quaternion.Euler(0, additionalAngle, 0);
+        }
+        else
+        {
+            if (!isKeyboard)
+            {
+                Vector3 aimDir = new Vector3(aimInput.x, 0, aimInput.y);
+                //additionalAngle += aimInput * aimSpeed;
+                if (aimDir.sqrMagnitude > 0.001f)
+                {
+                    float yRotation = Quaternion.LookRotation(aimDir).eulerAngles.y + additionalAngle;
+                    turret.rotation = Quaternion.Euler(0, yRotation, 0);
+                }
+            }
+            else
+            {
+                Vector2 mousePosition = aimInput;
+
+                Vector3 viewportPosition = mainCam.ScreenToViewportPoint(mousePosition);
+                if (viewportPosition.x >= 0f && viewportPosition.x <= 1f && viewportPosition.y >= 0f && viewportPosition.y <= 1f)
+                {
+                    Ray ray = mainCam.ViewportPointToRay(viewportPosition);
+
+                    if (Physics.Raycast(ray, out RaycastHit hit, 1000f, MouseIncludeLayers))
+                    {
+                        Vector3 difference = hit.point - turret.position;
+                        difference.y = 0f;
+                        if (difference.sqrMagnitude > 0.001f)
+                        {
+                            float yRotation = Quaternion.LookRotation(difference).eulerAngles.y;
+                            turret.rotation = Quaternion.Euler(0, yRotation, 0);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void FixedUpdate()

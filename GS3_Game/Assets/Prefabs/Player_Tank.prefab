@@ -707,6 +707,9 @@ MonoBehaviour:
   isDead: 0
   freeze: 0
   playerIndex: 0
+  MouseIncludeLayers:
+    serializedVersion: 2
+    m_Bits: 2039
   rb: {fileID: 6759753703300375904}
   anim: {fileID: 0}
   boostTime: 0.5
@@ -720,7 +723,6 @@ MonoBehaviour:
   aimSpeed: 10
   shootCooldown: 1
   canShoot: 0
-  ShakeIntensity: 10
   ShakeTime: 0.5
   mgCanShoot: 0
   mgMaxDistance: 50
@@ -761,6 +763,7 @@ MonoBehaviour:
   explodescript: {fileID: 0}
   cineOrbit: {fileID: 0}
   cineCam: {fileID: 3236582846877275128}
+  mainCam: {fileID: 6573758345053542623}
   BoostFOV: 70
   RegularFOV: 60
   zoomSpeed: 10
@@ -2224,7 +2227,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1495
+    m_Bits: 3543
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

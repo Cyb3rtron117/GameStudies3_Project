@@ -8517,7 +8517,7 @@ GameObject:
   - component: {fileID: 340673354}
   - component: {fileID: 340673353}
   - component: {fileID: 340673352}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Goal
   m_TagString: Goal2
   m_Icon: {fileID: 0}
@@ -18350,6 +18350,10 @@ PrefabInstance:
       value: swiperLong_teamBlue
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 98b8aaa6b088cab408710e7ce26f01e9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 98b8aaa6b088cab408710e7ce26f01e9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -19531,7 +19535,7 @@ GameObject:
   - component: {fileID: 867297906}
   - component: {fileID: 867297905}
   - component: {fileID: 867297904}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hitbox
   m_TagString: Arena
   m_Icon: {fileID: 0}
@@ -30489,6 +30493,10 @@ PrefabInstance:
       value: swiperLong_teamBlue (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 98b8aaa6b088cab408710e7ce26f01e9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 98b8aaa6b088cab408710e7ce26f01e9, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -31490,6 +31498,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 98b8aaa6b088cab408710e7ce26f01e9, type: 3}
       propertyPath: m_Name
       value: swiperLong_teamBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 98b8aaa6b088cab408710e7ce26f01e9, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 98b8aaa6b088cab408710e7ce26f01e9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -34121,7 +34133,7 @@ GameObject:
   - component: {fileID: 1467304101}
   - component: {fileID: 1467304100}
   - component: {fileID: 1467304099}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Goal
   m_TagString: Goal1
   m_Icon: {fileID: 0}
@@ -42057,7 +42069,7 @@ GameObject:
   - component: {fileID: 1766957592}
   - component: {fileID: 1766957591}
   - component: {fileID: 1766957590}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hitbox
   m_TagString: Arena
   m_Icon: {fileID: 0}
@@ -51355,6 +51367,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 98b8aaa6b088cab408710e7ce26f01e9, type: 3}
       propertyPath: m_Name
       value: swiperLong_teamBlue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 98b8aaa6b088cab408710e7ce26f01e9, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 98b8aaa6b088cab408710e7ce26f01e9, type: 3}
       propertyPath: m_StaticEditorFlags

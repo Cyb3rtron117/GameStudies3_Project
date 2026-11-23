@@ -91,7 +91,7 @@
                     "name": "Aim",
                     "type": "Value",
                     "id": "5d6db9bc-7f81-4b7a-93b3-f013a05de333",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -189,7 +189,7 @@
                 {
                     "name": "",
                     "id": "b95d1a5d-ca64-469f-ad4a-adfcf279ae70",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Mouse & Keyboard",
@@ -452,8 +452,8 @@
                 },
                 {
                     "name": "",
-                    "id": "8da26202-c1a8-42f6-91ac-1969c5888ad0",
-                    "path": "<Gamepad>/rightStick/x",
+                    "id": "fbfa63c8-9516-4957-b47d-942a64670efa",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -462,37 +462,15 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "8a144ff1-9026-482e-93e5-eda275a02318",
-                    "path": "1DAxis",
+                    "name": "",
+                    "id": "cb36ebd6-d812-4568-8bde-ab387df95399",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Mouse & Keyboard",
                     "action": "Aim",
-                    "isComposite": true,
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "d79d66e7-ecce-4f76-84fe-14f66dfc7672",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "592d3e50-f1ae-4c1c-91da-814993f087c9",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }

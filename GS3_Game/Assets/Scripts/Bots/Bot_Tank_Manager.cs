@@ -184,7 +184,10 @@ public class Bot_Tank_Manager : MonoBehaviour
             aimpos = goalTarget.transform.position - transform.position;
         }
         aimpos.y = 0;
-        turret.transform.eulerAngles = Quaternion.LookRotation(aimpos).eulerAngles;
+        if (aimpos.sqrMagnitude > 0.01f)
+        {
+            turret.transform.eulerAngles = Quaternion.LookRotation(aimpos).eulerAngles;
+        }
     }
 
     private void FixedUpdate()
