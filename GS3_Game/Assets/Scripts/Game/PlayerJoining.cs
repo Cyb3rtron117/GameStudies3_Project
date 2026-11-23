@@ -15,6 +15,7 @@ public class PlayerJoining : MonoBehaviour
     private MenuButtons _menuButtonsScript;
     private int _coloursShown = 0;
     public PlayerInputManager _playerInputManager;
+    public SoundManager soundScript;
     private void Start()
     {
         _playerInputManager = GetComponent<PlayerInputManager>();
@@ -23,6 +24,7 @@ public class PlayerJoining : MonoBehaviour
         botSetups.Clear();
         _menuButtonsScript = GetComponent<MenuButtons>();
         SplitscreenDivider.PlayerAmt = 0;
+        soundScript = GetComponent<SoundManager>();
     }
 
     public void OnPlayerJoined(PlayerInput playerInput)
@@ -68,6 +70,7 @@ public class PlayerJoining : MonoBehaviour
         if(index == 0)
         {
             GetComponent<HowPlay>().ShowPrompt();
+            soundScript.PlayIdle();
         }
     }
     public void OnPlayerLeft(PlayerInput playerInput)

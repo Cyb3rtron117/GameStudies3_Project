@@ -61,6 +61,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     public Team _team; //set by PlayerSpawning
     public List<GameObject> MyTeam = new List<GameObject>();
     public ExplosionManager explodescript;
+    public SoundManager soundScript;
 
     private void OnEnable()
     {
@@ -86,6 +87,7 @@ public class Bot_Tank_Manager : MonoBehaviour
         ChangeTank(tankIndex);
         isBoosting = false;
         hitObjects.Clear();
+        soundScript = gameManager.GetComponent<SoundManager>();
     }
     private void Move()
     {
@@ -147,6 +149,7 @@ public class Bot_Tank_Manager : MonoBehaviour
         {
             anim.SetTrigger("Shoot");
             canShoot = false;
+            soundScript.PlayShoot();
             cooldownTime = shootCooldown;
             CinemachineShake.Instance.ShakeCam(ShakeType.Shoot, ShakeTime);
             Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
@@ -321,6 +324,7 @@ public class Bot_Tank_Manager : MonoBehaviour
                     }
                 }
                 impactVFX.Play();
+                soundScript.PlaySmash();
             }
         }
     }

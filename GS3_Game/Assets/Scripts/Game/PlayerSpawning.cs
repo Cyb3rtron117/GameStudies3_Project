@@ -16,16 +16,18 @@ public class PlayerSpawning : MonoBehaviour
 
     [SerializeField] private List<GameObject> Team1 = new List<GameObject>();
     [SerializeField] private List<GameObject> Team2 = new List<GameObject>();
-
+    public SoundManager soundScript;
     private void Start()
     {
         _playerInputs.Clear();
         Tanks.Clear();
         InstantiatePlayers();
         InstantiateBots();
+        soundScript = GetComponent<SoundManager>();
     }
     private void InstantiatePlayers()
     {
+        soundScript.PlayIdle();
         foreach(PlayerSetup setup in PlayerJoining.playerSetups)
         {
             PlayerInput player = PlayerInput.Instantiate(

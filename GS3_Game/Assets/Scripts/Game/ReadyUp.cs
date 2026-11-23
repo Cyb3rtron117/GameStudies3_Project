@@ -15,6 +15,7 @@ public class ReadyUp : MonoBehaviour
     public bool startPlayerWait = false;
     [SerializeField] private Animator ReadyAnim;
     [SerializeField] private TextMeshProUGUI playerWaitText;
+    public SoundManager soundScript;
     private void Start()
     {
         resetTimer();
@@ -46,6 +47,10 @@ public class ReadyUp : MonoBehaviour
         GetComponent<MenuButtons>().ToggleReadyButton(which, playersReady[which]);
         //CanvasReadyButtons[which].SetActive(playersReady[which]);
         //print(playersReady[which]);
+        if(playersReady[which])
+        {
+            soundScript.PlayShoot();
+        }
         resetTimer();
         startPlayerWait = false;
         checkReady();

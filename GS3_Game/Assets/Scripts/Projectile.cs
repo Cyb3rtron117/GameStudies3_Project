@@ -37,6 +37,7 @@ public class Projectile : MonoBehaviour
     private bool isBouncing = false;
 
     public float Damage;
+    public SoundManager soundScript;
     private void Awake()
     {
         Instance = this;
@@ -213,6 +214,7 @@ public class Projectile : MonoBehaviour
                 UpdatePriority(this.gameObject);
                 ResetBullet();
                 CinemachineShake.Instance.ShakeCam(ShakeType.Goal, 1);
+                soundScript.PlayBoom();
             }
 
             if (other.gameObject.CompareTag("Goal2") && mode != BulletMode.Frozen && (mode != BulletMode.Bounce) && (mode != BulletMode.Fall))
@@ -223,7 +225,7 @@ public class Projectile : MonoBehaviour
                 UpdatePriority(this.gameObject);
                 ResetBullet();
                 CinemachineShake.Instance.ShakeCam(ShakeType.Goal, 1);
-
+                soundScript.PlayBoom();
             }
         }
     }

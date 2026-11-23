@@ -95,6 +95,7 @@ public class Tank_Manager : MonoBehaviour
     public TextMeshProUGUI countDown;
     public string controlScheme = " ";
     public ExplosionManager explodescript;
+    public SoundManager soundScript;
 
     [Header("Cinemachine")]
     [SerializeField] private CinemachineOrbitalFollow cineOrbit;
@@ -126,6 +127,7 @@ public class Tank_Manager : MonoBehaviour
         cineCam.Lens.FieldOfView = RegularFOV;
         colours = gameManager.GetComponent<Colours>().colours;
         explodescript = gameManager.GetComponent<ExplosionManager>();
+        soundScript = gameManager.GetComponent<SoundManager>();
         ChangeTank(tankIndex);
         CurrentMgShotAmt = MaxMgShotAmt;
 
@@ -333,6 +335,7 @@ public class Tank_Manager : MonoBehaviour
         {
             anim.SetTrigger("Shoot");
             canShoot = false;
+            soundScript.PlayShoot();
             cooldownTime = shootCooldown;
             CinemachineShake.Instance.ShakeCam(ShakeType.Shoot, ShakeTime);
             Vector3 shootDir = new Vector3(0f,turret.eulerAngles.y, 0f);
@@ -407,6 +410,7 @@ public class Tank_Manager : MonoBehaviour
         }
         MGPingVFX.SetVector3("Position", finalPoint);
         MGPingVFX.Play();
+        soundScript.PlayMG();
         StartCoroutine(ShowTracer());
     }
     private IEnumerator ShowTracer()
@@ -651,6 +655,8 @@ public class Tank_Manager : MonoBehaviour
                     }
                 }
                 impactVFX.Play();
+                soundScript.PlaySmash();
+
             }
         }
     }

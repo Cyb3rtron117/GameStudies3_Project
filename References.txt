@@ -5,3 +5,15 @@ Mongy. (2025, May 14). Unity Shader Graph: Easy outline shader in 1 minute! [Vid
 Unity. (2025, April 17). Unity Input System in Unity 6 (7/7):  Player Input Manager & local multiplayer [Video]. YouTube. https://www.youtube.com/watch?v=lGxXQzE5Vu8
 
 Faktory Studios. (2025, June 13). Local Multiplayer in Unity 6 - using the NEW Input system [Video]. YouTube. https://www.youtube.com/watch?v=u3KoWI92blE
+
+Sounds:
+Department64 (November 10th, 2021). FX Tank Mix-a.wav. Freesound. https://freesound.org/people/Department64/sounds/608126/
+
+magnuswaker (June 14th, 2020). Concrete SMASH. Freesound. https://freesound.org/people/magnuswaker/sounds/522098/
+
+vabadus (April 9th, 2012). M406 HE shell explosion on gravel. Freesound. https://freesound.org/people/vabadus/sounds/151076/
+
+Rudmer_Rotteveel. (10 February, 2016). Sharp Explosion 4 (of 5). Freesound. https://freesound.org/people/Rudmer_Rotteveel/sounds/336011/
+
+(edited)
+StephenSaldanha. (7 June, 2011). BOMB_EXPLOSION_VARIATION.wav. Freesound. https://freesound.org/people/StephenSaldanha/sounds/121892/
