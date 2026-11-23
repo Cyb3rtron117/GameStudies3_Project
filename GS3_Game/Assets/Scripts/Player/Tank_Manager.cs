@@ -45,7 +45,8 @@ public class Tank_Manager : MonoBehaviour
     [SerializeField] private float mgMaxDistance = 10f;
     [SerializeField] private LayerMask mgLayerMask = ~0;
     [SerializeField] private LineRenderer tracer;
-    [SerializeField] private float tracerDuration = 0.04f;
+    //[SerializeField] private float tracerDuration = 0.04f;
+    private WaitForSeconds tracerDuration = new WaitForSeconds(0.04f);
     [SerializeField] private VisualEffect MGPingVFX;
     public float MGDamage = 1f;
     private Vector3 finalPoint = Vector3.zero;
@@ -173,13 +174,14 @@ public class Tank_Manager : MonoBehaviour
             {
                 mgCanShoot = true;
                 Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);
-                InvokeRepeating(nameof(MGShot), 0f, 0.1f);
+                InvokeRepeating(nameof(MGShot), 0.1f, 0.1f);
             }
             else if (context.canceled)
             {
                 mgCanShoot = false;
                 Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);
                 CancelInvoke(nameof(MGShot));
+                tracer.enabled = false;
             }
         }
         else
@@ -187,6 +189,7 @@ public class Tank_Manager : MonoBehaviour
             mgCanShoot = false;
             Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);
             CancelInvoke(nameof(MGShot));
+            tracer.enabled = false;
         }
     }
     public void AimInput(InputAction.CallbackContext context)
@@ -303,7 +306,7 @@ public class Tank_Manager : MonoBehaviour
     }
     public void MGShot()
     {
-        if (freeze || canShoot)
+        if (freeze || canShoot || isDead)
         {
             return;
         }
@@ -320,6 +323,11 @@ public class Tank_Manager : MonoBehaviour
             if(hit.collider.GetComponent<Tank_Manager>())
             {
                 Tank_Manager tankScript = hit.collider.GetComponent<Tank_Manager>();
+                /*
+                Debug.Log($"MG HIT PLAYER: {tankScript.name}");
+                Debug.Log($"Shooter team: {_team} | Target team: {tankScript._team}");
+                Debug.Log($"Target isDead: {tankScript.isDead}");
+                */
                 if (tankScript._team != _team) //if not on my team
                 {
                     tankScript.TakeDamage(MGDamage);
@@ -328,13 +336,18 @@ public class Tank_Manager : MonoBehaviour
             else if (hit.collider.GetComponent<Bot_Tank_Manager>())
             {
                 Bot_Tank_Manager bottankScript = hit.collider.GetComponent<Bot_Tank_Manager>();
+                /*
+                Debug.Log($"MG HIT PLAYER: {bottankScript.name}");
+                Debug.Log($"Shooter team: {_team} | Target team: {bottankScript._team}");
+                Debug.Log($"Target isDead: {bottankScript.isDead}");
+                */
                 if (bottankScript._team != _team) //if not on my team
                 {
                     bottankScript.TakeDamage(MGDamage);
                 }
             }
         }
-        MGPingVFX.SetVector3("Position", hit.point);
+        MGPingVFX.SetVector3("Position", finalPoint);
         MGPingVFX.Play();
         StartCoroutine(ShowTracer());
 
@@ -344,7 +357,7 @@ public class Tank_Manager : MonoBehaviour
 
         tracer.enabled = true;
 
-        yield return new WaitForSeconds(tracerDuration);
+        yield return tracerDuration;
 
         tracer.enabled = false;
     }
@@ -389,9 +402,6 @@ public class Tank_Manager : MonoBehaviour
                 countDown.SetText("Go!");
             }
         }
-        
-        tracer.SetPosition(0, lineShoot.position);
-        tracer.SetPosition(1, finalPoint);
 
         Move();
         RotateTurret();
@@ -418,6 +428,11 @@ public class Tank_Manager : MonoBehaviour
         {
             dashBar.fillAmount += (1/boostCooldown) * Time.fixedDeltaTime;
         }
+    }
+    private void LateUpdate()
+    {
+        tracer.SetPosition(0, lineShoot.position);
+        tracer.SetPosition(1, finalPoint);
     }
     private void CamZoom(bool zoom)
     {
