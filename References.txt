@@ -6,6 +6,9 @@ Unity. (2025, April 17). Unity Input System in Unity 6 (7/7):  Player Input Man
 
 Faktory Studios. (2025, June 13). Local Multiplayer in Unity 6 - using the NEW Input system [Video]. YouTube. https://www.youtube.com/watch?v=u3KoWI92blE
 
+Music:
+ansimuz (Jun 24, 2022). Action Music Pack 1. Itch.io. https://ansimuz.itch.io/action-music-pack-1
+
 Sounds:
 Department64 (November 10th, 2021). FX Tank Mix-a.wav. Freesound. https://freesound.org/people/Department64/sounds/608126/
 

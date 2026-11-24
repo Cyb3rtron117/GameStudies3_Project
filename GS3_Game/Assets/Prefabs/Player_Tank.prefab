@@ -710,7 +710,6 @@ MonoBehaviour:
   MGPingVFX: {fileID: 6021549853546288095}
   MGDamage: 2
   MGSound: {fileID: 7875662201471304849}
-  PingSound: {fileID: 0}
   rocketItem: {fileID: 3669231316703022555}
   rocketButton:
   - {fileID: 362371200975488033}
@@ -1223,7 +1222,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 82
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 30
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
