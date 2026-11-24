@@ -88,10 +88,11 @@ public class Bot_Tank_Manager : MonoBehaviour
         isBoosting = false;
         hitObjects.Clear();
         soundScript = gameManager.GetComponent<SoundManager>();
+        isDead = false;
     }
     private void Move()
     {
-        if(!freeze && target != null)
+        if(!freeze && target != null && !Scoring.GameEnd)
         {
             agent.SetDestination(target.transform.position);
             Vector3 desiredVelocity = agent.desiredVelocity;
@@ -145,7 +146,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     }
     private void Shoot()
     {
-        if (canShoot && !freeze)
+        if (canShoot && !freeze && !Scoring.GameEnd)
         {
             anim.SetTrigger("Shoot");
             canShoot = false;
@@ -176,6 +177,11 @@ public class Bot_Tank_Manager : MonoBehaviour
     }
     private void RotateTurret()
     {
+        if(isDead)
+        {
+            return;
+        }
+
         if(target == null)
         {
             aimpos = transform.forward;
@@ -371,7 +377,7 @@ public class Bot_Tank_Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         hitObjects.Clear();
-        if (!Countdown.count && !Countdown.freeze)
+        if (!Countdown.count && !Countdown.freeze && !Scoring.GameEnd)
         {
             Unfreeze();
         }

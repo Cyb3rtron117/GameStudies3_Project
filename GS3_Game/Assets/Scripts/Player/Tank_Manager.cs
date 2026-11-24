@@ -201,7 +201,7 @@ public class Tank_Manager : MonoBehaviour
     }
     public void MGInput(InputAction.CallbackContext context)
     {
-        if (!freeze && !canShoot)
+        if (!freeze && !canShoot && !Scoring.GameEnd && !isDead)
         {
             if (context.performed)
             {
@@ -248,7 +248,7 @@ public class Tank_Manager : MonoBehaviour
     }
     public void AimInput(InputAction.CallbackContext context)
     {
-        if (!freeze)
+        if (!freeze && !Scoring.GameEnd && !isDead)
         {
             aimInput = context.ReadValue<Vector2>();
         }
@@ -257,7 +257,7 @@ public class Tank_Manager : MonoBehaviour
     {
         if (context.performed)
         {
-            if (!isBoosting && !freeze)
+            if (!isBoosting && !freeze && !Scoring.GameEnd && !isDead)
             {
                 isBoosting = true;
                 StartCoroutine(Boost(boostTime));
@@ -270,7 +270,7 @@ public class Tank_Manager : MonoBehaviour
     }
     private void Move()
     {
-        if(!freeze)
+        if(!freeze && !Scoring.GameEnd && !isDead)
         {
             //rb.linearVelocity = transform.forward * movement.y * currentSpeed;
             //REGULAR   
@@ -350,7 +350,7 @@ public class Tank_Manager : MonoBehaviour
     }
     private void Shoot()
     {
-        if (canShoot && !freeze)
+        if (canShoot && !freeze && !Scoring.GameEnd)
         {
             anim.SetTrigger("Shoot");
             canShoot = false;
@@ -372,7 +372,7 @@ public class Tank_Manager : MonoBehaviour
     }
     public void MGShot()
     {
-        if (freeze || canShoot || isDead || CurrentMgShotAmt <= 0)
+        if (freeze || canShoot || isDead || Scoring.GameEnd || CurrentMgShotAmt <= 0)
         {
             if (CurrentMgShotAmt <= 0)
             {
@@ -483,7 +483,7 @@ public class Tank_Manager : MonoBehaviour
     }
     private void RotateTurret()
     {
-        if (freeze || isDead)
+        if (freeze || isDead || Scoring.GameEnd)
         {
             turret.rotation = Quaternion.Euler(0, additionalAngle, 0);
         }
@@ -556,7 +556,7 @@ public class Tank_Manager : MonoBehaviour
 
         mgBar.fillAmount = CurrentMgShotAmt / MaxMgShotAmt;
 
-        if(!freeze && !canShoot && !isDead && CurrentMgShotAmt > 0)
+        if(!freeze && !canShoot && !isDead && !Scoring.GameEnd && CurrentMgShotAmt > 0)
         {
             mgButton[0].color = Color.white;
             mgButton[1].color = Color.white;
@@ -744,7 +744,7 @@ public class Tank_Manager : MonoBehaviour
                 break;
         }
         hitObjects.Clear();
-        if(!Countdown.count && !Countdown.freeze)
+        if(!Countdown.count && !Countdown.freeze && !Scoring.GameEnd)
         {
             Unfreeze();
         }

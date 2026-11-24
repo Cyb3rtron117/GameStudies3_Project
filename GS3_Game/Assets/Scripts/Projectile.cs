@@ -24,7 +24,6 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Material defaultMat;
     [SerializeField] private Team _team;
     [SerializeField] private Scoring scoreScript;
-    [SerializeField] private PlayerSpawning spawnScript;
     [SerializeField] private bool ignoreCollisions = false;
     [SerializeField] private VisualEffect impactVFX;
     [SerializeField] private VisualEffect smokeVFX;
@@ -52,7 +51,6 @@ public class Projectile : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             scoreScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<Scoring>();
-            spawnScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerSpawning>();
             if(impactVFX == null)
             {
                 impactVFX = GameObject.FindGameObjectWithTag("ImpactVFX").GetComponent<VisualEffect>();
@@ -144,7 +142,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(ignoreCollisions)
+        if(ignoreCollisions || Scoring.GameEnd)
         {
             return;
         }
@@ -210,7 +208,6 @@ public class Projectile : MonoBehaviour
             {
                 print($"{Team.team2} got a point");
                 scoreScript.Score(Team.team2);
-                spawnScript.RespawnPlayers();
                 UpdatePriority(this.gameObject);
                 ResetBullet();
                 CinemachineShake.Instance.ShakeCam(ShakeType.Goal, 1);
@@ -221,7 +218,6 @@ public class Projectile : MonoBehaviour
             {
                 print($"{Team.team1} got a point");
                 scoreScript.Score(Team.team1);
-                spawnScript.RespawnPlayers();
                 UpdatePriority(this.gameObject);
                 ResetBullet();
                 CinemachineShake.Instance.ShakeCam(ShakeType.Goal, 1);
