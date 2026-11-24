@@ -57,6 +57,7 @@ public class Tank_Manager : MonoBehaviour
     [SerializeField] private VisualEffect MGPingVFX;
     public float MGDamage = 1f;
     private Vector3 finalPoint = Vector3.zero;
+    public AudioSource MGSound;
 
     [Header("UI")]
     public RawImage rocketItem;
@@ -209,13 +210,18 @@ public class Tank_Manager : MonoBehaviour
                     StopCoroutine(rechargeCoroutine);
                     rechargeCoroutine = null;
                 }
-
+                if(CurrentMgShotAmt>0)
+                {
+                    MGSound.Play();
+                }
+                
                 mgCanShoot = true;
                 Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);
                 InvokeRepeating(nameof(MGShot), 0.1f, 0.1f);
             }
             else if (context.canceled)
             {
+                MGSound.Stop();
                 if (rechargeCoroutine == null)
                 {
                     rechargeCoroutine = StartCoroutine(ReloadMG());
@@ -228,10 +234,16 @@ public class Tank_Manager : MonoBehaviour
         }
         else
         {
+            MGSound.Stop();
             mgCanShoot = false;
             Machinegun.GetComponent<Animator>().SetBool("Shoot", mgCanShoot);
             CancelInvoke(nameof(MGShot));
             tracer.enabled = false;
+
+            if(context.performed)
+            {
+                soundScript.PlayError();
+            }
         }
     }
     public void AimInput(InputAction.CallbackContext context)
@@ -243,10 +255,17 @@ public class Tank_Manager : MonoBehaviour
     }
     public void BoostInput(InputAction.CallbackContext context)
     {
-        if (context.performed && !isBoosting && !freeze)
+        if (context.performed)
         {
-            isBoosting = true;
-            StartCoroutine(Boost(boostTime));
+            if (!isBoosting && !freeze)
+            {
+                isBoosting = true;
+                StartCoroutine(Boost(boostTime));
+            }
+            else
+            {
+                soundScript.PlayError();
+            }
         }
     }
     private void Move()
@@ -346,6 +365,10 @@ public class Tank_Manager : MonoBehaviour
 
             shootVFX.Play();
         }
+        else
+        {
+            soundScript.PlayError();
+        }
     }
     public void MGShot()
     {
@@ -363,10 +386,12 @@ public class Tank_Manager : MonoBehaviour
                     rechargeCoroutine = StartCoroutine(ReloadMG());
                 }
             }
-
+            if(MGSound.isPlaying)
+            {
+                MGSound.Stop();
+            }
             return;
         }
-
         CurrentMgShotAmt--;
 
         //print("mg shooting");
@@ -381,6 +406,7 @@ public class Tank_Manager : MonoBehaviour
             //print($"Machine gun hit {hit.collider.name}. Parent is {hit.collider.transform.parent}");
             if(hit.collider.GetComponent<Tank_Manager>())
             {
+                soundScript.PlayPing();
                 Tank_Manager tankScript = hit.collider.GetComponent<Tank_Manager>();
                 
                 Debug.Log($"MG HIT PLAYER: {tankScript.name}");
@@ -395,13 +421,11 @@ public class Tank_Manager : MonoBehaviour
             }
             else if (hit.collider.GetComponent<Bot_Tank_Manager>())
             {
+                soundScript.PlayPing();
                 Bot_Tank_Manager bottankScript = hit.collider.GetComponent<Bot_Tank_Manager>();
                 
                 Debug.Log($"MG HIT PLAYER: {bottankScript.name}");
-                /*
                 Debug.Log($"Shooter team: {_team} | Target team: {bottankScript._team}");
-                Debug.Log($"Target isDead: {bottankScript.isDead}");
-                */
                 if (bottankScript._team != _team) //if not on my team
                 {
                     bottankScript.TakeDamage(MGDamage);
@@ -410,7 +434,6 @@ public class Tank_Manager : MonoBehaviour
         }
         MGPingVFX.SetVector3("Position", finalPoint);
         MGPingVFX.Play();
-        soundScript.PlayMG();
         StartCoroutine(ShowTracer());
     }
     private IEnumerator ShowTracer()
@@ -442,6 +465,8 @@ public class Tank_Manager : MonoBehaviour
         drainDash = true;
         dashButton[0].color = inactiveColor;
         dashButton[1].color = inactiveColor;
+        soundScript.PlayWoosh();
+
         yield return new WaitForSeconds(waitTime);
         drainDash = false;
         currentSpeed = moveSpeed;
@@ -703,6 +728,7 @@ public class Tank_Manager : MonoBehaviour
         transform.position = gameManager.GetComponent<PlayerSpawning>().SpawnPoints[where].position;
         transform.eulerAngles = gameManager.GetComponent<PlayerSpawning>().SpawnPoints[where].eulerAngles;
         canShoot = false;
+        soundScript.PlayPlayerExpl();
         StartCoroutine(Respawn(2));
     }
     IEnumerator Respawn(float waitTime)
@@ -733,6 +759,7 @@ public class Tank_Manager : MonoBehaviour
         {
             currentTank.SetActive(true);
         }
+        soundScript.PlayRespawn();
     }
     private void Unfreeze()
     {

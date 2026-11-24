@@ -227,6 +227,7 @@ public class Projectile : MonoBehaviour
                 CinemachineShake.Instance.ShakeCam(ShakeType.Goal, 1);
                 soundScript.PlayBoom();
             }
+            soundScript.PlayMissileImp();
         }
     }
     private void OnCollisionStay(Collision collision)
@@ -235,6 +236,7 @@ public class Projectile : MonoBehaviour
         {
             goDisplay();
             CinemachineShake.Instance.ShakeCam(ShakeType.BulletHit, 0.5f);
+            soundScript.PlayMissileImp();
         }
     }
     private void SwapColour(Material newMat)
@@ -304,7 +306,7 @@ public class Projectile : MonoBehaviour
 
         rb.useGravity = true;
         rb.WakeUp();
-
+        soundScript.PlayWoosh();
         rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
 
         //Debug.Log($"Bounce velocity: {rb.linearVelocity}");

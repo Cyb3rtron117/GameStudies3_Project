@@ -11,9 +11,11 @@ public class HowPlay : MonoBehaviour
     public static bool TutisActive = false;
     public TextMeshProUGUI SlideCountText;
     public GameObject Prompt;
+    private SoundManager soundScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        soundScript = GetComponent<SoundManager>();
         Prompt.SetActive(false);
         TutisActive = false;
         slideIndex = 0;
@@ -28,6 +30,7 @@ public class HowPlay : MonoBehaviour
     {
         if(TutisActive)
         {
+            soundScript.PlayClick();
             Slides[slideIndex].SetActive(false);
             slideIndex++;
             if (slideIndex < Slides.Length)
@@ -45,12 +48,20 @@ public class HowPlay : MonoBehaviour
     }
     private void PreviousSlide()
     {
-        if (slideIndex > 0 && TutisActive)
+        if (TutisActive)
         {
-            Slides[slideIndex].SetActive(false);
-            slideIndex--;
-            Slides[slideIndex].SetActive(true);
-            SlideCountText.SetText($"Page {slideIndex + 1} out of {Slides.Length}");
+            if (slideIndex > 0)
+            {
+                Slides[slideIndex].SetActive(false);
+                slideIndex--;
+                Slides[slideIndex].SetActive(true);
+                SlideCountText.SetText($"Page {slideIndex + 1} out of {Slides.Length}");
+                soundScript.PlayClick();
+            }
+            else
+            {
+                soundScript.PlayError();
+            }
         }
     }
     public void ChangeSlideInput(float direction)
@@ -74,8 +85,10 @@ public class HowPlay : MonoBehaviour
     {
         if(TutisActive)
         {
+            soundScript.PlayError();
             return;
         }
+        soundScript.PlayClick();
         TutisActive = true;
         slideIndex = 0;
         foreach (GameObject slide in Slides)

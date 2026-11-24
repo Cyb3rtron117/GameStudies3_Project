@@ -161,6 +161,8 @@ public class Bot_Tank_Manager : MonoBehaviour
     {
         currentSpeed = boostSpeed;
         agent.nextPosition = transform.position;
+        soundScript.PlayWoosh();
+
         yield return new WaitForSeconds(waitTime);
         currentSpeed = moveSpeed;
         StartCoroutine(BoostCooldown(boostCooldown));
@@ -362,6 +364,7 @@ public class Bot_Tank_Manager : MonoBehaviour
         }
         transform.position = gameManager.GetComponent<PlayerSpawning>().SpawnPoints[where].position;
         transform.eulerAngles = gameManager.GetComponent<PlayerSpawning>().SpawnPoints[where].eulerAngles;
+        soundScript.PlayPlayerExpl();
         StartCoroutine(Respawn(2));
     }
     IEnumerator Respawn(float waitTime)
@@ -382,6 +385,7 @@ public class Bot_Tank_Manager : MonoBehaviour
         {
             currentTank.SetActive(true);
         }
+        soundScript.PlayRespawn();
     }
     private void Unfreeze()
     {

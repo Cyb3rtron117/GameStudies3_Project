@@ -31,6 +31,7 @@ public class Menu_Tank : MonoBehaviour
     private TeamColours _teamColours;
     public tankButtons tankButtonsScript;
     public HowPlay _howPlayScript;
+    private SoundManager soundScript;
     private bool isBot = false;
     public void Setup(PlayerSetup setup)
     {
@@ -56,6 +57,7 @@ public class Menu_Tank : MonoBehaviour
         _teamColours = gameManager.GetComponent<TeamColours>();
         readyAnim = GetComponent<Animator>();
         _howPlayScript = gameManager.GetComponent<HowPlay>();
+        soundScript = gameManager.GetComponent<SoundManager>();
     }
     public void ChangeSlideInput(InputAction.CallbackContext context)
     {
@@ -122,6 +124,10 @@ public class Menu_Tank : MonoBehaviour
             tankIndex = 0;
         }
         ChangeTank(tankIndex);
+        if(soundScript != null)
+        {
+            soundScript.PlayClick();
+        }
         
     }
     private void PreviousTank()
@@ -132,6 +138,10 @@ public class Menu_Tank : MonoBehaviour
             tankIndex = TankPrefabs.Count - 1;
         }
         ChangeTank(tankIndex);
+        if (soundScript != null)
+        {
+            soundScript.PlayClick();
+        }
     }
     public void ChangeTankInput(InputAction.CallbackContext context)
     {
@@ -188,7 +198,8 @@ public class Menu_Tank : MonoBehaviour
         {
             _teamColours.NextColour(botSetup.playerIndex);
         }
-        
+        soundScript.PlayClick();
+
     }
     private void PreviousColour()
     {
@@ -210,6 +221,8 @@ public class Menu_Tank : MonoBehaviour
         {
             _teamColours.PreviousColour(botSetup.playerIndex);
         }
+        soundScript.PlayClick();
+
     }
     public void PressReady(InputAction.CallbackContext context)
     {
@@ -231,6 +244,8 @@ public class Menu_Tank : MonoBehaviour
             shootVFX.Play();
         }
         gameManager.GetComponent<ReadyUp>().playerReady(_playerIndex);
+        soundScript.PlayClick();
+
     }
 
     public void botReady()

@@ -66,7 +66,7 @@ public class PlayerJoining : MonoBehaviour
         }
         _menuButtonsScript.ShowReadyButton(index);
         SplitscreenDivider.PlayerAmt++;
-
+        soundScript.PlayRespawn();
         if(index == 0)
         {
             GetComponent<HowPlay>().ShowPrompt();
@@ -83,6 +83,7 @@ public class PlayerJoining : MonoBehaviour
     {
         float BotRerollDelay = 0;
         _playerInputManager.DisableJoining();
+        soundScript.PlayReroll();
         for (int i = playerSetups.Count; i < 4; i++)
         {
             print("adding bot");
