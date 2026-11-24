@@ -69,8 +69,10 @@ public class PlayerJoining : MonoBehaviour
         soundScript.PlayRespawn();
         if(index == 0)
         {
+            //For first player
             GetComponent<HowPlay>().ShowPrompt();
             soundScript.PlayIdle();
+            GetComponent<StartMenu>().ShowMenu(playerInput.currentControlScheme); //switch from start screen to main menu
         }
     }
     public void OnPlayerLeft(PlayerInput playerInput)
