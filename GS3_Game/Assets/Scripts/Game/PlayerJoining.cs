@@ -81,6 +81,7 @@ public class PlayerJoining : MonoBehaviour
 
     public void FillBots()
     {
+        GetComponent<HowPlay>().DisableSlideInput();
         float BotRerollDelay = 0;
         _playerInputManager.DisableJoining();
         soundScript.PlayReroll();

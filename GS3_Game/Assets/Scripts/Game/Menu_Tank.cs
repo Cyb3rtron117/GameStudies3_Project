@@ -69,7 +69,7 @@ public class Menu_Tank : MonoBehaviour
     }
     public void OpenSlideInput(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed || !HowPlay.CanShowTut)
         {
             return;
         }
@@ -226,7 +226,7 @@ public class Menu_Tank : MonoBehaviour
     }
     public void PressReady(InputAction.CallbackContext context)
     {
-        if(!context.performed)
+        if(!context.performed || HowPlay.TutisActive)
         {
             return;
         }

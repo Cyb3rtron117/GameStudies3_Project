@@ -9,12 +9,14 @@ public class HowPlay : MonoBehaviour
     private int slideIndex = 0;
     public GameObject[] Slides;
     public static bool TutisActive = false;
+    public static bool CanShowTut = true;
     public TextMeshProUGUI SlideCountText;
     public GameObject Prompt;
     private SoundManager soundScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        CanShowTut = true;
         soundScript = GetComponent<SoundManager>();
         Prompt.SetActive(false);
         TutisActive = false;
@@ -108,5 +110,10 @@ public class HowPlay : MonoBehaviour
     {
         Prompt.SetActive(true);
         anim.SetTrigger("ShowPrompt");
+    }
+    public void DisableSlideInput()
+    {
+        CanShowTut = false;
+        HideSlides();
     }
 }
