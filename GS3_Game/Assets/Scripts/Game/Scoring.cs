@@ -36,7 +36,7 @@ public class Scoring : MonoBehaviour
                 else
                 {
                     T2Hearts[2].SetActive(false);
-                    EndGame(1);
+                    EndGame(0);
                 }
 
                 break;
@@ -100,7 +100,7 @@ public class Scoring : MonoBehaviour
         print($"Game end set to {GameEnd}");
         StartCoroutine(ChangeScenes());
         winAnim.SetTrigger("Show");
-        Wintext.SetText($"Team {which}");
+        Wintext.SetText($"Team {which + 1}");
     }
     IEnumerator ChangeScenes()
     {
